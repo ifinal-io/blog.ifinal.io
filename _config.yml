@@ -18,10 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Final
+title: Notes
 logo: /assets/images/logos/github.svg
-name: FinalFramework
-email: your-email@example.com
+name: DevNotes
+email: 569553292@qq.com
 github: https://github.com/likly/dev-notes
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
