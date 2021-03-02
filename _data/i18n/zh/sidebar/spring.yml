@@ -1,0 +1,62 @@
+logo: /assets/images/logos/spring.svg
+name: Spring
+menus:
+  - id: overview
+    icon: emoji_objects
+    name: 概览
+  - id: boot
+    icon: do_not_disturb_on_total_silence
+    name: BOOT
+    menus:
+      - id: hello-world
+        name: Hello World
+      - id: spring-application
+        name: SpringApplication
+      - id: spring-banner
+        name: SpringBanner
+      - id: spring-application-run-listener
+        name: 'SpringApplicationRunListener'
+      - id: enable-auto-configuration
+        name: '@EnableAutoConfiguration'
+  - id: ioc
+    name: IOC
+    icon: sports_rugby
+    menus:
+      - id: application-context
+        name: ApplicationContext
+      - id: bean-factory-post-processor
+        name: Bean工厂后置处理器
+      - id: configuration-class
+        name: ConfigurationClass
+        menus:
+          - id: configuration-class-parser
+            name: 配置类解析器
+          - id: configuration-class-post-processor
+            name: 配置类处理器
+          - id: component-scan
+            name: '@ComponentScan'
+          - id: import
+            name: '@Import'
+          - id: import-resource
+            name: '@ImportResource'
+          - id: bean
+            name: '@Bean'
+      - id: application-listener
+        name: 应用监听器
+        menus:
+          - id: event-listener
+            name: '@EventListener'
+          - id: application-event-publisher
+            name: 应用事件发布者
+          - id: application-event-multicaster
+            name: 应用事件多播器
+      - id: spring-factory
+        name: SpringFactory
+  - id: aop
+    name: AOP
+    icon: layers
+  - id: security
+    name: Security
+    icon: shield
+
+

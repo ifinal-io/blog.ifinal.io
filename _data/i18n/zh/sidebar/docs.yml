@@ -1,0 +1,59 @@
+logo: /assets/images/logos/github.svg
+name: Final
+menus:
+  - id: overview
+    icon: emoji_objects
+    name: 概览
+  - id: quick-start
+    icon: surfing
+    name: 快速开始
+    menus:
+      - id: start-final
+        name: 开始 Final
+      - id: start-entity
+        name: 开始 Entity
+        menus:
+          - id: define-entity
+            name: 定义实体
+          - id: define-enum
+            name: 定义枚举
+      - id: start-mybatis
+        name: 开始 Mybatis
+        menus:
+          - id: use-mapper
+            name: 使用 Mapper
+          - id: use-query
+            name: 使用 Query
+      - id: start-service
+        name: 开始 Service
+      - id: start-web
+        name: 开始 Web
+        menus:
+          - id: define-rest-api
+            name: 定义Rest接口
+          - id: receive-json-param
+            name: 接收Json参数
+      - id: start-logging
+        name: 开始 Logging
+  - id: features
+    icon: app_registration
+    name: 功能
+    menus:
+      - id: framework
+        name: Framework
+      - id: readable-json
+        name: 可读性Json
+      - id: result
+        name: 统一结果集
+  - id: user-manual
+    icon: books
+    name: 用户手册
+    menus:
+      - id: annotation
+        name: Annotation
+        menus:
+          - id: orm
+            name: ORM
+  - id: dev-manual
+    icon: handyman
+    name: 开发手册
