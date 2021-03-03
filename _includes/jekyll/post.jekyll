@@ -1,5 +1,4 @@
 {% assign paths = page.path | replace: '_', '' | replace: '.md' : '' | split: '/'%}
-{% assign lang = paths[1] %}
 <script>
   var post = new Vue({
     el: '#post',
@@ -13,11 +12,10 @@
         title: "{{ page.title }}",
         menus: [],
         module: "{{ module }}",
-        lang: "{{ lang }}"
       },
-      modules: {{ site.data.i18n[lang]['modules'] | jsonify }},
+      modules: {{ site.data.modules | jsonify }},
       theme: "light",
-      sidebar: {{ site.data.i18n[lang]['sidebar'][page.collection] | jsonify }}
+      sidebar: {{ site.data.sidebar[page.collection] | jsonify }}
     },
     mounted: function () {
 

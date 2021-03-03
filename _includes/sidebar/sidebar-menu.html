@@ -3,7 +3,7 @@
   <li :class="page.menus[0] == menu1.id ? 'active' : ''" class="nav-item " v-for="(menu1,i1) in sidebar.menus">
     <!--一级菜单-->
     <a :class="page.menus.length > 1 && page.menus[0] == menu1.id && page.menus[1] != 'index' ? 'collapse' : ''"
-       :href="menu1.url ? menu1.url : '/' + page.collection + '/' + page.lang + '/' + menu1.id " class="nav-link">
+       :href="menu1.url ? menu1.url : '/' + page.collection + '/' + menu1.id " class="nav-link">
       <i class="material-icons" v-html="menu1.icon"></i>
       <p> {{menu1.name}}</p>
     </a>
@@ -17,7 +17,7 @@
         <li :class="page.menus[0] == menu1.id && page.menus[1] == menu2.id ? 'active' : ''" class="nav-item "
             v-for="(menu2,i2) in menu1.menus">
           <!--二级菜单-->
-          <a :href="menu2.url ? menu2.url : '/' + page.collection + '/' + page.lang + '/' + menu1.id + '/' + menu2.id" class="nav-link"
+          <a :href="menu2.url ? menu2.url : '/' + page.collection + '/' + menu1.id + '/' + menu2.id" class="nav-link"
              :class="page.menus.length > 2 && page.menus[0] == menu1.id && page.menus[1] == menu2.id && page.menus[2] != 'index' ? 'collapse' : ''">
             <span class="sidebar-mini" v-html="menu2.mini ? menu2.mini :  i1 + '.' + (i2 + 1)"> P </span>
             <span class="sidebar-normal" v-html="menu2.name"> Pricing </span>
@@ -37,7 +37,7 @@
                   class="nav-item"
                   v-for="(menu3,i3) in menu2.menus">
                 <!--三级菜单-->
-                <a :href="menu3.url ? menu3.url : '/' + page.collection + '/' + page.lang + '/' + menu1.id + '/' + menu2.id + '/' + menu3.id "
+                <a :href="menu3.url ? menu3.url : '/' + page.collection + '/' + menu1.id + '/' + menu2.id + '/' + menu3.id "
                    class="nav-link" v-if="menu3.menus == null">
                   <span class="sidebar-mini" v-html="menu3.mini ? menu2.mini : i1 + '.' + (i2 + 1) + '.' + (i3 + 1)"> E </span>
                   <span class="sidebar-normal" v-html="menu3.name"> Example </span>
