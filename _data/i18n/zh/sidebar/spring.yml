@@ -24,6 +24,8 @@ menus:
     menus:
       - id: application-context
         name: ApplicationContext
+      - id: configurable-application-context
+        name: ConfigurableApplicationContext
       - id: bean-factory-post-processor
         name: Bean工厂后置处理器
       - id: configuration-class

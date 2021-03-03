@@ -317,7 +317,9 @@ final class PostProcessorRegistrationDelegate {
 
 ## Build-In
 
-已知的内置`BeanFactoryPostProcessor`如下表所示：
+Spring内置了大量`BeanFactoryPostProcessor`用于框架处理，如用于配置类处理的`ConfigurationClassPostProcessor`、用于解析`@EvenetListener`注解的`EventListenerMethodProcessor`等。
+
+已知的`BeanFactoryPostProcessor`如下表所示：
 
 | Class                                  | Feature                                                      |
 | -------------------------------------- | ------------------------------------------------------------ |

@@ -152,17 +152,17 @@ code.highlighter-rouge {
 
 .markdown article > ol,
 .markdown article > ul {
-    margin: 0 1em;
+    margin: 1em 1em;
 }
 
 .markdown article > ol li,
 .markdown article > ul li {
-    padding: .4rem .6rem;
+    padding: .1rem .6rem;
 }
 
 .markdown article > table {
     width: calc(100% - 2em);
-    margin-left: 2em;
+    margin: 1em 0 1em 2em;
     background-color: antiquewhite;
 }
 

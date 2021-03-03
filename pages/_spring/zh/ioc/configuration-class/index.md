@@ -13,21 +13,65 @@ formatter: "@formatter:on"
 
 ## What
 
-**配置类(`ConfigurationClass`)是一种含有特殊标记的`BeanDefiniton`。**
+> **配置类(`ConfigurationClass`)是一种含有特殊标记的`BeanDefiniton`。**
+
+Spring将一些含有特殊的`BeanDefinition`称为**配置类**`ConfigurationClass`，这些配置类极大地提高了Spring的**可扩展性**及开发人员的**工作效率**。如：
+
+* 使用`@Component`标记组件类，配合`@ComponentScan`，减少`<beans>.xml`的声明；
+* 使用`@ImportResource`标记声明需要导入的的资源；
+* 使用`@Import`注解自定义需要导入的类；
+* ……
+
+
 
 ## Definition
 
-```mermaid
-classDiagram
-  class ConfigrationClass{
-      -AnnotationMetadata metadata
-      -Resource resource
-      -String beanName
-      -Set<BeanMethod> beanMethods;
-      -Map<String,Class<? extends BeanDefinitionReader>> importedResources
-      -Map<ImportBeanDefinitionRegistrar,AnnotationMetadata> importBeanDefinitionRegistrars
-  }
+在了解配置类之前，先看看其是如何定义的。
+
+通过查看`ConfigrurationClass`的源码发现，该类是Spring框架的一个*‘内部类’*（非`public`）。核心源码如下：
+
+```java
+package org.springframework.context.annotation;
+
+final class ConfigurationClass {
+
+    // 注解元数据
+    private final AnnotationMetadata metadata;
+
+    private final Resource resource;
+
+    @Nullable
+    private String beanName;
+
+    private final Set<ConfigurationClass> importedBy = new LinkedHashSet<>(1);
+
+    // 被 @Bean 标记的方法
+    private final Set<BeanMethod> beanMethods = new LinkedHashSet<>();
+
+    // @ImportResource 声明的资源
+    private final Map<String, Class<? extends BeanDefinitionReader>> importedResources =
+            new LinkedHashMap<>();
+
+    // @Import 声明的注册器
+    private final Map<ImportBeanDefinitionRegistrar, AnnotationMetadata> importBeanDefinitionRegistrars =
+            new LinkedHashMap<>();
+
+    final Set<String> skippedBeanMethods = new HashSet<>();
+
+}
 ```
+
+各属性的含义如下：
+
+|               属性               |         类型         |            备注             |
+| :------------------------------: | :------------------: | :-------------------------: |
+|            `medadata`            | `AnnotationMetaData` |        配置类元数据         |
+|            `resource`            |      `Resource`      |                             |
+|            `beanName`            |       `String`       |            名称             |
+|           `importdBy`            |        `Set`         |                             |
+|          `beanMethods`           |        `Map`         |     被`@Bean`标记的方法     |
+|       `importedResources`        |        `Map`         | `@ImportResource`声明的资源 |
+| `importBeanDefinitionRegistrars` |        `Map`         |    `@Import`声明的注册器    |
 
 Spring将符合以下规则的`BeanDefinition`称为**配置类(`ConfigurationClass`)**：
 
@@ -56,7 +100,7 @@ Spring将符合以下规则的`BeanDefinition`称为**配置类(`ConfigurationCl
 
 ## How
 
-如何判定一个`BeanDefinition`是否是配置类呢？
+了解了**配置类`ConfigurationClass`**的概念，那么Spring是如何判定一个`BeanDefinition`是否是配置类呢？
 
 Spring提供了工具类`ConfigurationClassUtils`的`checkConfigurationClassCandidate()`方法来检测一个`BeanDefinition`是否是配置类。
 
@@ -93,6 +137,22 @@ if(config!=null&&!Boolean.FALSE.equals(config.get("proxyBeanMethods"))){
     return false;
 }
 ```
+
+* 含有`@Bean`标记的方法
+
+```java
+// Finally, let's look for @Bean methods...
+try {
+    return metadata.hasAnnotatedMethods(Bean.class.getName());
+} catch (Throwable ex) {
+    if (logger.isDebugEnabled()) {
+        logger.debug("Failed to introspect @Bean methods on class [" + metadata.getClassName() + "]: " + ex);
+    }
+    return false;
+}
+```
+
+
 
 ```java
 package org.springframework.context.annotation;
