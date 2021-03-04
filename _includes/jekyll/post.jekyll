@@ -19,7 +19,7 @@
     },
     mounted: function () {
 
-      this.page.menus = this.page.paths.slice(2);
+      this.page.menus = this.page.paths.slice(1);
 
       $('#body').attr('data-theme', 'light');
 

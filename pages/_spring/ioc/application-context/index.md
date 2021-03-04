@@ -44,11 +44,11 @@ classDiagram
     AbstractApplicationContext <|-- ClassPathXmlApplicationContext
 ```
 
-![](../images/ioc/ApplicationContext.png)
+![](../../images/ioc/ApplicationContext.png)
 
 ## 源码分析
 
-在[Spring Application 启动流程](../boot/spring-application.md)一文中，已知`SpringApplication`是根据`classpath`下的类加载以下实现类之一：
+在[Spring Application 启动流程](../../boot/spring-application.md)一文中，已知`SpringApplication`是根据`classpath`下的类加载以下实现类之一：
 
 * AnnotationConfigServletWebServerApplicationContext
 * AnnotationConfigReactiveWebServerApplicationContext

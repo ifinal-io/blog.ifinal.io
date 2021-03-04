@@ -2,7 +2,7 @@
 formatter: "@formatter:off"
 title: ConfigurationParser
 subtitle: configuration-class-parser 
-summary: configuration-class-parser 
+summary: 配置类解析器
 tags: [] 
 date: 2021-02-25 21:37:50 +800 
 version: 1.0
@@ -11,8 +11,11 @@ formatter: "@formatter:on"
 
 # ConfigurationParser 
 
+## What
 
 Spring提供了专用于解析`ConfigurationClass`的工具类`ConfigurationClassParser`。
+
+## How
 
 在`ConfigurationClassParser`的`parse(Set<BeanDefinitionHolder> configCandidates)`方法中，定义了处理的流程：
 
@@ -59,7 +62,7 @@ while (sourceClass != null);
 
 接下来，继续分析`doProcessConfigurationClass`方法，在该方法中，将逐个分析类上的注解。
 
-首先分析的是`@Component`注解：
+* 首先分析的是`@Component`注解：
 
 ```java
 if (configClass.getMetadata().isAnnotated(Component.class.getName())) {
@@ -68,7 +71,7 @@ if (configClass.getMetadata().isAnnotated(Component.class.getName())) {
 }
 ```
 
-然后，处理`@PropertySources`注解：
+* 然后，处理`@PropertySources`注解：
 
 ```java
 // Process any @PropertySource annotations
@@ -85,7 +88,7 @@ for (AnnotationAttributes propertySource : AnnotationConfigUtils.attributesForRe
 }
 ```
 
-其次，处理`@ComponentScan`注解：
+* 其次，处理`@ComponentScan`注解：
 
 ```java
 // Process any @ComponentScan annotations
