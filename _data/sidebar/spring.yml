@@ -4,31 +4,19 @@ menus:
   - id: overview
     icon: emoji_objects
     name: 概览
-  - id: boot
-    icon: do_not_disturb_on_total_silence
-    name: BOOT
-    menus:
-      - id: hello-world
-        name: Hello World
-      - id: spring-application
-        name: SpringApplication
-      - id: spring-banner
-        name: SpringBanner
-      - id: spring-application-run-listener
-        name: 'SpringApplicationRunListener'
-      - id: enable-auto-configuration
-        name: '@EnableAutoConfiguration'
   - id: ioc
     name: IOC
     icon: sports_rugby
     menus:
-      - id: application-context
-        name: ApplicationContext
+      - id: context
+        name: Context
         menus:
-        - id: configurable-application-context
-          name: ConfigurableApplicationContext
-        - id: bean-factory-post-processor
-          name: Bean工厂后置处理器
+          - id: application-context
+            name: ApplicationContext
+          - id: configurable-application-context
+            name: ConfigurableApplicationContext
+          - id: bean-factory-post-processor
+            name: Bean工厂后置处理器
       - id: configuration-class
         name: ConfigurationClass
         menus:
@@ -44,8 +32,8 @@ menus:
             name: '@ImportResource'
           - id: bean
             name: '@Bean'
-      - id: application-listener
-        name: 应用监听器
+      - id: event
+        name: Event
         menus:
           - id: event-listener
             name: '@EventListener'
@@ -58,6 +46,20 @@ menus:
   - id: aop
     name: AOP
     icon: layers
+  - id: boot
+    icon: do_not_disturb_on_total_silence
+    name: BOOT
+    menus:
+      - id: hello-world
+        name: Hello World
+      - id: spring-application
+        name: SpringApplication
+      - id: spring-banner
+        name: SpringBanner
+      - id: spring-application-run-listener
+        name: 'SpringApplicationRunListener'
+      - id: enable-auto-configuration
+        name: '@EnableAutoConfiguration'
   - id: security
     name: Security
     icon: shield

@@ -11,6 +11,8 @@ formatter: "@formatter:on"
 
 # 概览
 
+![Spring Logos](images/spring-logo.gif)
+
 ## 概述
 
 Spring 通过提供强大的框架设计，极大地提高Java的开发效率，已经成为企业应用开发（Java）的事实标准。
@@ -25,12 +27,7 @@ Spring 通过提供强大的框架设计，极大地提高Java的开发效率，
 
 本系列在更新的过程中可能会对目录结构进行调整，因此请收藏的同学收藏首页地址，再通过目录跳转到相应的页面，由此带来的不便尽请谅解。
 
-本文的第一个章节[快速开始](quick-start/index.md)将从程序员的入门之路[Hello World](quick-start/hello-world.md)
-开始，逐步的分析Spring应用的[启动流程](boot/spring-application.md)
-及常用功能的实现原理。
+## 大纲
 
-![Spring Logos](images/spring-logo.gif)
-
-## Contents
-
-* [SpringApplication](boot/spring-application.md)
+<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:100%; height:50vh;" src="https://www.processon.
+com/embed/60376a4d5653bb4bcfef8cd0"></iframe>
