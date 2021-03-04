@@ -1,6 +1,6 @@
 ---
 formatter: "@formatter:off"
-title: ConfigurationParser
+title: ConfigurationClassParser
 subtitle: configuration-class-parser 
 summary: 配置类解析器
 tags: [] 

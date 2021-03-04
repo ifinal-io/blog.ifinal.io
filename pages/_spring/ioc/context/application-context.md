@@ -133,7 +133,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 * `ConfigurationClassPostProcessor`：用于解析`@Configuration`,`@ComponentScan`等配置类。
 * AutowiredAnnotationBeanPostProcessor：
 * CommonAnnotationBeanPostProcessor
-* EventListenerMethodProcessor：用于解析`@EventListener`注解票房的方法，将基转换为`ApplicationListener`。
+* EventListenerMethodProcessor：用于解析`@EventListener`注解标记的方法，将其转换为`ApplicationListener`。
 * DefaultEventListenerFactory
 
 ### refresh

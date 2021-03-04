@@ -2,7 +2,7 @@
 formatter: "@formatter:off"
 title: '@ImportResource'
 subtitle: import-resource 
-summary: import-resource 
+summary: 导入一个或多个定义了`<bean>`的资源。
 tags: [] 
 date: 2021-03-02 12:10:49 +800 
 version: 1.0
@@ -13,7 +13,7 @@ formatter: "@formatter:on"
 
 ## What
 
-**`@ImportResource`用于包含加载一个或多个`BeanDefinition`定义的资源。**
+> **`@ImportResource`用于声明导入一个或多个`BeanDefinition`定义的资源。**
 
 ## Definition
 
