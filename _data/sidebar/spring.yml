@@ -17,9 +17,11 @@ menus:
             name: ConfigurableApplicationContext
           - id: bean-factory-post-processor
             name: Bean工厂后置处理器
-      - id: configuration-class
-        name: ConfigurationClass
+      - id: annotation
+        name: Annotation
         menus:
+          - id: configuration-class
+            name: 配置类
           - id: configuration-class-parser
             name: 配置类解析器
           - id: configuration-class-post-processor

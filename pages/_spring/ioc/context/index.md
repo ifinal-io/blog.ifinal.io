@@ -10,3 +10,5 @@ formatter: "@formatter:on"
 ---
 
 # Context
+
+Spring Context 定义了容器的基本接口和实现。
