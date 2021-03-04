@@ -13,8 +13,8 @@ menus:
         menus:
           - id: application-context
             name: ApplicationContext
-          - id: configurable-application-context
-            name: ConfigurableApplicationContext
+          - id: annotation-config-application-context
+            name: 'AnnotationConfigApplicationContext'
           - id: bean-factory-post-processor
             name: Bean工厂后置处理器
       - id: annotation

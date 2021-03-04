@@ -11,16 +11,13 @@ formatter: "@formatter:on"
 
 # ApplicationContext
 
-## 简介
+## What
 
 **应用程序（`ApplicationContext`）配置接口，是 Spring Ioc 的核心。**
 
-*提供了以下功能：*
+## Features
 
-* 从`ListableBeanFactory`继承用于访问应用程序组件的Bean工厂方法。
-* 继承自`ResourceLoader`接口以通用方式加载文件资源的能力。
-* 继承自`ApplicationEventPublisher`接口将事件发布给注册的侦听器的能力。
-* 继承自`MessageSource`接口解决消息，支持国际化的能力。
+`ApplicationContext`的类图如下：
 
 ```mermaid
 classDiagram
@@ -34,7 +31,16 @@ classDiagram
     ResourceLoader <|-- ResourcePatternResolver
 ```
 
+正如类图所示，`ApplicationContext`提供了以下功能：
+
+* 从`ListableBeanFactory`继承用于访问应用程序组件的Bean工厂方法。
+* 继承自`ResourceLoader`接口以通用方式加载文件资源的能力。
+* 继承自`ApplicationEventPublisher`接口将事件发布给注册的侦听器的能力。
+* 继承自`MessageSource`接口解决消息，支持国际化的能力。
+
 ## 继承关系
+
+Spring提供了几个`ApplicationContext`常用的子类，如基于`xml`加载的`ClassPathXmlApplicationContext`，基于注解加载的`AnnotationConfigApplicationContext`，其继承关系如下图所示：
 
 ```mermaid
 classDiagram
@@ -44,116 +50,20 @@ classDiagram
     AbstractApplicationContext <|-- ClassPathXmlApplicationContext
 ```
 
-![](../../images/ioc/ApplicationContext.png)
-
-## 源码分析
-
-在[Spring Application 启动流程](../../boot/spring-application.md)一文中，已知`SpringApplication`是根据`classpath`下的类加载以下实现类之一：
-
-* AnnotationConfigServletWebServerApplicationContext
-* AnnotationConfigReactiveWebServerApplicationContext
-* AnnotationConfigApplicationContext
-
-为简化分析的复杂度，本文以默认的`DEFAULT_CONTEXT_CLASS`，即`AnnotationConfigApplicationContext`为例分析。
-
-### AnnotationConfigApplicationContext
-
-通过查看`AnnotationConfigApplicationContext`的源码，发现其有以下几点：
-
-* 实例化一个`AnnotatedBeanDefinitionReader`
-
-```java
-this.reader=new AnnotatedBeanDefinitionReader(this);
-```
-
-* 实例化一个`ClassPathBeanDefinitionScanner`
-
-```java
-this.scanner=new ClassPathBeanDefinitionScanner(this);
-```
-
-* 注册组件类`register(componentClasses)`或扫描包`scan(basePackages)`
-
-* 调用`refresh()`方法。
-
-**上述流程图如下：**
-
-```mermaid
-flowchart TD
-    subgraph one["AnnotationConfigApplicationContext"]
-    a1["this.reader = new AnnotatedBeanDefinitionReader(this)"]-->a2["this.scanner = new ClassPathBeanDefinitionScanner(this)"]
-    a2-->a31["register(componentClasses)"]
-    a2-->a32["scan(basePackages)"]
-    a31-->a4["refresh()"]
-    a32-->a4
-    end
-```
-
-**核心源码如下：**
-
-```java
-package org.springframework.context.annotation;
-
-public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
-
-    private final AnnotatedBeanDefinitionReader reader;
-
-    private final ClassPathBeanDefinitionScanner scanner;
-
-    public AnnotationConfigApplicationContext() {
-        this.reader = new AnnotatedBeanDefinitionReader(this);
-        this.scanner = new ClassPathBeanDefinitionScanner(this);
-    }
-
-    public AnnotationConfigApplicationContext(DefaultListableBeanFactory beanFactory) {
-        super(beanFactory);
-        this.reader = new AnnotatedBeanDefinitionReader(this);
-        this.scanner = new ClassPathBeanDefinitionScanner(this);
-    }
-
-    public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
-        this();
-        register(componentClasses);
-        refresh();
-    }
-
-    public AnnotationConfigApplicationContext(String... basePackages) {
-        this();
-        scan(basePackages);
-        refresh();
-    }
-
-}
-```
-
-### AnnotatedBeanDefinitionReader
-
-`AnnotatedBeanDefinitionReader`通过`AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry)`向容器内注册了几个**创世纪**的类：
-
-* `ConfigurationClassPostProcessor`：用于解析`@Configuration`,`@ComponentScan`等配置类。
-* AutowiredAnnotationBeanPostProcessor：
-* CommonAnnotationBeanPostProcessor
-* EventListenerMethodProcessor：用于解析`@EventListener`注解标记的方法，将其转换为`ApplicationListener`。
-* DefaultEventListenerFactory
-
-### refresh
-
-#### 关系
-
-`refresh`方法由`ConfigurableApplicationContext`接口定义，并由`AbstractApplicationContext`提供核心实现，关系如下图所示：
+其中`ConfigurableApplicationContext`扩展自`ApplicationContext`接口，并提供了可配置的能力，如下图所示：
 
 ```mermaid
 classDiagram
-    ConfigurableApplicationContext <|-- AbstractApplicationContext
-    
     class ConfigurableApplicationContext {
+    	+ addBeanFactoryPostProcessor(BeanFactoryPostProcessor)
+    	+ addApplicationListener(ApplicationListener)
         + refresh()
     }
 ```
 
-#### 流程
 
-`refresh()`的源码结构非常清晰，为一系列的方法调用（此处就不贴源码了），调用流程如下：
+
+其中，`refresh()`方法定义了容器加载和刷新时入口，并由`AbstractApplicationContext`提供默认实现：
 
 ```mermaid
 flowchart TD
@@ -196,3 +106,4 @@ flowchart TD
 ## 小结
 
 本文以`AnnotationConfigApplicationContext`为例，简述了Spring容器初始化的流程，说明了核心方法`refresh`中各个被调用方法的主要功能。
+
