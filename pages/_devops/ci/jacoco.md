@@ -24,7 +24,6 @@ formatter: "@formatter:on"
 在工具根目录的`pom.xml`文件中，添加`jacoco-maven-plugin`的插件：
 
 ```xml
-
 <plugin>
     <groupId>org.jacoco</groupId>
     <artifactId>jacoco-maven-plugin</artifactId>
