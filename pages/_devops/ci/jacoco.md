@@ -53,7 +53,11 @@ formatter: "@formatter:on"
 mvn test
 ```
 
-上述命令执行完成之后，可在`target/site/jacoco`自动生成测试报告，用浏览器打开`index.html`文件即可。
+上述命令执行完成之后，可在`target/site/jacoco`自动生成测试报告，用浏览器打开`index.html`文件即可查看整个项目的测试覆盖率。
 
 ![Jacoco](../images/ci/jacoco.png)
+
+也可以通过链接查看某个类的测试详情：
+
+![Jacoco Detail](../images/ci/jacoco-detail.png)
 
