@@ -63,7 +63,11 @@ classDiagram
 
 
 
-其中，`refresh()`方法定义了容器加载和刷新时入口，并由`AbstractApplicationContext`提供默认实现：
+## How
+
+
+
+其中，`refresh()`方法定义了容器加载和刷新时入口，并由`AbstractApplicationContext`提供默认实现，在`refresh()`方法的实现中，按以下方法顺序逐步调用：
 
 ```mermaid
 flowchart TD

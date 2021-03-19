@@ -48,6 +48,9 @@ menus:
   - id: aop
     name: AOP
     icon: layers
+  - id: web
+    icon: web
+    name: WEB
   - id: boot
     icon: do_not_disturb_on_total_silence
     name: BOOT

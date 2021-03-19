@@ -1,0 +1,11 @@
+logo: /assets/images/logos/spring.svg
+name: DevOps
+menus:
+  - id: ci
+    icon: trending_up
+    name: 持续集成
+    menus:
+      - id: junit
+        name: 单元测试
+      - id: jacoco
+        name: Jacoco

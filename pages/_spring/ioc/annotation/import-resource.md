@@ -44,8 +44,6 @@ public @interface ImportResource {
 
 ## How
 
-### Process
-
 在`ConfigurationClassParser`的`doProcessConfigurationClass()`方法中，有如下的一段代码：
 
 ```java
@@ -77,5 +75,5 @@ class ConfigurationClassParser {
 
 该代码片段实现将类上的`@ImportResource`注解声明的`locations`和`reader`存储到`ConfigurationClass`类的`importedResources`属性上。
 
-### Load
+
 
