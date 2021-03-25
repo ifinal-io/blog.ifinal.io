@@ -8,17 +8,14 @@ menus:
     icon: do_not_disturb_on_total_silence
     name: BOOT
     menus:
-      - id: application
-        name: Application
-        menus:
-          - id: hello-world
-            name: Hello World
-          - id: spring-application
-            name: SpringApplication
-          - id: spring-banner
-            name: SpringBanner
-          - id: spring-application-run-listener
-            name: 'SpringApplicationRunListener'
+      - id: spring-application
+        name: 'SpringApplication'
+      - id: application-context-factory
+        name: 'ApplicationContextFactory'
+      - id: spring-banner
+        name: 'SpringBanner'
+      - id: spring-application-run-listener
+        name: 'SpringApplicationRunListener'
       - id: autoconfigure
         name: '自动装配'
         menus:
