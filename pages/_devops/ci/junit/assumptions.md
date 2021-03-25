@@ -1,6 +1,6 @@
 ---
 formatter: "@formatter:off"
-title: Assumptions 
+title: Assumptions
 subtitle: assumptions 
 summary: 假设 
 tags: [ci,junit] 

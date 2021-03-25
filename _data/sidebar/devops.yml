@@ -3,12 +3,21 @@ name: DevOps
 menus:
   - id: ci
     icon: trending_up
-    name: 持续集成
+    name: '持续集成'
     menus:
       - id: junit
-        name: 单元测试
+        name: '单元测试'
         menus:
+          - id: assertions
+            name: '断言'
           - id: assumptions
-            name: 'Assumptions'
+            name: '假设'
+          - id: parameterized-tests
+            name: '参数化测试'
+      - id: mockito
+        name: 'Mockito'
+        menus:
+          - id: argument-captor
+            name: '参数捕获器'
       - id: jacoco
-        name: Jacoco
+        name: 'Jacoco'

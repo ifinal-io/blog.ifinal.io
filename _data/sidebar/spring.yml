@@ -51,6 +51,11 @@ menus:
   - id: web
     icon: web
     name: WEB
+    menus:
+      - id: web-mvc-auto-configuration
+        name: 'WebMvc自动配置'
+      - id: handler-interceptor
+        name: '处理器拦截器'
   - id: boot
     icon: do_not_disturb_on_total_silence
     name: BOOT
@@ -69,8 +74,16 @@ menus:
       - id: autoconfigure
         name: '自动装配'
         menus:
+          - id: spring-boot-application
+            name: '@SpringBootApplication'
           - id: enable-auto-configuration
             name: '@EnableAutoConfiguration'
+  - id: cloud
+    icon: cloud
+    name: Cloud
+    menus:
+      - id: service-instance
+        name: '服务实例'
   - id: security
     name: Security
     icon: shield
