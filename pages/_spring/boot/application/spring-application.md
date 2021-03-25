@@ -72,8 +72,8 @@ public static void main(String[]args){
 
 通过IDE的代码提示功能，发现如下图的选项：
 
-![应用定制](../images/boot/spring-application-add-config.png)
-![应用定制](../images/boot/spring-application-set-config.png)
+![应用定制](../../images/boot/spring-application-add-config.png)
+![应用定制](../../images/boot/spring-application-set-config.png)
 
 #### 注册监听
 

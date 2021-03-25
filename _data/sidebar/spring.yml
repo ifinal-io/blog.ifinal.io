@@ -4,6 +4,29 @@ menus:
   - id: overview
     icon: emoji_objects
     name: 概览
+  - id: boot
+    icon: do_not_disturb_on_total_silence
+    name: BOOT
+    menus:
+      - id: application
+        name: Application
+        menus:
+          - id: hello-world
+            name: Hello World
+          - id: spring-application
+            name: SpringApplication
+          - id: spring-banner
+            name: SpringBanner
+          - id: spring-application-run-listener
+            name: 'SpringApplicationRunListener'
+      - id: autoconfigure
+        name: '自动装配'
+        menus:
+          - id: spring-boot-application
+            name: '@SpringBootApplication'
+          - id: enable-auto-configuration
+            name: '@EnableAutoConfiguration'
+
   - id: ioc
     name: IOC
     icon: sports_rugby
@@ -56,28 +79,6 @@ menus:
         name: 'WebMvc自动配置'
       - id: handler-interceptor
         name: '处理器拦截器'
-  - id: boot
-    icon: do_not_disturb_on_total_silence
-    name: BOOT
-    menus:
-      - id: application
-        name: Application
-        menus:
-          - id: hello-world
-            name: Hello World
-          - id: spring-application
-            name: SpringApplication
-          - id: spring-banner
-            name: SpringBanner
-          - id: spring-application-run-listener
-            name: 'SpringApplicationRunListener'
-      - id: autoconfigure
-        name: '自动装配'
-        menus:
-          - id: spring-boot-application
-            name: '@SpringBootApplication'
-          - id: enable-auto-configuration
-            name: '@EnableAutoConfiguration'
   - id: cloud
     icon: cloud
     name: Cloud
@@ -86,6 +87,6 @@ menus:
         name: '服务实例'
   - id: security
     name: Security
-    icon: shield
+    icon: security
 
 
