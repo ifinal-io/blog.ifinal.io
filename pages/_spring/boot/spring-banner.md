@@ -11,7 +11,7 @@ formatter: "@formatter:on"
 
 # SpringBanner
 
-## What
+## 简介(What)
 
 **Spring Banner 定义了应用启动时的界面。**
 

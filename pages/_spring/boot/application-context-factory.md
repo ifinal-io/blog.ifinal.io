@@ -2,7 +2,7 @@
 formatter: "@formatter:off"
 title: 'ApplicationContextFactory'
 subtitle: application-context-factory 
-summary: 应用上下文工厂
+summary: 创建应用上下文的策略工厂
 tags: [spring,spring-boot] 
 date: 2021-03-25 13:24:51 +800 
 version: 1.0

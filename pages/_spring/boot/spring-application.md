@@ -11,11 +11,11 @@ formatter: "@formatter:on"
 
 # Spring Application 启动流程
 
-## What
+## 简介（What）
 
 **`SpringApplication`一个可从 Java `main` 方法*引导和启动* `Spring` 应用程序的类。**
 
-## Features
+## 功能（Features）
 
 ### Bootstrap
 
@@ -37,9 +37,9 @@ formatter: "@formatter:on"
 
 > 一般情况下，启动类所在的包应包含所有子模块的包，这样才能确保`SpringApplication`可以读取并加载到项目中声明的Bean。
 
-## Usage
+## 使用（Usage）
 
-### 常规用法
+### 常规用法（General）
 
 在大多数情况下，可以直接从`main`方法中调用静态`run(Class, String[])`方法来引导应用程序：
 
@@ -58,7 +58,7 @@ public class FinalApplication {
 
 > 像在文章[你好，世界](../quick-start/hello-world.md)中的`SpringApplication.run(FinalApplication.class)`那样。
 
-### 定制用法
+### 高级用法（Advanced）
 
 对于更高级的配置，可以在运行之前创建和定制`SpringApplication`实例：
 
