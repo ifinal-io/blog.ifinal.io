@@ -68,6 +68,17 @@ private ApplicationContextFactory applicationContextFactory = ApplicationContext
 
 在`deduceFromClasspath（）`方法中，使用工具方法`ClassUtils.isPresent(className)`来判断特定的类是否存在，从而推断将要实例的应用类型：
 
+* REACTIVE：
+
+```java
+if (ClassUtils.isPresent(WEBFLUX_INDICATOR_CLASS, null) && !ClassUtils.isPresent(WEBMVC_INDICATOR_CLASS, null)
+        && !ClassUtils.isPresent(JERSEY_INDICATOR_CLASS, null)) {
+    return WebApplicationType.REACTIVE;
+}
+```
+
+* NONE：
+
 ```java
     static WebApplicationType deduceFromClasspath() {
         if (ClassUtils.isPresent(WEBFLUX_INDICATOR_CLASS, null) && !ClassUtils.isPresent(WEBMVC_INDICATOR_CLASS, null)
@@ -82,6 +93,10 @@ private ApplicationContextFactory applicationContextFactory = ApplicationContext
         return WebApplicationType.SERVLET;
     }
 ```
+
+* 当且仅当`org.springframework.web.reactive.DispatcherHandler`类存在时，类型为`REACTIVE`；
+* 当`javax.servlet.Servlet`或`org.springframework.web.context.ConfigurableWebApplicationContext`任一不存在时，类型为`NONE`；
+* 类型为`SERVLET`。
 
 ### ApplicationContextFactory.DEFAULT
 
