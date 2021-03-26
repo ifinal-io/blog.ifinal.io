@@ -10,6 +10,8 @@ menus:
     menus:
       - id: spring-application
         name: 'SpringApplication'
+      - id: spring-application-context
+        name: 'Spring应用上下文'
       - id: application-context-factory
         name: 'ApplicationContextFactory'
       - id: spring-banner
