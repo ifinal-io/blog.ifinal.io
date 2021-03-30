@@ -68,17 +68,6 @@ private ApplicationContextFactory applicationContextFactory = ApplicationContext
 
 在`deduceFromClasspath（）`方法中，使用工具方法`ClassUtils.isPresent(className)`来判断特定的类是否存在，从而推断将要实例的应用类型：
 
-* REACTIVE：
-
-```java
-if (ClassUtils.isPresent(WEBFLUX_INDICATOR_CLASS, null) && !ClassUtils.isPresent(WEBMVC_INDICATOR_CLASS, null)
-        && !ClassUtils.isPresent(JERSEY_INDICATOR_CLASS, null)) {
-    return WebApplicationType.REACTIVE;
-}
-```
-
-* NONE：
-
 ```java
     static WebApplicationType deduceFromClasspath() {
         if (ClassUtils.isPresent(WEBFLUX_INDICATOR_CLASS, null) && !ClassUtils.isPresent(WEBMVC_INDICATOR_CLASS, null)

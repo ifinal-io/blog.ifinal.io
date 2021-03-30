@@ -11,9 +11,11 @@ formatter: "@formatter:on"
 
 # SpringApplicationRunListener
 
-## 概述
+## 简介（What）
 
 **`SpringApplicationRunListener`是Spring提供的用于监听`SpringApplication`的`run`方法的监听器。**
+
+## 特性（Features）
 
 [Spring Application 启动流程](spring-application.md)一文中，在分析`run`方法源码时，得知`SpringApplication`会通过`SpringFactoriesLoader`
 加载声明在`/META-INF/spring.factories`配置文件中的`SpringApplicationRunListener`并实例化，然后传递给`SpringApplicationRunListeners`对象，在`run`
@@ -22,7 +24,7 @@ formatter: "@formatter:on"
 * `SpringApplicationRunListener`由`SpringApplicaton`在`run`方法是通过`SpringFactoriesLoader`从`/META-INF/spring.factories`中加载。
 * `SpringApplicationRunListener`应该声明一个接收`SpringApplication`和`String[]`参数的公开的构造函数。
 
-## 定义
+## 定义（Definition）
 
 ```java
 package org.springframework.boot;
@@ -53,7 +55,49 @@ public interface SpringApplicationRunListener {
 }
 ```
 
-## EventPublishingRunListener
+## 用法（Usage）
+
+* 定义
+
+定义一个实现了`SpringApplicationRunListener`接口的类：
+
+```java
+package org.springfreamework.boot.demo;
+
+public class MySpringApplicationRunListener implements SpringApplicationRunListener{
+    
+    public MySpringApplicationRunListener(SpringApplication application, String[] args) {
+    	//...
+    }
+    
+    //...
+    
+}
+```
+
+> `SpringApplicationRunListener`的实现类必须声明一个接收`SpringApplication`和`String[]`类型的构造函数。
+
+* 注册
+
+在`META-INF/spring.factories`文件中添加以下配置：
+
+```properties
+# Run Listeners
+org.springframework.boot.SpringApplicationRunListener=\
+org.springfreamework.boot.demo.MySpringApplicationRunListener
+```
+
+
+
+## 时机（When）
+
+在`SpringApplication`的`run()`方法中，会通过`SpringFactoryLoader`加载声明在`META-INF/spring.factories`中的`SpringApplicationRunListener`实例，并创建一个`SpringApplicationRunListeners`的实例，该对象是`SpringApplicationRunListener`的集合表现形式，通过`SpringApplicationRunListeners`的方法间接调用`SpringApplicationRunListener`的方法。
+
+## 内置（Built-In）
+
+Spring Boot内置了唯一的一个`EventPublishingRunListener`实现类，该类实现监听Spring Application的运行(`run()`)状态，然后发布`SpringApplicationEvent`。
+
+### EventPublishingRunListener
 
 `EventPublishingRunListener`是Spring提供的内置实现，用于监听SpringApplication运行状态并发布运行事件`SpringApplicationEvent`。
 

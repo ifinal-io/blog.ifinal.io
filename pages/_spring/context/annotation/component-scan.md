@@ -1,6 +1,6 @@
 ---
 formatter: "@formatter:off"
-title: "@ComponentScan"
+title: "Spring是如何进行组件扫描的"
 subtitle: component-scan 
 summary: 组件扫描
 tags: [spring,annotation] 
@@ -11,14 +11,18 @@ formatter: "@formatter:on"
 
 # @ComponentScan
 
-## What
+## 简介（What）
 
-`@ComponentScan`注解实现`<context:component-scan>`的组件扫描指令。
+`@ComponentScan`注解相信大家再熟悉不过了，该注释可以将标记有`@Component`或其扩展注解如`@Service`、`@Controller`等类当成Spring的组件注册到Spring容器中，实现了类似`<context:component-scan>`标签的组件扫描指令，大大地减少了`<xml>`配置文件的数量。
 
-## Features
+## 功能（Features）
 
 * **扫描包的范围**：`basePackages`和`basePackageClasses`指定的包的合集，如果未指定，则为该注解声明类所在的包。
 * **扫描的对象**：被`@Component`或其扩展注解标记的类，支持`JSR-250`的`@ManagedBean`和`JSR-330`的`@Named`。
+
+## 时机（When）
+
+
 
 ## How
 

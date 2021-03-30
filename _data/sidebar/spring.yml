@@ -8,6 +8,7 @@ menus:
     icon: do_not_disturb_on_total_silence
     name: BOOT
     menus:
+
       - id: spring-application
         name: 'SpringApplication'
       - id: spring-application-context
@@ -26,19 +27,18 @@ menus:
           - id: enable-auto-configuration
             name: '@EnableAutoConfiguration'
 
-  - id: ioc
-    name: IOC
-    icon: sports_rugby
+  - id: context
+    name: Context
+    icon: eco
     menus:
-      - id: context
-        name: Context
-        menus:
-          - id: application-context
-            name: ApplicationContext
-          - id: annotation-config-application-context
-            name: 'AnnotationConfigApplicationContext'
-          - id: bean-factory-post-processor
-            name: Bean工厂后置处理器
+      - id: application-context
+        name: ApplicationContext
+      - id: configurable-application-context
+        name: '应用上下文刷新流程'
+      - id: annotation-config-application-context
+        name: 'AnnotationConfigApplicationContext'
+      - id: bean-factory-post-processor
+        name: Bean工厂后置处理器
       - id: annotation
         name: Annotation
         menus:
