@@ -93,6 +93,52 @@ org.springfreamework.boot.demo.MySpringApplicationRunListener
 
 在`SpringApplication`的`run()`方法中，会通过`SpringFactoryLoader`加载声明在`META-INF/spring.factories`中的`SpringApplicationRunListener`实例，并创建一个`SpringApplicationRunListeners`的实例，该对象是`SpringApplicationRunListener`的集合表现形式，通过`SpringApplicationRunListeners`的方法间接调用`SpringApplicationRunListener`的方法。
 
+
+
+## 原理（How）
+
+在`SpringApplicatin`的`run()`方法中
+
+```java
+listeners.starting(bootstrapContext, this.mainApplicationClass);
+```
+
+然后在 `prepareEnvironment()`方法中
+
+```java
+listeners.environmentPrepared(bootstrapContext, environment);
+```
+
+接着在`prepareContext()`方法中
+
+```java
+listeners.contextPrepared(context);
+//...
+listeners.contextLoaded(context);
+```
+
+再着在`run()`方法中
+
+```java
+listeners.started(context);
+```
+
+最后
+
+```java
+listeners.running(context);
+```
+
+如果在上述流程中发生了异常，则在`handleRunFailure()`方法中
+
+```java
+listeners.failed(context, exception);
+```
+
+
+
+
+
 ## 内置（Built-In）
 
 Spring Boot内置了唯一的一个`EventPublishingRunListener`实现类，该类实现监听Spring Application的运行(`run()`)状态，然后发布`SpringApplicationEvent`。

@@ -18,7 +18,7 @@ menus:
       - id: spring-banner
         name: 'SpringBanner'
       - id: spring-application-run-listener
-        name: 'SpringApplicationRunListener'
+        name: '应用监听器'
       - id: autoconfigure
         name: '自动装配'
         menus:
