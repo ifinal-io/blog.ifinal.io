@@ -19,8 +19,7 @@ SpringBoot极大的简化了Spring程序的配置，遵循**约定大于配置**
 
 ## Contents
 
-* [Hello World](hello-world.md)
-* [SpringApplication](spring-application.md)
-* [SpringBanner](spring-banner.md)
-* [SpringFactory](../context/spring-factory.md)
+* [SpringApplication](spring-application.md)：一个可用于从`main`方法引导和启动`Spring`应用的类
+* [ConfigurableApplicationContext](spring-application-context.md)：Spring是如何创建应用上下文的
+* [ApplicationContextFactory](application-context-factory)：一个供Spring应用使用，用于创建Spring应用上下文的工厂
 

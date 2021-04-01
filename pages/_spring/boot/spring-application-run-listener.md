@@ -97,7 +97,7 @@ org.springfreamework.boot.demo.MySpringApplicationRunListener
 
 ## 原理（How）
 
-在`SpringApplicatin`的`run()`方法中
+在`SpringApplicatin`的`run()`方法中，
 
 ```java
 listeners.starting(bootstrapContext, this.mainApplicationClass);
@@ -261,7 +261,7 @@ public class EventPublishingRunListener implements SpringApplicationRunListener,
 | ApplicationReadyEvent               |    6     |     准备完成事件     |
 | ApplicationFailedEvent              |    -1    |       失败事件       |
 
-
+![](http://assets.processon.com/chart_image/603c93371e08530bb1b01872.png)
 
 
 

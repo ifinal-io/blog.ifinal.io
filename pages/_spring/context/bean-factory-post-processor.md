@@ -3,7 +3,7 @@ formatter: "@formatter:off"
 title: BeanFactoryPostProcessor
 subtitle: bean-factory-post-processor 
 description: bean-factory-post-processor 
-tags: [] 
+tags: [spring,spi] 
 date: 2021-01-11 23:22:15 +800 
 version: 1.0
 formatter: "@formatter:on"
@@ -11,9 +11,9 @@ formatter: "@formatter:on"
 
 # Bean 工厂后置处理器
 
-## What
+## 简介（What）
 
-**`BeanFactoryPostProcessor`是Spring提供的对`BeanFactory`的后置处理器扩展点。**
+**`BeanFactoryPostProcessor`是Spring提供的对`BeanFactory`的后置处理器扩展点，**是Spring的核心扩展点之一。
 
 Spring提供了`BeanFactoryPostProcessor`接口及基扩展接口`BeanDefinitionRegistryPostProcessor`，以便开发者能够分别对`ConfigurableListableBeanFactory`
 和`BeanDefinitionRegistry`进行扩展处理。其类关系如图所示：
@@ -31,7 +31,7 @@ classDiagram
     }
 ```
 
-## Features
+## 特性（Features）
 
 ### Registration
 
@@ -48,9 +48,59 @@ classDiagram
 
 > `BeanFactoryPostProcessor`不支持`@Order`注解。
 
-## When
+## 用法（Usage）
+
+### 注册（Registration）
+
+* 自动发现
+
+`BeanFactoryPostProcessor`可以由`ApplicationContext`容器**自动检测**并在`Bean`实例化之前应用。
+
+* 编程接口
+
+```java
+package org.springframework.context;
+
+public interface ConfigurableApplicationContext extends ApplicationContext, Lifecycle, Closeable {
+	
+	void addBeanFactoryPostProcessor(BeanFactoryPostProcessor postProcessor);
+
+}
+```
+
+
+
+## 时机（When）
 
 `BeanFactoryPostProcessor`在`ConfigurableApplicationContext`的`refresh()`中通过`invokeBeanFactoryPostProcessors(beanFactory)`进行调用：
+
+在`ConfigurableApplicationContext`的`refresh()`的抽象类`AbstractApplicationContext`的实现中，有如下的代码
+
+```java
+// Invoke factory processors registered as beans in the context.
+// 调用 Bean 工厂后置处理器
+invokeBeanFactoryPostProcessors(beanFactory);
+```
+
+在`invokeBeanFactoryPostProcessors(beanFactory)`方法中，有这样的调用：
+
+```java
+PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(beanFactory, getBeanFactoryPostProcessors());
+```
+
+至此，了解到`BeanFactoryPostProcessor`的触发流程如下：
+
+```mermaid
+flowchart TD
+    subgraph one["BeanFactoryPostProcessor"]
+    a["refresh()"]-->b["invokeBeanFactoryPostProcessors(beanFactory)"]
+    b-->c["invokeBeanFactoryPostProcessors(beanFactory, getBeanFactoryPostProcessors())"]
+    end
+```
+
+
+
+
 
 ```java
 package org.springframework.context.support;
