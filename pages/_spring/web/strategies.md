@@ -48,7 +48,7 @@ protected void initStrategies(ApplicationContext context){
 
 这个相信所有的小伙伴都再熟悉不过了吧，对，这个就是用来解析文件上传的，正是有了它，我们才可以在Spring中如此简单地实现文件上传功能。
 
-### LocalResolver
+### LocaleResolver
 
 这个相信也有相当一部分小伙伴知道，这个就是来处理国际化（`i18n`）的，用于从请求(`HttpServletRequest`)中解析`Locale`。
 

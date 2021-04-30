@@ -72,12 +72,16 @@ menus:
     icon: layers
   - id: web
     icon: web
-    name: MVC
+    name: WEB
     menus:
+      - id: dispatcher-servlet
+        name: 'Servlet分派器'
       - id: web-mvc-auto-configuration
         name: 'WebMvc自动配置'
       - id: strategies
         name: '九大策略初识'
+      - id: locale-resolver
+        name: '语言环境策略'
       - id: exception-handler
         name: '异常处理器'
       - id: handler-method
