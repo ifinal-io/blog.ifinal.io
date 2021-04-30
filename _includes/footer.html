@@ -9,11 +9,9 @@
         </li>
       </ul>
     </nav>
-    <div class="copyright float-right">
+    <div class="copyright float-right" >
       ©
-      <script>
-        document.write(new Date().getFullYear())
-      </script>
+      <span v-html="new Date().getFullYear()"></span>
       , 您的关注 <i class="material-icons">stars</i>
       <a href="{{site.github.repository_url}}" target="_blank">{{site.title}}</a> 将是我最大的动力。
     </div>

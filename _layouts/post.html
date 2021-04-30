@@ -6,7 +6,8 @@
 <style>
 
 </style>
-<body class="blog-posts" data-offset="150" data-spy="scroll" data-target="#toc" style="background-color: whitesmoke" id="body">
+<body class="blog-posts" data-offset="150" data-spy="scroll" data-target="#toc" style="background-color: whitesmoke"
+      id="body">
 
 <!-- Extra details for Live View on GitHub Pages -->
 <div class="wrapper" id="post">
@@ -24,7 +25,8 @@
           <div class="col-md-8 ml-auto mr-auto text-center">
             <h1 class="title text-white" style="font-family: Metropolis,sans-serif">{{page.title}}</h1>
             <h4 style="font-size: 36px">{{page.summary | markdownify }}</h4>
-            <div>共<span class="badge badge-info">{{ page.content | number_of_words }}</span>字，用时约<span class="badge badge-success">{{page.content | number_of_words | divided_by: 100}}</span>分。
+            <div>共<span class="badge badge-info">{{ page.content | number_of_words }}</span>字，用时约<span
+                class="badge badge-success">{{page.content | number_of_words | divided_by: 100}}</span>分。
             </div>
             <br>
           </div>
@@ -87,14 +89,17 @@
 
       </div>
     </div>
-
+    <!--Footer-->
     {% include footer.html %}
   </div>
 </div>
 <div id="snowbox"/>
-{% include plugins/fixed.html %}
+</body>
+{% include jekyll/post.jekyll %}
+{% include jekyll/format-href.jekyll %}
+{% include plugins/toc.html container="#toc" %}
+{% include plugins/fixed.jekyll %}
 <script>
-
   $(document).ready(function () {
         mermaid.initialize({
           theme: 'forest',
@@ -181,6 +186,7 @@
       }
   );
 </script>
+
 <!-- 飘雪花 -->
 <script type="text/javascript">
   $(function () {
@@ -198,8 +204,4 @@
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 </script>
-</body>
-{% include plugins/toc.html container="#toc" %}
-{% include jekyll/post.jekyll %}
-{% include jekyll/format-href.jekyll %}
 </html>

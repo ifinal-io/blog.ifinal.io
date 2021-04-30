@@ -1,4 +1,4 @@
-{% assign paths = page.path | replace: '_', '' | replace: '.md' : '' | split: '/'%}
+{% assign paths = page.path | replace: '_', '' | replace: '.md' : '' | split: '/' %}
 <script>
   var post = new Vue({
     el: '#post',
