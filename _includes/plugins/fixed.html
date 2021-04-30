@@ -62,24 +62,25 @@
   </div>
 </div>
 <script>
-  var fixed = new Vue({
-    el: '#fixed',
-    data: {
-      filter: $.cookie('sidebar-filter'),
-      filters: ['purple', 'azure', 'green', 'orange', 'danger', 'rose'],
-      color: $.cookie('sidebar-color'),
-      colors: ['black', 'white', 'red'],
-      image: {
-        enable: true,
-        src: $.cookie('sidebar-image-url')
-      },
-      images: [
-        '/assets/img/sidebar-1.jpg',
-        '/assets/img/sidebar-2.jpg',
-        '/assets/img/sidebar-3.jpg',
-        '/assets/img/sidebar-4.jpg',
-      ],
-      mini: $.cookie('sidebar-mini') == 'true',
+  var fixed = {
+    data() {
+      return {
+        filter: $.cookie('sidebar-filter'),
+        filters: ['purple', 'azure', 'green', 'orange', 'danger', 'rose'],
+        color: $.cookie('sidebar-color'),
+        colors: ['black', 'white', 'red'],
+        image: {
+          enable: true,
+          src: $.cookie('sidebar-image-url')
+        },
+        images: [
+          '/assets/img/sidebar-1.jpg',
+          '/assets/img/sidebar-2.jpg',
+          '/assets/img/sidebar-3.jpg',
+          '/assets/img/sidebar-4.jpg',
+        ],
+        mini: $.cookie('sidebar-mini') == 'true',
+      }
     },
     mounted: function () {
       let $this = this;
@@ -180,5 +181,6 @@
         }
       }
     }
-  })
+  };
+  Vue.createApp(fixed).mount('#fixed')
 </script>

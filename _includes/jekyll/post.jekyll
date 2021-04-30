@@ -1,31 +1,25 @@
 {% assign paths = page.path | replace: '_', '' | replace: '.md' : '' | split: '/' %}
 <script>
-  var post = new Vue({
-    el: '#post',
-    data: {
-      //filter: $.cookie('sidebar-filter'),
-      //color: $.cookie('sidebar-color'),
-      //mini: $.cookie('sidebar_mini'),
-      page: {
-        collection: "{{ page.collection }}",
-        paths: {{ paths | jsonify }},
-        title: "{{ page.title }}",
-        menus: [],
-        module: "{{ module }}",
-      },
-      modules: {{ site.data.modules | jsonify }},
-      theme: "light",
-      sidebar: {{ site.data.sidebar[page.collection] | jsonify }}
-    },
-    mounted: function () {
-
-      this.page.menus = this.page.paths.slice(1);
-
-      $('#body').attr('data-theme', 'light');
-
-      console.log(this.sidebar);
-      console.log(this.page.paths);
-      console.log(this.page.menus);
+  var post = {
+    data() {
+      var data = {
+        //filter: $.cookie('sidebar-filter'),
+        //color: $.cookie('sidebar-color'),
+        //mini: $.cookie('sidebar_mini'),
+        page: {
+          collection: "{{ page.collection }}",
+          paths: {{ paths | jsonify }},
+          title: "{{ page.title }}",
+          menus: [],
+          module: "{{ module }}",
+        },
+        modules: {{ site.data.modules | jsonify }},
+        theme: "light",
+        sidebar: {{ site.data.sidebar[page.collection] | jsonify }}
+      };
+      data.page.menus = data.page.paths.slice(1);
+      return data;
     }
-  })
+  };
+  Vue.createApp(post).mount('#post')
 </script>
