@@ -1,6 +1,6 @@
 ---
 formatter: "@formatter:off"
-title: WEB 
+title: Spring MVC 
 subtitle: index 
 summary: index 
 tags: [] 
@@ -9,7 +9,7 @@ version: 1.0
 formatter: "@formatter:on"
 ---
 
-# WEB
+# Spring MVC
 
 ## What
 
@@ -19,9 +19,11 @@ formatter: "@formatter:on"
 
 可是，Spring Boot 是如何把**曾经**的那些配置给干掉的呢？
 
+* [Spring MVC 之 DuspatcherServlet](dispatcher-servlet.md)
 * [Spring MVC 九大策略初识](strategies.md)
 * [Spring MVC 九大策略之地区解析器](locale-resolver.md)
 * [Spring MVC 异常处理体系之"异常处理器](exception-handler.md)
 * [Spring MVC 异常处理](handler-exception-resolver.md)
 * [Spring MVC 参数解析](handler-method-argument-resolver.md)
 * [Spring MVC 拦截器](handler-interceptor.md)
+

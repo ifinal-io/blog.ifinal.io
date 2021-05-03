@@ -75,7 +75,7 @@
     clear: both;
     margin: 16px auto;
     display: block;
-    max-width: 80%;
+    max-width: 100%;
     /*border: 1px solid rgba(255, 255, 255, .1);*/
     /*border-radius: 5px;*/
     /*padding: 5px;*/
@@ -152,12 +152,12 @@ code.highlighter-rouge {
 
 .markdown article > ol,
 .markdown article > ul {
-    margin: 1em 1em;
+    /*margin: 1em 1em;*/
 }
 
 .markdown article > ol li,
 .markdown article > ul li {
-    padding: .1rem .6rem;
+    /*padding: .1rem .6rem;*/
 }
 
 .markdown article > table {
@@ -193,7 +193,7 @@ code.highlighter-rouge {
 }
 
 .markdown div.highlight {
-    margin-left: 2em;
+    /*margin-left: 2em;*/
     border-radius: 5px;
 }
 

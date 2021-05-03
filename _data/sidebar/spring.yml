@@ -75,7 +75,9 @@ menus:
     name: WEB
     menus:
       - id: dispatcher-servlet
-        name: 'Servlet分派器'
+        name: 'DispatcherServlet'
+      - id: handler-execution-chain
+        name: '处理器执行链'
       - id: web-mvc-auto-configuration
         name: 'WebMvc自动配置'
       - id: strategies
