@@ -6,93 +6,16 @@
 <style>
 
 </style>
-<body class="blog-posts" data-offset="150" data-spy="scroll" data-target="#toc" style="background-color: whitesmoke"
-      id="body">
+<body id="body">
 
-<!-- Extra details for Live View on GitHub Pages -->
-<div class="wrapper" id="post">
-  <div class="main-panel blog-posts">
-    {% include sidebar/sidebar.html %}
-    <!-- Navbar -->
-    {% include navbar/navbar.html %}
-    <!-- End Navbar -->
-
-    <div class="page-header header-filter header-small card-background" data-parallax="true"
-         style="background-image: url('{{ page.banner }}');transform: translate3d(0px, 0px, 0px);min-height: 400px;max-height: 600px">
-      <div class="container" style="height: auto">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto text-center">
-            <h1 class="title text-white" style="font-family: Metropolis,sans-serif">{{page.title}}</h1>
-            <h4 style="font-size: 36px">{{page.summary | markdownify }}</h4>
-            <div>共<span class="badge badge-info">{{ page.content | number_of_words }}</span>字，用时约<span
-                class="badge badge-success">{{page.content | number_of_words | divided_by: 100}}</span>分。
-            </div>
-            <br>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="main main-raised">
-
-      <div class="card">
-
-        <div class="card-header card-header-success">
-
-          <div class="container-fluid">
-
-            <div class="row">
-              <div class="d-none d-xl-block col-lg-2 sticky-top flex-order-2">
-              </div>
-              <div class="col-xl-8 col-lg-12  ">
-                <div class="card-stats">
-                  <div class="author">
-                    <a href="#pablo">
-                      <img
-                          src="{{site.data.authors[page.author].avatar}}"
-                          alt="..." class="avatar img-raised">
-                      <span>{{ page.author }}</span>
-                    </a>
-                  </div>
-                  <div class="stats ml-auto">
-                    <i class="material-icons">article</i> {{ page.content | number_of_words }} &#xB7;
-                    <i class="material-icons">pending_actions</i> {{page.content | number_of_words | divided_by: 100}}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-        </div>
-
-        <div class="card-body">
-          <div class="container-fluid">
-            <div class="row flex-md-nowrap markdown" style="min-height: 50vh">
-              <div class="d-none d-xl-block col-lg-2 sticky-top flex-order-2">
-              </div>
-              <article class="col-xl-8 col-lg-12  ">
-                {{ content }}
-              </article>
-              <div class="d-none d-xl-block col-lg-2 sticky-top flex-order-2" style="top: 100px;padding-top: 2em;">
-                <div style="border-left: 1px #9c27b0  solid;padding-left: 1em">
-                  <div class="toc" id="toc">
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <!--Footer-->
-    {% include footer.html %}
-  </div>
+<!-- Navbar -->
+{% include navbar/navbar.html %}
+<!-- End Navbar -->
+<div>
+{{ content }}
 </div>
-<div id="snowbox"/>
+<!--Footer-->
+{% include footer.html %}
 </body>
 {% include jekyll/post.jekyll %}
 {% include jekyll/format-href.jekyll %}

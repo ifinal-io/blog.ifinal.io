@@ -34,6 +34,17 @@ kramdown:
     - smart
 theme: minima
 encoding: UTF-8
+# 分页
+#pagination:
+#  enabled: true
+#  per_page: 5
+#  offset: 2
+#  permalink: '/page/:num/'
+#  title: ':title - page :num of :max'
+#  limit: 0
+#  sort_field: 'date'
+#  sort_reverse: true
+#  collection: 'all'
 sass:
   sass_dir: _sass
   style: compressed
@@ -43,13 +54,13 @@ plugins:
   - jekyll-github-metadata
   - jekyll-readme-index
   - jekyll-relative-links
-  #- jekyll-coffeescript
-  #  - jekyll-default-layout
-  #- jekyll-gist
-  #- jekyll-optional-front-matter
-  #- jekyll-paginate
-  #- jekyll-titles-from-headings
-#data_dir: datas
+  - jekyll-coffeescript
+  - jekyll-default-layout
+  - jekyll-gist
+  - jekyll-optional-front-matter
+#  - jekyll-paginate
+#  - jekyll-paginate-v2
+  - jekyll-titles-from-headings
 collections_dir: pages
 collections:
   docs:
@@ -57,6 +68,8 @@ collections:
   spring:
     output: true
   devops:
+    output: true
+  api:
     output: true
 defaults:
   - scope:
@@ -78,6 +91,7 @@ relative_links:
   collections: true
 include:
   - data
+  - api
 toc:
   enable: true
   min_level: 2

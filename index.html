@@ -1,0 +1,46 @@
+---
+formatter: "@formatter:off"
+layout: page2
+title: Spring MVC 源码分析 之 DispatcherServlet
+subtitle: dispatcher-servlet
+summary: dispatcher-servlet
+tags: [springmvc,ssm]
+date: 2021-04-30 16:04:20 +800
+version: 1.0
+formatter: "@formatter:on"
+pagination:
+  enabled: true
+  collection: spring
+---
+
+<div class="container">
+
+  total_pages={{paginator.total_pages}}
+  {% for post in paginator.posts %}
+  <h1>{{ post.title }}</h1>
+  {% endfor %}
+
+  {% assign pages = site.documents %}
+
+  {% for page in pages %}
+
+  <div class="card card-background"
+       style="background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=750&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D')">
+    <div class="card-body">
+      <h6 class="card-category text-info">{{ page.collection }}</h6>
+      <a href="javascript:;">
+        <h3 class="card-title">{{ page.title }}</h3>
+      </a>
+      <p class="card-description">
+        {{ page.date }}
+      </p>
+      <a href="{{page.url}}" class="btn btn-white btn-link">
+        <i class="material-icons">subject</i> 阅读
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+
+
+
+</div>
