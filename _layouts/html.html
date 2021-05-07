@@ -11,16 +11,16 @@
 <!-- Navbar -->
 {% include navbar/navbar.html %}
 <!-- End Navbar -->
-<div>
+<div id="app" style="padding-top: 70px">
 {{ content }}
 </div>
 <!--Footer-->
 {% include footer.html %}
 </body>
-{% include jekyll/post.jekyll %}
 {% include jekyll/format-href.jekyll %}
-{% include plugins/toc.html container="#toc" %}
-{% include plugins/fixed.html container="#toc" %}
+{% if page.include %}
+  {% include {{ page.include }}%}
+{% endif %}
 <script>
   $(document).ready(function () {
         mermaid.initialize({

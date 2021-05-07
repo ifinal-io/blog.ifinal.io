@@ -37,6 +37,75 @@ DispatcherServlet是由一系列实现特定功能的策略对象组成的，这
 
 
 
+## Init
+
+`DispatcherServlet`本质是一个`Servlet`，因此，其初始化的入口为`init()`方法：
+
+### HttpServletBean.init()
+
+```java
+	@Override
+	public final void init() throws ServletException {
+
+		// Set bean properties from init parameters.
+		PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);
+		if (!pvs.isEmpty()) {
+			try {
+				BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(this);
+				ResourceLoader resourceLoader = new ServletContextResourceLoader(getServletContext());
+				bw.registerCustomEditor(Resource.class, new ResourceEditor(resourceLoader, getEnvironment()));
+				initBeanWrapper(bw);
+				bw.setPropertyValues(pvs, true);
+			}
+			catch (BeansException ex) {
+				if (logger.isErrorEnabled()) {
+					logger.error("Failed to set bean properties on servlet '" + getServletName() + "'", ex);
+				}
+				throw ex;
+			}
+		}
+
+		// Let subclasses do whatever initialization they like.
+		initServletBean();
+	}
+```
+
+### FrameworkServlet.initServletBean()
+
+```java
+	@Override
+	protected final void initServletBean() throws ServletException {
+		getServletContext().log("Initializing Spring " + getClass().getSimpleName() + " '" + getServletName() + "'");
+		if (logger.isInfoEnabled()) {
+			logger.info("Initializing Servlet '" + getServletName() + "'");
+		}
+		long startTime = System.currentTimeMillis();
+
+		try {
+			this.webApplicationContext = initWebApplicationContext();
+			initFrameworkServlet();
+		}
+		catch (ServletException | RuntimeException ex) {
+			logger.error("Context initialization failed", ex);
+			throw ex;
+		}
+
+		if (logger.isDebugEnabled()) {
+			String value = this.enableLoggingRequestDetails ?
+					"shown which may lead to unsafe logging of potentially sensitive data" :
+					"masked to prevent unsafe logging of potentially sensitive data";
+			logger.debug("enableLoggingRequestDetails='" + this.enableLoggingRequestDetails +
+					"': request parameters and headers will be " + value);
+		}
+
+		if (logger.isInfoEnabled()) {
+			logger.info("Completed initialization in " + (System.currentTimeMillis() - startTime) + " ms");
+		}
+	}
+```
+
+
+
 ## How
 
 ### Dispatch

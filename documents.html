@@ -1,0 +1,57 @@
+---
+layout: html
+title: Documents
+include: jekyll/documents.jekyll
+---
+
+<div class="container">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-icon card-header-rose">
+        <div class="card-icon">
+          <i class="material-icons">assignment</i>
+        </div>
+        <h4 class="card-title "> Regular Table with Colors</h4>
+      </div>
+      <div class="card-body table-full-width table-hover">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="">
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Collection</th>
+              <th>Tags</th>
+              <th>Url</th>
+              <th>Date</th>
+              <th class="text-right">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(item,index) in documents">
+              <td v-text="index + 1"></td>
+              <td>
+                <h5 v-text="item.title"></h5>
+              </td>
+              <td>
+                <span class="badge badge-success" v-text="item.collection">Collection</span>
+              </td>
+              <td>
+                <span class="badge badge-primary" v-for="tag in item.tags" v-text="tag">Tag</span>
+              </td>
+              <td v-text="item.url"></td>
+              <td v-text="item.date"></td>
+              <td class="text-right">
+                <a type="button" :href="item.url" rel="tooltip" class="btn btn-primary btn-sm btn-just-icon"
+                   data-original-title="" title="">
+                  <i class="material-icons">visibility</i>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
