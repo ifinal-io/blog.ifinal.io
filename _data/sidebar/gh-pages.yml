@@ -1,0 +1,12 @@
+logo: /assets/images/logos/github.svg
+name: Final
+menus:
+  - id: overview
+    icon: emoji_objects
+    name: 概览
+  - id: extension
+    icon: extension
+    name: 扩展
+    menus:
+      - id: gitalk
+        name: Gitalk

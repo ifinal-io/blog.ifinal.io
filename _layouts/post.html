@@ -21,10 +21,13 @@
     <!-- End Navbar -->
 
     <div class="page-header header-filter {% if page.sidebar %}header-small{% endif%}" data-parallax="true"
-         style="background-image: url('{{ page.banner }}');">
+         style="background-image: url('{{ page.banner }}');height: 65vh;min-height: 65vh">
       <div class="container" style="height: auto">
         <div class="row">
-          <div class="col-md-8 ml-auto mr-auto text-center">
+          <div class="col-md-10 ml-auto mr-auto text-center">
+            {% if page.logo %}
+            <img src="{{ page.logo }}" width="128" height="128" alt="Circle Image" class="rounded-circle img-fluid">
+            {% endif %}
             <h1 class="title">{{ page.title }}</h1>
             <h4>{{ page.summary }}</h4>
             <br>

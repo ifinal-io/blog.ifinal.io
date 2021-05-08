@@ -69,7 +69,7 @@ collections:
     output: true
   devops:
     output: true
-  api:
+  gh-pages:
     output: true
 defaults:
   - scope:
