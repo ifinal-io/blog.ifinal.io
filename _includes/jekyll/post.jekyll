@@ -1,6 +1,6 @@
 {% assign paths = page.path | replace: '_', '' | replace: '.md' : '' | split: '/' %}
 <script>
-  var post = {
+  var app = {
     data() {
       var data = {
         //filter: $.cookie('sidebar-filter'),
@@ -10,6 +10,7 @@
           collection: "{{ page.collection }}",
           paths: {{ paths | jsonify }},
           title: "{{ page.title }}",
+          tags: {{ page.tags | jsonify }},
           menus: [],
           module: "{{ module }}",
         },
@@ -21,5 +22,5 @@
       return data;
     }
   };
-  Vue.createApp(post).mount('#post')
+  Vue.createApp(app).mount('#app')
 </script>

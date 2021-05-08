@@ -238,11 +238,11 @@ code.highlighter-rouge {
 /*-------------------------*/
 
 @media (min-width: 991px) {
-    .wrapper .navbar {
+    .admin .wrapper .navbar {
         margin-left: 260px;
     }
 
     .wrapper .navbar .container {
-        padding: 0 -130px;
+        /*padding: 0 -130px;*/
     }
 }

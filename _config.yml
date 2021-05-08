@@ -77,6 +77,7 @@ defaults:
     values:
       layout: post
       output: true
+      sidebar: true
       author: likly
       banner: /assets/images/banner/spring-banner.png
 # 插件配置
@@ -91,7 +92,6 @@ relative_links:
   collections: true
 include:
   - data
-  - api
 toc:
   enable: true
   min_level: 2

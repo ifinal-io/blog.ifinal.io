@@ -1,91 +1,104 @@
 <!DOCTYPE html>
-<html lang="zh" class="theme-dark">
-
+<html lang="zh">
 {% include head.html %}
-
 <style>
 
 </style>
-<body class="blog-posts" data-offset="150" data-spy="scroll" data-target="#toc" style="background-color: whitesmoke"
+<body class="blog-post  {% if page.sidebar %}admin{% endif%}" data-offset="150" data-spy="scroll" data-target="#toc"
+      style="background-color: whitesmoke"
       id="body">
 
 <!-- Extra details for Live View on GitHub Pages -->
-<div class="wrapper" id="post">
-  <div class="main-panel blog-posts">
+<div class="wrapper" id="app">
+  <div class="main-panel">
+    {% if page.sidebar %}
+    <!--SideBar-->
     {% include sidebar/sidebar.html %}
+    <!--End SideBar-->
+    {% endif %}
     <!-- Navbar -->
     {% include navbar/navbar.html %}
     <!-- End Navbar -->
 
-    <div class="page-header header-filter header-small card-background" data-parallax="true"
-         style="background-image: url('{{ page.banner }}');transform: translate3d(0px, 0px, 0px);min-height: 400px;max-height: 600px">
+    <div class="page-header header-filter {% if page.sidebar %}header-small{% endif%}" data-parallax="true"
+         style="background-image: url('{{ page.banner }}');">
       <div class="container" style="height: auto">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center">
-            <h1 class="title text-white" style="font-family: Metropolis,sans-serif">{{page.title}}</h1>
-            <h4 style="font-size: 36px">{{page.summary | markdownify }}</h4>
-            <div>共<span class="badge badge-info">{{ page.content | number_of_words }}</span>字，用时约<span
-                class="badge badge-success">{{page.content | number_of_words | divided_by: 100}}</span>分。
-            </div>
+            <h1 class="title">{{ page.title }}</h1>
+            <h4>{{ page.summary }}</h4>
             <br>
           </div>
         </div>
       </div>
     </div>
+
     <div class="main main-raised">
+      <!-- BLOG CONTENT -->
+      <div class="section section-text">
+        <div class="container">
+          <div class="row flex-md-nowrap markdown" style="min-height: 50vh">
+            <div class="d-none col-lg-2 sticky-top flex-order-2">
+            </div>
+            <article class="col-xl-10 col-lg-12  ">
+              {{ content }}
+            </article>
+            <div class="d-none d-xl-block col-lg-2 sticky-top flex-order-2" style="top: 100px;padding-top: 2em;">
+              <div style="border-left: 1px #9c27b0  solid;padding-left: 1em">
+                <div class="toc" id="toc">
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <div class="card">
+        </div>
 
-        <div class="card-header card-header-success">
+      </div>
 
-          <div class="container-fluid">
-
+      <!-- BLOG INFO -->
+      <div class="section section-blog-info">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
             <div class="row">
-              <div class="d-none  sticky-top flex-order-2">
+              <div class="col-md-6">
+                <div class="blog-tags">
+                  Tags:
+                  <span class="badge badge-primary badge-pill" v-for="tag in page.tags" v-text="tag"></span>
+                </div>
               </div>
-              <div class="col-xl-12 col-lg-12  ">
-                <div class="card-stats">
-                  <div class="author">
+            </div>
+            <hr>
+            <div class="card card-profile card-plain">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="card-avatar">
                     <a href="#pablo">
-                      <img
-                          src="{{site.data.authors[page.author].avatar}}"
-                          alt="..." class="avatar img-raised">
-                      <span>{{ page.author }}</span>
+                      <img class="img" src="{{ site.data.authors[page.author].avatar}}">
                     </a>
+                    <div class="ripple-container"></div>
                   </div>
-                  <div class="stats ml-auto">
-                    <i class="material-icons">article</i> {{ page.content | number_of_words }} &#xB7;
-                    <i class="material-icons">pending_actions</i> {{page.content | number_of_words | divided_by: 100}}
-                  </div>
+                </div>
+                <div class="col-md-8">
+                  <h4 class="card-title">{{ page.author }}</h4>
+                  <p class="description">I've been trying to figure out the bed design for the master bedroom at our
+                    Hidden Hills compound...I like good music from Youtube.</p>
+                </div>
+                <div class="col-md-2">
+                  <a type="button" class="btn btn-default pull-right btn-round"
+                     href="{{ site.data.authors[page.author].github-follow}}">Follow
+                    <div class="ripple-container"></div>
+                  </a>
                 </div>
               </div>
             </div>
-
-          </div>
-
-
-        </div>
-
-        <div class="card-body">
-          <div class="container-fluid">
-            <div class="row flex-md-nowrap markdown" style="min-height: 50vh">
-              <div class="d-none col-lg-2 sticky-top flex-order-2">
-              </div>
-              <article class="col-xl-10 col-lg-12  ">
-                {{ content }}
-              </article>
-              <div class="d-none d-xl-block col-lg-2 sticky-top flex-order-2" style="top: 100px;padding-top: 2em;">
-                <div style="border-left: 1px #9c27b0  solid;padding-left: 1em">
-                  <div class="toc" id="toc">
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
           </div>
         </div>
+      </div>
 
+      <div class="section section-comments">
+        <div class="container">
+          <div id="gitalk-container"></div>
+        </div>
       </div>
     </div>
     <!--Footer-->
@@ -97,19 +110,22 @@
 {% include jekyll/post.jekyll %}
 {% include jekyll/format-href.jekyll %}
 {% include plugins/toc.html container="#toc" %}
-{% include plugins/fixed.html container="#toc" %}
+{% include plugins/snow.html %}
+{% include plugins/mermaid.html %}
 <script>
   $(document).ready(function () {
-        mermaid.initialize({
-          theme: 'forest',
-          sequence: {
-            showSequenceNumbers: true
-          },
-          er: {
-            fontSize: 18
-          }
-        });
-        mermaid.init({}, ".language-mermaid, .language-sequence");
+
+        var gitalk = new Gitalk({
+          clientID: 'd5980c0f53133a01c696',
+          clientSecret: 'e2bc6849c786e2d037ceb624ed3789237560d206',
+          repo: 'blog.ifinal.io',
+          owner: 'final-comments',
+          admin: ['likly'],
+          id: location.pathname,      // Ensure uniqueness and length less than 50
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
 
         $sidebar = $('.sidebar');
 
@@ -186,21 +202,4 @@
   );
 </script>
 
-<!-- 飘雪花 -->
-<script type="text/javascript">
-  $(function () {
-    // $.fn.snow({
-    //   minSize: 3, /* 定义雪花最小尺寸 */
-    //   maxSize: 66,/* 定义雪花最大尺寸 */
-    //   newOn: 666  /* 定义密集程度，数字越小越密集 */
-    // });
-
-    // 每张图片居中处理
-    // $("img[loading='lazy']").parent("p").css("text-align","center");
-    $("#topics p img").wrap("<div style='text-align:center;'></div>");
-  });
-  var getRandomColor = function () {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-  }
-</script>
 </html>

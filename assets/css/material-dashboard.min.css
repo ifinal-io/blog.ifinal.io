@@ -23276,11 +23276,7 @@ select.bs-select-hidden, select.selectpicker {
         position: relative
     }
 
-    .nav-open .main-panel,
-    /*.nav-open .navbar .container,*/
-    /*.nav-open .navbar .container .navbar-toggler,*/
-    /*.nav-open .navbar .container .navbar-wrapper,*/
-    .nav-open .wrapper-full-page {
+    .nav-open .main-panel, .nav-open .navbar .container, .nav-open .navbar .container .navbar-toggler, .nav-open .navbar .container .navbar-wrapper, .nav-open .wrapper-full-page {
         left: 0;
         transform: translate3d(-260px, 0, 0)
     }
@@ -23290,7 +23286,7 @@ select.bs-select-hidden, select.selectpicker {
     }
 
     .nav-open .off-canvas-sidebar .navbar-collapse, .nav-open .sidebar {
-        /*transform: translateZ(0)*/
+        transform: translateZ(0)
     }
 
     .navbar .container, .navbar .container .navbar-toggler, .navbar .container .navbar-wrapper, .wrapper-full-page {
