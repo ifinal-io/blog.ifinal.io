@@ -21,7 +21,7 @@
   <!-- CSS Files -->
   <link href="/assets/css/material-dashboard.min.css" rel="stylesheet"/>
   <link href="/assets/css/material-kit.css" rel="stylesheet"/>
-<!--    <link href="/assets/css/material-dashboard-dark.min.css" rel="stylesheet"/>-->
+  <!--    <link href="/assets/css/material-dashboard-dark.min.css" rel="stylesheet"/>-->
   <!--  <link href="/assets/css/highlight/base16.solarized.css" rel="stylesheet"/>-->
   <!--  <link href="/assets/css/highlight/base16.solarized.dark.css" rel="stylesheet"/>-->
   <!--  <link href="/assets/css/highlight/github.css" rel="stylesheet"/>-->
@@ -84,12 +84,12 @@
   <!--    <script src="/assets/js/plugins/jszip.min.js"></script>-->
   <!--    <script src="/assets/js/plugins/FileSaver.min.js"></script>-->
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<!--    <script src="/assets/js/material-dashboard.min.js" type="text/javascript"></script>-->
+  <!--    <script src="/assets/js/material-dashboard.min.js" type="text/javascript"></script>-->
   <script src="/assets/js/material-kit.min.js" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <!--    <script src="/assets/demo/demo.js"></script>-->
-<!--  <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
-<!--  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+  <!--  <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+  <!--  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
   <script src="https://unpkg.com/vue@next"></script>
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
@@ -97,10 +97,25 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5EZR6S9WL4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
 
     gtag('config', 'G-5EZR6S9WL4');
   </script>
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1777845f03ec6222aa39775d070090c3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
 
 </head>
