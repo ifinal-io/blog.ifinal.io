@@ -1,45 +1,65 @@
 ---
 formatter: "@formatter:off"
 layout: html
-title: Spring MVC 源码分析 之 DispatcherServlet
+title: Final.IO
 subtitle: dispatcher-servlet
-summary: dispatcher-servlet
-tags: [springmvc,ssm]
+summary: Blog
+tags: []
+banner: https://images.unsplash.com/photo-1496950866446-3253e1470e8e
+brand: Blog
+class: index-page
 date: 2021-04-30 16:04:20 +800
 version: 1.0
 formatter: "@formatter:on"
-pagination:
-  enabled: true
-  collection: spring
 ---
 
-<div class="container">
-
-  {% for post in paginator.posts %}
-  <h1>{{ post.title }}</h1>
-  {% endfor %}
-
-  {% assign pages = site.documents %}
-
-  {% for page in pages %}
-
-  <div class="card card-background"
-       style="background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=750&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D')">
-    <div class="card-body">
-      <h6 class="card-category text-info">{{ page.collection }}</h6>
-      <a href="javascript:;">
-        <h3 class="card-title">{{ page.title }}</h3>
-      </a>
-      <p class="card-description">
-        {{ page.date }}
-      </p>
-      <a href="{{page.url}}" class="btn btn-white btn-link">
-        <i class="material-icons">subject</i> 阅读
-      </a>
+<div id="cards" class="cd-section">
+  <div class="section-gray">
+    <!--     *********    BLOG CARDS     *********      -->
+    <div class="cards">
+      <div class="container">
+        <div class="title">
+          <h2>Cards</h2>
+          <h3>Blog Cards</h3>
+        </div>
+        <div class="card-columns">
+          {% for post in site.documents %}
+          {% assign mod = forloop.index | modulo: 3 %}
+          <div class="card card-blog">
+            <div class="card-header card-header-image">
+              <a href="{{ post.url }}">
+                <img class="img" src="{{ post.banner }}?&path={{ post.url }}">
+                <div class="card-title">
+                  {{ forloop.index }}.{{ post.title }}
+                </div>
+              </a>
+              <div class="colored-shadow" style="background-image: url('{{post.banner}}'); opacity: 1;"></div>
+            </div>
+            <div class="card-body ">
+              <h6 class="card-category text-success">{{ post.collection }}</h6>
+              <h4 class="card-title">
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </h4>
+              <p class="card-description">
+                {{ post.summary }}
+              </p>
+            </div>
+            <div class="card-footer ">
+              <div class="author">
+                <a href="#pablo">
+                  <img src="{{ site.data.authors[page.author].avatar }}" alt="..." class="avatar img-raised">
+                  <span>{{ site.data.authors[page.author].name }}</span>
+                </a>
+              </div>
+              <div class="stats ml-auto">
+                <i class="material-icons">schedule</i> 5 min read
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
+    <!--     *********    END BLOG CARDS      *********      -->
   </div>
-  {% endfor %}
-
-
-
 </div>

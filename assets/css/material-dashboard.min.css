@@ -11958,7 +11958,7 @@ html[dir=rtl] .form-check .form-check-sign .check:before {
 }
 
 .page-header {
-    min-height: 100vh;
+    /*min-height: 100vh;*/
     max-height: 1000px;
     display: flex !important;
     padding: 0;
@@ -12001,7 +12001,7 @@ html[dir=rtl] .form-check .form-check-sign .check:before {
 }
 
 .page-header .container {
-    height: 100%;
+    /*height: 100%;*/
     z-index: 1
 }
 

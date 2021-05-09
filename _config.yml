@@ -79,7 +79,7 @@ defaults:
       output: true
       sidebar: true
       author: likly
-      banner: /assets/images/banner/spring-banner.png
+      banner: https://source.unsplash.com/random
 # 插件配置
 gist:
   noscript: false
