@@ -1,0 +1,41 @@
+---
+formatter: "@formatter:off"
+title: 时间线
+subtitle: timeline 
+summary: timeline 
+tags: [] 
+date: 2021-05-09 22:43:53 +800 
+version: 1.0
+sidebar: false
+formatter: "@formatter:on"
+---
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-timeline card-plain">
+      <div class="card-body">
+        <ul class="timeline">
+          {% for event in site.data.timeline %}
+          {% assign mod = forloop.index | modulo: 2 %}
+          <li class="{% unless mod == 1 %}timeline-inverted{% endunless %}">
+            <div class="timeline-badge {{ event.level }}">
+              <i class="material-icons">{{ event.icon }}</i>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <span class="badge badge-pill badge-{{ event.level }}">{{ event.title }}</span>
+              </div>
+              <div class="timeline-body">
+                {{ event.content | markdownify}}
+              </div>
+              <h6>
+                <i class="ti-time"></i> {{ event.date }}
+              </h6>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

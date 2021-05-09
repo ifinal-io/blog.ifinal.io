@@ -244,3 +244,13 @@ code.highlighter-rouge {
         /*padding: 0 -130px;*/
     }
 }
+
+.main-panel {
+    width: 100%;
+    float: none;
+}
+
+.admin .main-panel {
+    float: right;
+    width: calc(100% - 260px);
+}
