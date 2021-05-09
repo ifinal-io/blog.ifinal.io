@@ -19,7 +19,8 @@ formatter: "@formatter:on"
     <div class="cards">
       <div class="container">
         <div class="card-columns">
-          {% for post in site.documents %}
+          {% assign documents = site.documents | where_exp: "item", "item.url contains '.html' " | sort: "date" | reverse  %}
+          {% for post in documents %}
           {% assign mod = forloop.index | modulo: 3 %}
           <div class="card card-blog">
             <div class="card-header card-header-image" data-header-animation="true">
