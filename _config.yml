@@ -79,7 +79,7 @@ defaults:
       output: true
       sidebar: true
       author: likly
-      banner: https://source.unsplash.com/random
+      banner: https://source.unsplash.com/random/800x400
 # 插件配置
 gist:
   noscript: false

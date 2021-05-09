@@ -28,12 +28,12 @@ formatter: "@formatter:on"
           <div class="card card-blog">
             <div class="card-header card-header-image">
               <a href="{{ post.url }}">
-                <img class="img" src="{{ post.banner }}?&path={{ post.url }}">
+                <img class="img" src="{{ post.banner }}?&fit=crop&w=800&h=400&path={{ post.url }}">
                 <div class="card-title">
                   {{ forloop.index }}.{{ post.title }}
                 </div>
               </a>
-              <div class="colored-shadow" style="background-image: url('{{post.banner}}'); opacity: 1;"></div>
+              <div class="colored-shadow" style="background-image: url('{{post.banner}}?&fit=crop&w=800&h=400'); opacity: 1;"></div>
             </div>
             <div class="card-body ">
               <h6 class="card-category text-success">{{ post.collection }}</h6>
