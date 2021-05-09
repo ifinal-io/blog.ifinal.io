@@ -4,7 +4,8 @@
 
 
 .markdown {
-
+    font-weight: 400;
+    font-family: "PingFang TC";
 }
 
 .sidebar .logo a.logo-mini {
@@ -90,9 +91,6 @@
     box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
 }
 
-.markdown article > p {
-    text-indent: 2em;
-}
 
 .sticky-top {
     position: -webkit-sticky;
@@ -232,7 +230,7 @@ code.highlighter-rouge {
 /*}*/
 
 .markdown article > p {
-    font-size: 1.125em;
+    text-indent: 2em;
 }
 
 /*-------------------------*/
