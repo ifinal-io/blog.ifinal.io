@@ -1,7 +1,7 @@
 ---
 formatter: "@formatter:off"
 layout: html
-title: Final.IO
+title: iFinal.io
 subtitle: dispatcher-servlet
 summary: Blog
 tags: []
@@ -26,7 +26,7 @@ formatter: "@formatter:on"
           {% for post in site.documents %}
           {% assign mod = forloop.index | modulo: 3 %}
           <div class="card card-blog">
-            <div class="card-header card-header-image">
+            <div class="card-header card-header-image" data-header-animation="true">
               <a href="{{ post.url }}">
                 <img class="img" src="{{ post.banner }}?&fit=crop&w=800&h=400&path={{ post.url }}">
                 <div class="card-title">
@@ -44,7 +44,7 @@ formatter: "@formatter:on"
                 {{ post.summary }}
               </p>
             </div>
-            <div class="card-footer ">
+            <div class="card-footer d-none">
               <div class="author">
                 <a href="#pablo">
                   <img src="{{ site.data.authors[page.author].avatar }}" alt="..." class="avatar img-raised">
