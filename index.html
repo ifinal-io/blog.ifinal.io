@@ -19,14 +19,16 @@ formatter: "@formatter:on"
     <div class="cards">
       <div class="container">
         <div class="card-columns">
-          {% assign documents = site.documents | where_exp: "item", "item.url contains '.html' " | sort: "date" | reverse  %}
+          {% assign documents = site.documents | where_exp: "item", "item.url contains '.html' "
+          | sort: "date" | reverse %}
           {% for post in documents %}
           {% assign mod = forloop.index | modulo: 3 %}
           <div class="card card-blog">
             <div class="card-header card-header-image" data-header-animation="true">
               <a href="{{ post.url }}">
-                <img class="img lazyload" data-src="{{ post.banner }}?&fit=crop&w=800&h=400&path={{ post.url }}" height="200"
-                style="filter: drop-shadow(10px 10px 10px rgba(0,0,0,.5));">
+                <img src="http://fpoimg.com/400x200" class="img lazyload"
+                     data-src="{{ post.banner }}?&fit=crop&w=800&h=400&path={{ post.url }}"
+                     style="filter: drop-shadow(10px 10px 10px rgba(0,0,0,.5));">
                 <div class="card-title">
                   {{ post.title }}
                 </div>
