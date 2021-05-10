@@ -20,18 +20,33 @@ formatter: "@formatter:on"
       return null;
     }
 
-    Github.init({
+    let options = {
       clientID: 'd5980c0f53133a01c696',
       clientSecret: 'e2bc6849c786e2d037ceb624ed3789237560d206'
-    });
+    };
+    Github.init(options);
 
     var code = getQueryString("code")
     console.log("code=" + code);
-    Github.token({
-      code: code
-    }, function (response) {
-      console.log(response);
-    });
+
+
+    if(code ){
+
+      let axiosJSON = axios.create({
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      axiosJSON.post('https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token', {
+        code,
+        client_id: options.clientID,
+        client_secret: options.clientSecret
+      }).then(res => {
+        console.log(res);
+
+      });
+    }
 
   });
 </script>

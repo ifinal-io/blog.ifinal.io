@@ -83,7 +83,7 @@ defaults:
       layout: post
       output: true
       sidebar: true
-      author: likly
+      author: ilikly
       type: post
       banner: https://source.unsplash.com/random/800x400
   - scope:

@@ -1,22 +1,22 @@
 Github = {
+  proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
   options: {},
   init: function (options) {
     this.options = options;
   },
-  token: function (params, success) {
+  token: function (code, success) {
 
-    $.extend(params, this.options);
-    console.log(params);
     $.ajax({
-      url: 'https://github.com/login/oauth/access_token',
-      type: 'POST',
+      url: this.proxy,
       headers: {
-        'access-control-request-headers': 'authorization,content-type',
-        'access-control-request-method': 'POST',
-        'origin': 'https://blog.ifinal.io',
-        'referer': 'https://blog.ifinal.io/',
+        'Accept':'application/json'
       },
-      data: params,
+      type: 'POST',
+      data: JSON.stringify({
+        code: code,
+        client_id: this.options.clientID,
+        client_secret: this.options.clientSecret
+      }),
       success: success,
       dataType: 'json'
     });
