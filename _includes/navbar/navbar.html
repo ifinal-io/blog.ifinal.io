@@ -4,7 +4,8 @@
   <div class="container">
     <div class="navbar-translate">
       <a class="navbar-brand" href="{{ site.url }}">{{ site.title}}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+              aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
         <span class="navbar-toggler-icon"></span>
         <span class="navbar-toggler-icon"></span>
@@ -13,19 +14,22 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
+        <!-- 导航项 -->
+        {% for nav in site.data.navbar.navs %}
+        {% if nav.type == 'link' %}
         <li class="nav-item">
-          <a class="nav-link" href="/index.html"> <i class="material-icons">home</i>首页</a>
+          <a class="nav-link" href="{{ nav.link }}" target="{{ nav.target }}"> <i class="material-icons">{{ nav.icon
+            }}</i>{{ nav.label }}</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/timeline.html"> <i class="material-icons">timeline</i>时间线</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{site.github.repository_url}}" target="_blank" rel="noopener"><i class="material-icons">star</i> 点赞关注</a>
-        </li>
+        {% endif %}
+        {% endfor %}
       </ul>
     </div>
   </div>
 
+  <!--  Github Corner -->
+  {% if site.data.navbar.github-corner %}
   {% include navbar/github-corner.html %}
+  {% endif %}
 
 </nav>

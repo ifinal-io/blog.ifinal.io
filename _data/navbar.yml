@@ -1,0 +1,15 @@
+# 导航条配置
+
+# 导航
+navs:
+  - label: 首页
+    icon: home
+    type: link
+    link: /index.html
+  - label: 时间线
+    icon: timeline
+    type: link
+    link: /timeline.html
+
+# 显示Github角
+github-corner: true
