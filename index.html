@@ -25,12 +25,12 @@ formatter: "@formatter:on"
           <div class="card card-blog">
             <div class="card-header card-header-image" data-header-animation="true">
               <a href="{{ post.url }}">
-                <img class="img" src="{{ post.banner }}?&fit=crop&w=800&h=400&path={{ post.url }}">
+                <img class="img lazyload" data-src="{{ post.banner }}?&fit=crop&w=800&h=400&path={{ post.url }}" height="200"
+                style="filter: drop-shadow(10px 10px 10px rgba(0,0,0,.5));">
                 <div class="card-title">
                   {{ post.title }}
                 </div>
               </a>
-              <div class="colored-shadow" style="background-image: url('{{post.banner}}?&fit=crop&w=800&h=400'); opacity: 1;"></div>
             </div>
             <div class="card-body ">
               <h6 class="card-category text-success">{{ post.collection }}</h6>

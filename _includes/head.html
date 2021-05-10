@@ -93,6 +93,7 @@
   <script src="https://unpkg.com/vue@next"></script>
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
   <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5EZR6S9WL4"></script>
   <script>
@@ -109,14 +110,18 @@
   <!-- 百度统计 -->
   <script>
     var _hmt = _hmt || [];
-    (function() {
+    (function () {
       var hm = document.createElement("script");
       hm.src = "https://hm.baidu.com/hm.js?2479c67605fd26151d1c7d86481e5b8b";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-
-
+  <script>
+    $(document).ready(function () {
+      $("img.lazyload").lazyload({effect: "fadeIn"});
+      console.log("图片 lazyload ");
+    });
+  </script>
 
 </head>
