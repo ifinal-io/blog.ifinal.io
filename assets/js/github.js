@@ -9,6 +9,7 @@ Github = {
     console.log(params);
     $.ajax({
       url: 'https://github.com/login/oauth/access_token',
+      type: 'POST',
       data: params,
       success: success,
       dataType: 'json'
