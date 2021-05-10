@@ -17,7 +17,7 @@ navs:
   - label: 登录
     icon: fingerprint
     type: link
-    link: https://github.com/login/oauth/authorize?client_id=d5980c0f53133a01c696
+    link: https://github.com/login/oauth/authorize?client_id=d5980c0f53133a01c696&redirect_uri=https://bolg.ifinal.io/oauth/github
 
 # 显示Github角
 github-corner: true
