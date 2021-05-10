@@ -71,6 +71,11 @@ collections:
     output: true
   gh-pages:
     output: true
+  # 帮助
+  help:
+    output: true
+  oauth:
+    output: true
 defaults:
   - scope:
       path: ""
@@ -79,7 +84,18 @@ defaults:
       output: true
       sidebar: true
       author: likly
+      type: post
       banner: https://source.unsplash.com/random/800x400
+  - scope:
+      path: help
+    values:
+      type: page
+      sidebar: false
+  - scope:
+      path: oauth
+    values:
+      type: page
+      sidebar: false
 # 插件配置
 gist:
   noscript: false

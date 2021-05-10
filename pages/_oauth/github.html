@@ -1,0 +1,37 @@
+---
+formatter: "@formatter:off"
+title: github 
+subtitle: github 
+summary: github 
+tags: [] 
+date: 2021-05-10 17:29:34 +800 
+version: 1.0
+formatter: "@formatter:on"
+---
+<script>
+  $(document).ready(function () {
+
+    function getQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
+    }
+
+    Github.init({
+      clientID: 'd5980c0f53133a01c696',
+      clientSecret: 'e2bc6849c786e2d037ceb624ed3789237560d206'
+    });
+
+    var code = getQueryString("code")
+    console.log("code=" + code);
+    Github.token({
+      code: code
+    }, function (response) {
+      console.log(response);
+    });
+
+  });
+</script>

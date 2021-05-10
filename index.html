@@ -20,6 +20,7 @@ formatter: "@formatter:on"
       <div class="container">
         <div class="card-columns">
           {% assign documents = site.documents | where_exp: "item", "item.url contains '.html' "
+          | where_exp: "item", "item.type == 'post'"
           | sort: "date" | reverse %}
           {% for post in documents %}
           {% assign mod = forloop.index | modulo: 3 %}
