@@ -17,33 +17,11 @@
         modules: {{ site.data.modules | jsonify }},
         theme: "light",
         sidebar: {{ site.data.sidebar[page.collection] | jsonify }},
-        token:  "{{ site.data.token[page.author] }}",
-        user: null
+        author: {{ site.data.authors[page.author] | jsonify }}
       };
     },
     mounted() {
       this.page.menus = this.page.paths.slice(1);
-      console.log(JSON.stringify(this.page));
-      let token = this.token;
-      console.log("token2="+token);
-      if(token){
-
-        let axiosGithub = axios.create({
-          baseURL: 'https://api.github.com',
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-        axiosGithub.get('/user', {
-          headers: {
-            Authorization: `token ${token}`
-          }
-        }).then(res => {
-          this.user = res.data;
-          console.log(JSON.stringify(this.user));
-        }).catch(err => {
-        })
-      }
     }
   };
   Vue.createApp(app).mount('#app')

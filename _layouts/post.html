@@ -71,23 +71,23 @@
                 </div>
               </div>
               <hr>
-              <div class="card card-profile card-plain" v-if="user">
+              <div class="card card-profile card-plain" v-if="author">
                 <div class="row">
                   <div class="col-md-2">
                     <div class="card-avatar">
                       <a href="#pablo">
-                        <img class="img" :src="user.avatar_url">
+                        <img class="img" :src="author.avatar">
                       </a>
                       <div class="ripple-container"></div>
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <h4 class="card-title" v-text="user.name"></h4>
+                    <h4 class="card-title" v-text="author.name"></h4>
                     <p class="description"></p>
                   </div>
                   <div class="col-md-2">
                     <a type="button" class="btn btn-rose pull-right btn-round"
-                       :href="user.html_url">关注
+                       :href="author.github-follow">关注
                     </a>
                   </div>
                 </div>
