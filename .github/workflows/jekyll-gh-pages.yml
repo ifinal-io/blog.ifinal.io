@@ -35,27 +35,27 @@ jobs:
           echo gem install jekyll-readme-index
           sudo gem install jekyll-readme-index
           echo gem install jekyll-feed
-          sugo gem install jekyll-feed
+          sudo gem install jekyll-feed
           echo gem install jekyll-github-metadata
-          sugo gem install jekyll-github-metadata
+          sudo gem install jekyll-github-metadata
           echo gem install jekyll-readme-index
-          sugo gem install jekyll-readme-index
+          sudo gem install jekyll-readme-index
           echo gem install jekyll-relative-links
-          sugo gem install jekyll-relative-links
+          sudo gem install jekyll-relative-links
           echo gem install jekyll-coffeescript
-          sugo gem install jekyll-coffeescript
+          sudo gem install jekyll-coffeescript
           echo gem install jekyll-default-layout
-          sugo gem install jekyll-default-layout
+          sudo gem install jekyll-default-layout
           echo gem install jekyll-gist
-          sugo gem install jekyll-gist
+          sudo gem install jekyll-gist
           echo gem install jekyll-optional-front-matter
-          sugo gem install jekyll-optional-front-matter
+          sudo gem install jekyll-optional-front-matter
           echo gem install jekyll-paginate
-          sugo gem install jekyll-paginate
+          sudo gem install jekyll-paginate
           echo gem install jekyll-paginate-v2
-          sugo gem install jekyll-paginate-v2
+          sudo gem install jekyll-paginate-v2
           echo gem install jekyll-titles-from-headings
-          sugo gem install jekyll-titles-from-headings
+          sudo gem install jekyll-titles-from-headings
 
       - name: Build Jekyll
         run: |
