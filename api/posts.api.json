@@ -7,6 +7,7 @@ layout: null
 [
 {% for post in posts %}
     {
+    "name"    : "{{ post.title }}",
     "title"    : "{{ post.title | escape }}",
     "collection"    : "{{ post.collection }}",
     "category" : "{{ post.category }}",
