@@ -25,11 +25,19 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Update Gem Source
+        run: |
+          echo gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+          gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+          echo gem version
+          gem -v
+
       # Runs a set of commands using the runners shell
       - name: Install Jekyll Env
         run: |
           echo 安装 Jekyll 环境
           sudo gem install bundler jekyll
+          sudo gem github-pages
           echo gem install minima
           sudo gem install minima
           echo gem install jekyll-readme-index
