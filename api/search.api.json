@@ -9,6 +9,7 @@ layout: null
     "category" : "{{ post.category }}",
     "tags"     : {{ post.tags | jsonify }},
     "url"      : "{{ site.baseurl }}{{ post.url }}",
+    "mark"     : {{ post.mark | jsonify }},
     "date"     : "{{ post.date }}"
     } {% unless forloop.last %},{% endunless %}
 {% endfor %}

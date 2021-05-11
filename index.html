@@ -19,9 +19,9 @@ formatter: "@formatter:on"
     <div class="cards">
       <div class="container">
         <div class="card-columns">
-          {% assign documents = site.documents | where_exp: "item", "item.url contains '.html' "
-          | where_exp: "item", "item.type == 'post'"
-          | sort: "date" | reverse %}
+          {% assign documents = site.documents
+          | where: "type", "post"
+          | sort: "date" | sort: "mark.pin", "last" | reverse %}
           {% for post in documents %}
           {% assign mod = forloop.index | modulo: 3 %}
           <div class="card card-blog">
@@ -44,15 +44,23 @@ formatter: "@formatter:on"
                 {{ post.summary }}
               </p>
             </div>
-            <div class="card-footer d-none">
-              <div class="author">
+            <div class="card-footer">
+              <div class="author d-none">
                 <a href="#pablo">
                   <img src="{{ site.data.authors[page.author].avatar }}" alt="..." class="avatar img-raised">
                   <span>{{ site.data.authors[page.author].name }}</span>
                 </a>
               </div>
+              <div class="stats">
+                <span><em class="material-icons">date_range</em>{{ post.date | date: "%Y-%m-%d" }}</span>
+              </div>
               <div class="stats ml-auto">
-                <i class="material-icons">schedule</i> 5 min read
+                {% if post.mark.pin %}
+                <span class="text-danger"><em class="material-icons">push_pin</em>置顶</span>
+                {% endif %}
+                {% if post.mark.hot %}
+                <span class="text-rose"><em class="material-icons">whatshot</em>热搜</span>
+                {% endif %}
               </div>
             </div>
           </div>
