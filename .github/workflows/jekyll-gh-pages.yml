@@ -30,5 +30,9 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          echo 安装 Jekyll 环境
           sudo gem install bundler jekyll
+          echo 开始 Jekyll 构建
+          bundle exec jekyll build
+          echo 开始 Gtihub Pages 发布
 
