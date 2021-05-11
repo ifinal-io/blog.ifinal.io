@@ -37,7 +37,7 @@ jobs:
         run: |
           echo 安装 Jekyll 环境
           sudo gem install bundler jekyll
-          sudo gem github-pages
+          sudo gem install github-pages
           echo gem install minima
           sudo gem install minima
           echo gem install jekyll-readme-index
