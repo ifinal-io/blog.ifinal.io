@@ -1,9 +1,9 @@
 ---
 layout: null
 ---
-{% assign posts = site.documents | where_exp: "item","item.url contains '.html'"
+{% assign posts = site.documents | where_exp: "item", "item.url contains '.html'"
         | where: "type", "post"
-        | sort: "date" | sort: "mark.pin" | reverse %}
+        | sort: "date" | reverse %}
 [
 {% for post in posts %}
     {
