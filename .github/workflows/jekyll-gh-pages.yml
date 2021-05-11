@@ -26,13 +26,17 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Install Jekyll Evn
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
           echo 安装 Jekyll 环境
           sudo gem install bundler jekyll
+          sudo gem install minima
+
+      - name: Build Jekyll
+        run: |
           echo 开始 Jekyll 构建
           bundle exec jekyll build
-          echo 开始 Gtihub Pages 发布
 
+      - name: Deploy Github Pages
+        run: |
+          echo 开始 Gtihub Pages 发布
