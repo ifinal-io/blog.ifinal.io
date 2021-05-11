@@ -31,9 +31,8 @@
 {% include footer.html %}
 </body>
 {% include jekyll/format-href.jekyll %}
-{% include jekyll/post.jekyll %}
 {% if page.include %}
-{% include {{ page.include }} %}
+{% include {{ page.include }}%}
 {% endif %}
 <script>
   $(document).ready(function () {

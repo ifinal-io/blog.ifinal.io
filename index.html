@@ -7,7 +7,9 @@ summary: Blog
 tags: []
 <!--banner: https://images.unsplash.com/photo-1496950866446-3253e1470e8e-->
 brand: Blog
+sidebar: false
 class: index-page
+posts: /api/posts.api.json
 date: 2021-04-30 16:04:20 +800
 version: 1.0
 formatter: "@formatter:on"
@@ -19,52 +21,40 @@ formatter: "@formatter:on"
     <div class="cards">
       <div class="container">
         <div class="card-columns">
-          {% assign documents = site.documents
-          | where: "type", "post"
-          | sort: "date" | sort: "mark.pin", "last" | reverse %}
-          {% for post in documents %}
-          {% assign mod = forloop.index | modulo: 3 %}
-          <div class="card card-blog">
+
+          <div class="card card-blog" v-for="post in posts">
             <div class="card-header card-header-image" data-header-animation="true">
-              <a href="{{ post.url }}">
+              <a :href="post.url">
                 <img src="http://fpoimg.com/400x200" class="img lazyload"
-                     data-src="{{ post.banner }}?&fit=crop&w=800&h=400&path={{ post.url }}"
+                     :data-src="post.banner + '?&fit=crop&w=800&h=400&path=' + post.url "
                      style="filter: drop-shadow(10px 10px 10px rgba(0,0,0,.5));">
-                <div class="card-title">
-                  {{ post.title }}
-                </div>
+                <div class="card-title" v-text="post.title"></div>
               </a>
             </div>
             <div class="card-body ">
-              <h6 class="card-category text-success">{{ post.collection }}</h6>
+              <h6 class="card-category text-success"><span v-text="post.collection"></span></h6>
               <h4 class="card-title">
-                <a href="{{ post.url }}">{{ post.title }}</a>
+                <a :href="post.url" v-text="post.title"></a>
               </h4>
-              <p class="card-description">
-                {{ post.summary }}
-              </p>
+              <p class="card-description" v-text="post.summary"></p>
             </div>
             <div class="card-footer">
               <div class="author d-none">
                 <a href="#pablo">
-                  <img src="{{ site.data.authors[page.author].avatar }}" alt="..." class="avatar img-raised">
-                  <span>{{ site.data.authors[page.author].name }}</span>
+                  <img :src="post.author.avatar" alt="..." class="avatar img-raised">
+                  <span v-text="post.author.name"></span>
                 </a>
               </div>
               <div class="stats">
-                <span><em class="material-icons">date_range</em>{{ post.date | date: "%Y-%m-%d" }}</span>
+                <span><em class="material-icons">date_range</em><span v-text="post.date"></span></span>
               </div>
               <div class="stats ml-auto">
-                {% if post.mark.pin %}
-                <span class="text-danger"><em class="material-icons">push_pin</em>置顶</span>
-                {% endif %}
-                {% if post.mark.hot %}
-                <span class="text-rose"><em class="material-icons">whatshot</em>热搜</span>
-                {% endif %}
+                <span class="text-danger" v-if="post.mark && post.mark.pin"><em class="material-icons">push_pin</em>置顶</span>
+                <span class="text-rose" v-if="post.mark && post.mark.hot"><em class="material-icons">whatshot</em>热搜</span>
               </div>
             </div>
           </div>
-          {% endfor %}
+
         </div>
       </div>
     </div>

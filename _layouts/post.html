@@ -4,7 +4,7 @@
 <style>
 
 </style>
-<body class="blog-post  {% if page.sidebar %}admin{% endif%}" data-offset="150" data-spy="scroll" data-target="#toc"
+<body class="sidebar-collapse {{ page.class }}  {% if page.sidebar %}admin{% endif%}" data-offset="150" data-spy="scroll" data-target="#toc"
       style="background-color: whitesmoke"
       id="body">
 
@@ -126,7 +126,7 @@
           distractionFreeMode: false  // Facebook-like distraction free mode
         })
 
-        gitalk.render('gitalk-container')
+        // gitalk.render('gitalk-container')
 
         $sidebar = $('.sidebar');
 

@@ -17,11 +17,52 @@
         modules: {{ site.data.modules | jsonify }},
         theme: "light",
         sidebar: {{ site.data.sidebar[page.collection] | jsonify }},
-        author: {{ site.data.authors[page.author] | jsonify }}
+        author: {{ site.data.authors[page.author] | jsonify }},
+        posts: []
       };
     },
     mounted() {
+      let self = this;
       this.page.menus = this.page.paths.slice(1);
+        {% if page.posts %}
+      $.getJSON('{{ page.posts }}', function (data) {
+        self.initPosts(data);
+        self.initPosts(data,self.getParameter('page'),self.getParameter('size'));
+        // console.log(JSON.stringify(this.posts));
+      });
+        {% endif %}
+
+      setTimeout(function () {
+        // load images
+        $("img.lazyload").lazyload({effect: "fadeIn"});
+      }, 1000)
+    },
+    methods: {
+      initPosts(posts,page,size) {
+        if(page == null){
+          page = 1;
+        }
+
+        if(size == null){
+          size = 9;
+        }
+
+        let start = (page - 1) * size;
+        let end = start + size;
+
+        console.log(`start=${start},end=${end}`);
+
+        // this.posts = posts.slice(start,end);
+        this.posts = posts;
+      },
+      getParameter(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+          return unescape(r[2]);
+        }
+        return null;
+      }
     }
   };
   Vue.createApp(app).mount('#app')
