@@ -85,6 +85,9 @@ defaults:
       sidebar: true
       author: ilikly
       type: post
+      mark:
+        pin: false
+        hot: false
       banner: https://source.unsplash.com/random/800x400
   - scope:
       path: help

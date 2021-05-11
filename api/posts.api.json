@@ -3,7 +3,7 @@ layout: null
 ---
 {% assign posts = site.documents | where_exp: "item","item.url contains '.html'"
         | where: "type", "post"
-        | sort: "date" | reverse %}
+        | sort: "date" | sort: "mark.pin", "last" | reverse %}
 [
 {% for post in posts %}
     {
