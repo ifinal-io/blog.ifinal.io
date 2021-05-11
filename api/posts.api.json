@@ -1,3 +1,21 @@
 ---
 layout: null
 ---
+{% assign posts = site.documents | where_exp: "item","item.url contains '.html'"
+        | where: "type", "post"
+        | sort: "date" | reverse %}
+[
+{% for post in posts %}
+    {
+    "title"    : "{{ post.title | escape }}",
+    "collection"    : "{{ post.collection }}",
+    "category" : "{{ post.category }}",
+    "tags"     : {{ post.tags | jsonify }},
+    "url"      : "{{ site.baseurl }}{{ post.url }}",
+    "banner"      : "{{ post.banner }}",
+    "mark"     : {{ post.mark | jsonify }},
+    "date"     : "{{ post.date | date: "%Y-%m-%d %H:%m" }}",
+    "author"   : {{ site.data.authors[post.author] | jsonify }}
+    } {% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
