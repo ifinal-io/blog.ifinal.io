@@ -1,6 +1,5 @@
 {% assign paths = page.path | replace: '_', '' | replace: '.md' : '' | split: '/' %}
 <script>
-
   Vue.createApp({
     data() {
       return {
@@ -13,7 +12,7 @@
           paths: JSON.parse('{{ paths | jsonify }}'),
           menus: []
         },
-        sidebar: {},
+        posts: {},
 
       }
     },
@@ -25,19 +24,17 @@
 
       console.log(`menus=${JSON.stringify(this.page.menus)}`)
 
-      this.settings.fluid = JSON.parse(localStorage.getItem('isFluid'));
+      $.getJSON('/api/posts.api.json', function (data) {
 
-      if (this.settings.fluid) {
-        var container = document.querySelector('[data-layout]');
-        container.classList.remove('container');
-        container.classList.add('container-fluid');
-      }
-
-      $.getJSON('/api/sidebar/spring.api.json', function (data) {
-
-        self.sidebar = data;
+        self.posts = data;
 
         console.log(JSON.stringify(data));
+
+        setTimeout(function () {
+          lazyload(document.querySelectorAll(".lazyload"));
+
+        }, 1000);
+
       });
 
     },

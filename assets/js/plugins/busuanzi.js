@@ -56,14 +56,6 @@ var bszCaller, bszTag;
     this.bszs.map(function (b) {
       var c = document.getElementById("busuanzi_value_" + b);
 
-      let analytics = {
-        siteUv: a['site_uv'],
-        sitePv: a['site_pv'],
-        pagePv: a['page_pv']
-      }
-      console.log(analytics);
-      console.log(c);
-
       if (c) {
         c.setAttribute('data-countup', `{"endValue":${a[b]}}`)
 
