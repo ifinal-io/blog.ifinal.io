@@ -3,9 +3,9 @@ formatter: "@formatter:off"
 title: Spring Ioc Bean 工厂后置处理器
 subtitle: BeanFactoryPostProcessor
 description: bean-factory-post-processor 
-typed: [BeanFactoryPostProcessor.]
+typed: [BeanFactoryPostProcessor.,BeanDefinitionRegistryPostProcessor.]
 tags: [spring,spi] 
-date: 2021-01-11 23:22:15 +800 
+date: 2021-05-14 13:22:15 +800 
 version: 1.0
 formatter: "@formatter:on"
 ---

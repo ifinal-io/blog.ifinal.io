@@ -1,35 +1,35 @@
-<nav class="navbar navbar-color-on-scroll fixed-top sticky-top navbar-expand-lg navbar-transparent bg-dark"
-     color-on-scroll="100"
-     id="sectionsNav">
+<nav class="navbar navbar-standard  navbar-expand-lg fixed-top  navbar-transparent" data-navbar-darken-on-scroll="light" style="height: 70px">
   <div class="container">
-    <div class="navbar-translate">
-      <a class="navbar-brand" href="/index.html">{{ site.title }}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="navbar-toggler-icon"></span>
-        <span class="navbar-toggler-icon"></span>
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ml-auto">
-        <!-- 导航项 -->
-        {% for nav in site.data.navbar.navs %}
-        {% if nav.type == 'link' %}
+
+    <a class="navbar-brand me-1 me-sm-3" href="/index.html">
+      <div class="d-flex align-items-center">
+        <img class="me-2" src="/assets/img/illustrations/falcon.png"
+             alt="" width="40">
+        <span class="font-sans-serif">iFinal</span>
+      </div>
+    </a>
+
+    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarStandard"
+            aria-controls="navbarStandard" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
+      <ul class="navbar-nav " data-top-nav-dropdowns="data-top-nav-dropdowns">
         <li class="nav-item">
-          <a class="nav-link" href="{{ nav.link }}" target="{{ nav.target }}"> <i class="material-icons">{{ nav.icon
-            }}</i>{{ nav.label }}</a>
+          <a class="nav-link " href="/index.html">
+            <span class="material-icons">home</span>Home
+          </a>
         </li>
-        {% endif %}
-        {% endfor %}
+      </ul>
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html">
+            <span class="material-icons">fingerprint</span><span>Login</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
-
-  <!--  Github Corner -->
-  {% if site.data.navbar.github-corner %}
-  {% include navbar/github-corner.html %}
-  {% endif %}
-
+  {% include navbar/github-corner.html%}
 </nav>
