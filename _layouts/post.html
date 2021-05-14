@@ -63,12 +63,15 @@
                 <div class="flex-1 fs--1">
                   <h5 class="fs-0">{{ page.title }}</h5>
                   <p class="mb-0"><a href="{{ author.github_follow }}">{{ author.name }}</a></p>
-                  <span class="fs-0 text-warning fw-semi-bold">$49.99 – $89.99</span>
+                  {% for tag in page.tags %}
+                  <span class="badge rounded-pill badge-soft-success">{{ tag }}</span>
+                  {% endfor %}
                 </div>
               </div>
             </div>
             <div class="col-md-auto mt-4 mt-md-0">
-              <a href="{{ author.github_follow }}" class="btn btn-falcon-primary btn-sm px-4 px-sm-5" type="button" target="_blank">关注</a>
+              <a href="{{ author.github_follow }}" class="btn btn-falcon-primary btn-sm px-4 px-sm-5" type="button"
+                 target="_blank">关注</a>
             </div>
           </div>
         </div>
