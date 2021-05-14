@@ -1,0 +1,94 @@
+<nav class="navbar navbar-light  navbar-vertical navbar-expand-xl">
+  <div class="brand d-flex align-items-center">
+    <div class="toggle-icon-wrapper">
+      <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip"
+              data-bs-placement="left" title="Toggle Navigation">
+        <span class="navbar-toggle-icon"><span class="toggle-line"></span></span>
+      </button>
+    </div>
+    <a class="navbar-brand" href="/index.html">
+      <div class="d-flex align-items-center py-3">
+        <img class="me-2" src="/assets/img/illustrations/falcon.png" alt=""
+             width="40"/>
+        <span class="font-sans-serif">ifinal</span>
+      </div>
+    </a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+    <div class="navbar-vertical-content scrollbar">
+      <ul class="nav navbar-nav flex-column mb-3" id="navbarVerticalNav">
+        <li :class="page.menus[0] == menu1.id ? 'active' : ''" class="nav-item " v-for="(menu1,i1) in sidebar.menus">
+          <!-- label-->
+          <div class="row navbar-vertical-label-wrapper mt-3 mb-2" v-if="menu1.group">
+            <div class="col-auto navbar-vertical-label" v-text="menu1.group">App</div>
+            <div class="col ps-0">
+              <hr class="mb-0 navbar-vertical-divider"/>
+            </div>
+          </div>
+          <!--一级菜单-->
+          <a
+              :href="menu1.menus ? '#' + menu1.id : menu1.url ? menu1.url : '/' + page.collection + '/' + menu1.id "
+              :class="menu1.menus ? 'dropdown-indicator' :  page.menus[0] == menu1.id ? 'active' : ''"
+              class="nav-link"
+              :data-bs-toggle="menu1.menus ? 'collapse': ''">
+            <div class="d-flex align-items-center">
+              <i class="material-icons nav-link-icon" v-text="menu1.icon"></i>
+              <span class="nav-link-text ps-1" v-text="menu1.name"></span>
+            </div>
+          </a>
+          <ul :class="page.menus[0] == menu1.id ? 'show' : ''" :id="menu1.id" class="collapse nav " v-if="menu1.menus">
+            <li :class="page.menus[0] == menu1.id && page.menus[1] == menu2.id ? 'active' : ''" class="nav-item "
+                v-for="(menu2,i2) in menu1.menus">
+              <!--二级菜单-->
+              <a :href="menu2.menus ? '#' + menu1.id +'-'+ menu2.id : menu2.url ? menu2.url : '/' + page.collection + '/' + menu1.id + '/' + menu2.id"
+                 class="nav-link"
+                 :class="menu2.menus ? 'dropdown-indicator' : page.menus[0] == menu1.id && page.menus[1] == menu2.id ? 'active' : ''"
+                 :data-bs-toggle="menu2.menus ? 'collapse': ''"
+              >
+                <div class="d-flex align-items-center">
+                  <span class="nav-link-text ps-1" v-text="menu2.name"></span>
+                </div>
+              </a>
+
+              <ul :class="page.menus[1] == menu2.id ? 'show' : ''" :id="menu1.id +'-' + menu2.id"
+                  class="collapse nav"
+                  v-if="menu2.menus">
+                <li :class="page.menus[0] == menu1.id && page.menus[1] == menu2.id && page.menus[2] == menu3.id ? 'active' : ''"
+                    class="nav-item"
+                    v-for="(menu3,i3) in menu2.menus">
+                  <!--三级菜单-->
+                  <a :href="menu3.url ? menu3.url : '/' + page.collection + '/' + menu1.id + '/' + menu2.id + '/' + menu3.id "
+                     class="nav-link" v-if="menu3.menus == null">
+                    <span class="nav-link-text ps-1" v-text="menu3.name"></span>
+                  </a>
+                  <a :href="'#' + menu1.id +'-' + menu2.id +'-' + menu3.id" aria-expanded="true"
+                     class="nav-link"
+                     data-toggle="collapse"
+                     v-if="menu3.menus">
+                    <span class="sidebar-mini" v-text="menu3.mini"></span>
+                    <span class="sidebar-normal"><span v-text="menu3.name"></span><b class="caret"></b></span>
+                  </a>
+                  <div :class="page.menus[2] == menu3.id ? 'show' : ''"
+                       :id="menu1.id +'-' + menu2.id +'-' + menu3.id"
+                       class="collapse"
+                       v-if="menu3.menus">
+                    <ul class="nav">
+                      <li :class="page.menus[0] == menu1.id && page.menus[1] == menu2.id && page.menus[2] == menu3.id && page.paths[4] == menu4.id ? 'active' : ''"
+                          class="nav-item"
+                          v-for="menu4 in menu3.menus">
+                        <a :href="menu4.link" class="nav-link">
+                          <span class="sidebar-mini" v-text="menu4.mini"></span>
+                          <span class="sidebar-normal" v-text="menu4.name"></span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

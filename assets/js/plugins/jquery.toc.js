@@ -82,7 +82,7 @@
     var level = get_level(headers[0]),
         this_level,
         html = settings.title + " <" + settings.listType
-            + " class=\"section-nav nav flex-column" + settings.classes.list
+            + " class=\"terms-sidebar nav flex-column " + settings.classes.list
             + "\">";
     headers.on('click', function () {
       if (!settings.noBackToTopLinks) {

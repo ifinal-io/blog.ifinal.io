@@ -13,21 +13,21 @@ highlighter: rouge
 kramdown:
   input: GFM
   auto_ids: true
-  parse_block_html: true
-  parse_span_html: true
+#  parse_block_html: true
+#  parse_span_html: true
   syntax_highlighter: rouge
-  syntax_highlighter_opts:
+#  syntax_highlighter_opts:
     # Rouge Options › https://github.com/jneen/rouge#full-options
     #    line_numbers: false # bad idea, spans don't need linenos and would inherit this option
-    line_format: '%i'
-    table_class: 'rouge-table'
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-      start_line: 1
-  html_to_native: true
-  start_line: 1
+#    line_format: '%i'
+#    table_class: 'rouge-table'
+#    span:
+#      line_numbers: false
+#    block:
+#      line_numbers: true
+#      start_line: 1
+#  html_to_native: true
+#  start_line: 1
   extensions:
     - autolink
     - footnotes
@@ -115,9 +115,9 @@ toc:
   enable: true
   min_level: 2
   max_level: 4
-  headers: h2,h3,h4,h5,h6
+  headers: article h2,article h3, article h4, article h5, article h6
   list_class: ""
-  item_class: "nav-item toc-entry"
+  item_class: "nav-item fs--1"
 final:
   version: 1.0.2
 exclude:

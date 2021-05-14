@@ -1,8 +1,9 @@
 ---
 formatter: "@formatter:off"
-title: BeanFactoryPostProcessor
-subtitle: bean-factory-post-processor 
+title: Spring Ioc Bean 工厂后置处理器
+subtitle: BeanFactoryPostProcessor
 description: bean-factory-post-processor 
+typed: [BeanFactoryPostProcessor.]
 tags: [spring,spi] 
 date: 2021-01-11 23:22:15 +800 
 version: 1.0

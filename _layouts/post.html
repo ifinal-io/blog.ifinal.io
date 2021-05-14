@@ -1,206 +1,164 @@
 <!DOCTYPE html>
-<html lang="zh">
-{% include head.html %}
-<style>
+<html lang="zh" dir="ltr">
 
-</style>
-<body class="sidebar-collapse {{ page.class }}  {% if page.sidebar %}admin{% endif%}" data-offset="150" data-spy="scroll" data-target="#toc"
-      style="background-color: whitesmoke"
-      id="body">
+{% include falcon/head.html %}
+<body data-bs-spy="scroll" data-bs-target="#toc" data-bs-offset="100">
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+  <nav class="navbar navbar-standard  navbar-expand-lg fixed-top  navbar-transparent" data-navbar-darken-on-scroll="light" style="height: 70px">
+    <div class="container">
 
-<!-- Extra details for Live View on GitHub Pages -->
-<div class="wrapper" id="app">
-  <div class="main-panel">
-    {% if page.sidebar %}
-    <!--SideBar-->
-    {% include sidebar/sidebar.html %}
-    <!--End SideBar-->
-    {% endif %}
-    <!-- Navbar -->
-    {% include navbar/navbar.html %}
-    <!-- End Navbar -->
+      <a class="navbar-brand me-1 me-sm-3" href="/index.html">
+        <div class="d-flex align-items-center">
+          <img class="me-2" src="/assets/img/illustrations/falcon.png"
+               alt="" width="40">
+          <span class="font-sans-serif">iFinal</span>
+        </div>
+      </a>
 
-    <div class="page-header header-filter {% if page.sidebar %}header-small{% endif%}" data-parallax="true"
-         style="background-image: url('{{ page.banner }}?&fit=crop&w=1920&h=900');max-height: 30vh;min-height: 30vh">
-      <div class="container" style="height: auto">
-        <div class="row">
-          <div class="col-md-10 ml-auto mr-auto text-center">
-            {% if page.logo %}
-            <img src="{{ page.logo }}" width="128" height="128" alt="Circle Image" class="rounded-circle img-fluid">
-            {% endif %}
-            <h1 class="title">{{ page.title }}</h1>
-            <h4>{{ page.summary }}</h4>
-            <br>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarStandard"
+              aria-controls="navbarStandard" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
+        <ul class="navbar-nav " data-top-nav-dropdowns="data-top-nav-dropdowns">
+          <li class="nav-item">
+            <a class="nav-link " href="/index.html">
+              <span class="material-icons">home</span>Home
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">
+              <span class="material-icons">fingerprint</span><span>Login</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% include navbar/github-corner.html%}
+  </nav>
+
+  <section class="py-0 overflow-hidden light" id="banner">
+    <div class="bg-holder overlay"
+         style="background-image:url('{{ page.banner }}');background-position: center center;object-fit: cover;"></div>
+    <!--/.bg-holder-->
+    <div class="container">
+      <div class="row flex-center" style="min-height: 700px">
+        <div class="col-md-11  text-center text-xl-start">
+
+          <h1 class="text-white fw-light">
+            <span class="d-block">{{ page.title }}</span>
+            <span class="typed-text fw-bold ms-1" style="margin-top: 2em" data-typed-text='{{ page.typed | jsonify }}' data-typed-speed="5"></span>
+          </h1>
+          <h3 class="text-white fw-light"></h3>
+          <a class="btn btn-outline-danger mb-4 fs--1 border-2 rounded-pill" href="#!">{{ page.collection }}</a>
+          <p class="lead text-white opacity-75"></p>
+          </a>
+        </div>
+      </div>
+    </div><!-- end of .container-->
+  </section>
+  <section class="py-3 bg-light shadow-sm">
+    <div class="container">
+
+      <div class="row justify-content-between align-items-center">
+        <div class="col">
+          <div class="d-flex">
+            <div class="calendar me-2">
+              <span class="calendar-month">{{ page.date | date: "%m"}} </span>
+              <span class="calendar-day">{{ page.date | date: "%d" }} </span>
+            </div>
+            <div class="flex-1 fs--1">
+              <h5 class="fs-0">{{ page.title }}</h5>
+              <p class="mb-0">
+                <a href="{{ site.data.authors[page.author].github-follow}}">
+                  {{ site.data.authors[page.author].name }}
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="main main-raised">
-      <div class="container">
+  </section>
+  <section class="py-3 ">
+    <div class="container">
 
-        <!-- BLOG CONTENT -->
-        <div class="section section-text">
-          <div class="row flex-md-nowrap markdown" style="min-height: 50vh">
-            <article class="{% if page.toc %}col-xl-10 col-lg-12 {% else %} col-12 {% endif %}">
-              {{ content }}
-            </article>
-            {% if page.toc %}
-            <div class="d-none d-xl-block col-lg-2 sticky-top flex-order-2" style="top: 100px;padding-top: 2em;">
-              <div style="border-left: 1px #9c27b0  solid;padding-left: 1em">
-                <div class="toc" id="toc">
-                </div>
-              </div>
-            </div>
-            {% endif %}
-          </div>
-
+      <div class="card">
+        <div class="card-header bg-light">
+          <h5>{{ page.title }}</h5>
         </div>
-
-
-        <!-- BLOG INFO -->
-        <div class="section section-blog-info">
+        <div class="card-body">
           <div class="row">
-            <div class="col-md-12 ml-auto mr-auto">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="blog-tags">
-                    Tags:
-                    <span class="badge badge-primary badge-pill" v-for="tag in page.tags" v-text="tag"></span>
-                  </div>
+            <div class="col-sm">
+
+              <article class="markdown">
+                {{ content }}
+              </article>
+            </div>
+            <div class="col-sm-auto">
+              <div class="sticky-sidebar sticky-top">
+                <div class=" toc" id="toc">
                 </div>
               </div>
-              <hr>
-              <div class="card card-profile card-plain" v-if="author">
-                <div class="row">
-                  <div class="col-md-2">
-                    <div class="card-avatar">
-                      <a href="#pablo">
-                        <img class="img" :src="author.avatar">
-                      </a>
-                      <div class="ripple-container"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-8">
-                    <h4 class="card-title" v-text="author.name"></h4>
-                    <p class="description"></p>
-                  </div>
-                  <div class="col-md-2">
-                    <a type="button" class="btn btn-rose pull-right btn-round"
-                       :href="author.github-follow">关注
-                    </a>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
-
-        <div class="section section-comments">
+        <div class="card-footer ">
           <div id="gitalk-container"></div>
         </div>
       </div>
 
     </div>
-    <!--Footer-->
-    {% include footer.html %}
-  </div>
-</div>
-<div id="snowbox"/>
+  </section>
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+{% include falcon/script.html %}
 </body>
-{% include jekyll/post.jekyll %}
-{% include jekyll/format-href.jekyll %}
-{% include plugins/toc.html container="#toc" %}
-{% include plugins/snow.html %}
-{% include plugins/mermaid.html %}
 <script>
-  $(document).ready(function () {
+  docReady(function () {
+    var gitalk = new Gitalk({
+      clientID: 'd5980c0f53133a01c696',
+      clientSecret: 'e2bc6849c786e2d037ceb624ed3789237560d206',
+      repo: 'blog.ifinal.io',
+      owner: 'final-gitalk',
+      admin: ['ilikly'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
 
-        var gitalk = new Gitalk({
-          clientID: 'd5980c0f53133a01c696',
-          clientSecret: 'e2bc6849c786e2d037ceb624ed3789237560d206',
-          repo: 'blog.ifinal.io',
-          owner: 'final-gitalk',
-          admin: ['ilikly'],
-          id: location.pathname,      // Ensure uniqueness and length less than 50
-          distractionFreeMode: false  // Facebook-like distraction free mode
-        })
+    gitalk.render('gitalk-container', function (data) {
+      console.log(data);
+    })
 
-        // gitalk.render('gitalk-container')
+  });
 
-        $sidebar = $('.sidebar');
-
-        $sidebar_img_container = $sidebar.find('.sidebar-background');
-
-        $full_page = $('.full-page');
-
-        $sidebar_responsive = $('body > .navbar-collapse');
-
-        window_width = $(window).width();
-
-        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-        if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
-          if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
-            $('.fixed-plugin .dropdown').addClass('open');
-          }
-
-        }
-
-        $('.fixed-plugin a').click(function (event) {
-          // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-          if ($(this).hasClass('switch-trigger')) {
-            if (event.stopPropagation) {
-              event.stopPropagation();
-            } else if (window.event) {
-              window.event.cancelBubble = true;
-            }
-          }
-        });
-        // $('.fixed-plugin .background-color .badge').click(function () {
-        //     $(this).siblings().removeClass('active');
-        //     $(this).addClass('active');
-        //
-        //     var new_color = $(this).data('background-color');
-        //
-        //     if ($sidebar.length != 0) {
-        //         $sidebar.attr('data-background-color', new_color);
-        //     }
-        // });
-
-        $('.switch-sidebar-image input').change(function () {
-          $full_page_background = $('.full-page-background');
-          $input = $(this);
-
-          if ($input.is(':checked')) {
-            if ($sidebar_img_container.length != 0) {
-              $sidebar_img_container.fadeIn('fast');
-              $sidebar.attr('data-image', '#');
-            }
-
-            if ($full_page_background.length != 0) {
-              $full_page_background.fadeIn('fast');
-              $full_page.attr('data-image', '#');
-            }
-
-            background_image = true;
-          } else {
-            if ($sidebar_img_container.length != 0) {
-              $sidebar.removeAttr('data-image');
-              $sidebar_img_container.fadeOut('fast');
-            }
-
-            if ($full_page_background.length != 0) {
-              $full_page.removeAttr('data-image', '#');
-              $full_page_background.fadeOut('fast');
-            }
-
-            background_image = false;
-          }
-        });
-
+  docReady(function () {
+    mermaid.initialize({
+      theme: 'forest',
+      sequence: {
+        showSequenceNumbers: true
+      },
+      er: {
+        fontSize: 18
       }
-  );
+    });
+    mermaid.init({}, ".language-mermaid, .language-sequence");
+  });
 </script>
 
 </html>

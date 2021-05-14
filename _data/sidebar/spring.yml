@@ -2,6 +2,7 @@ logo: /assets/images/logos/spring.svg
 name: Spring
 menus:
   - id: overview
+    group: Spring
     icon: emoji_objects
     name: 概览
   - id: boot

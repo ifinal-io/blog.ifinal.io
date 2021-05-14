@@ -1,0 +1,143 @@
+.navbar-nav .nav-link .material-icons {
+    /*font-size: 19px;*/
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+    position: relative;
+    /*color: inherit;*/
+    padding: .9375rem;
+    font-weight: 400;
+    font-size: 12px;
+    /*text-transform: uppercase;*/
+    border-radius: 3px;
+    line-height: 20px;
+    vertical-align: center;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:not(.btn) .material-icons {
+    margin-top: -7px;
+    top: 6px;
+    position: relative;
+    margin-right: 3px;
+    font-size: 20px;
+}
+
+.navbar-transparent .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-vertical {
+    display: none;
+}
+
+.navbar-top .navbar-toggler {
+    display: none;
+}
+
+.navbar-vertical.navbar-expand-xl + .content {
+    margin-left: 0;
+}
+
+[data-layout] .content {
+    margin-left: 0;
+}
+
+.sidebar .navbar-vertical {
+    display: block;
+}
+
+.navbar-vertical a.nav-link:hover {
+    /*background-color: #e91e63;*/
+    /*box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(233 30 99 / 40%);*/
+}
+
+/*.navbar-vertical.navbar-expand-xl+.content .navbar-top .navbar-toggler,*/
+.navbar-vertical.navbar-expand-xl + .content .navbar-top .navbar-brand {
+    display: block;
+}
+
+article img {
+    max-width: 100%;
+}
+
+.toc .nav li {
+    list-style: none;
+}
+
+.toc ul {
+    padding-left: 10px;
+}
+
+.toc .terms-sidebar .nav-link {
+    padding: 2px 0;
+}
+
+div[class*='language-'] {
+    background-color: #232e3c;
+    border: 1px solid var(--falcon-border-color);
+    border-radius: .25rem;
+}
+
+/*Markdown*/
+
+.markdown {
+    font-size: 1.125em;
+}
+
+.markdown h1 {
+    display: none;
+}
+
+.markdown h2,
+.markdown h3 {
+    margin: 1em 0px 0.5em;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.markdown > p{
+    text-indent: 2em;
+    /*line-height: 1.5;*/
+}
+
+.markdown  code.highlighter-rouge {
+    background: none;
+    color: red;
+
+}
+
+.markdown > .highlighter-rouge {
+    margin-left: 1em;
+}
+
+.markdown div.highlight {
+    margin: 1em;
+    padding: 16px;
+}
+
+@media (min-width: 1200px) {
+
+
+    .sidebar {
+
+    }
+
+    .sidebar [data-layout] > .navbar-top,
+    .sidebar [data-layout] > .content {
+        margin-left: 15.625rem;
+    }
+
+    .sidebar [data-layout] > .content .navbar-top .navbar-toggler,
+    .sidebar [data-layout] > .content .navbar-top .navbar-brand {
+        display: none;
+    }
+
+
+    .navbar-vertical-collapsed .sidebar [data-layout] > .content .navbar-top {
+        padding-left: 13.5rem;
+    }
+
+    .navbar-vertical-collapsed .sidebar [data-layout] > .content {
+        margin-left: 3.125rem;
+    }
+}
