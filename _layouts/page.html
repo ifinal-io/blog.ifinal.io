@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+
+{% include falcon/head.html %}
+<body data-bs-spy="scroll" data-bs-target="#toc" data-bs-offset="100" id="app">
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+  {% include navbar/navbar.html %}
+
+  <section class="py-0 overflow-hidden light" id="banner">
+    <div class="bg-holder overlay" style="background-image:url('{{ page.banner }}');"></div>
+    <!--/.bg-holder-->
+    <div class="container">
+      <div class="row flex-center" style="min-height: 600px">
+        <div class="col-md-11  text-center text-xl-start">
+          <a class="btn btn-outline-danger mb-4 fs--1 border-2 rounded-pill" href="#!">{{ page.collection }}</a>
+
+          <h1 class="text-white fw-light">
+            <span class="d-block">{{ page.title }}</span>
+            <span class="typed-text fw-bold ms-1" style="margin-top: 2em"
+                  data-typed-text='{{ page.typed | jsonify }}'
+                  data-typed-speed="5"></span>
+          </h1>
+          <h3 class="text-white fw-light"></h3>
+          <p class="lead text-white opacity-75"></p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {{ content }}
+
+  <section>
+
+    <div class="container">
+
+      {% include footer.html %}
+    </div>
+
+  </section>
+
+
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+{% include falcon/script.html %}
+</body>
+</html>

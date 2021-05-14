@@ -1,5 +1,6 @@
 {% assign paths = page.path | replace: '_', '' | replace: '.md' : '' | split: '/' %}
 <script>
+
   Vue.createApp({
     data() {
       return {
@@ -12,7 +13,8 @@
           paths: JSON.parse('{{ paths | jsonify }}'),
           menus: []
         },
-        sidebar: {}
+        sidebar: {},
+
       }
     },
     mounted() {

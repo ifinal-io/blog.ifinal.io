@@ -1,9 +1,14 @@
 ---
 formatter: "@formatter:off"
-layout: html
-title: iFinal.io
+layout: page
+collection: blog
+title: iFinal is a bolg which
 subtitle: dispatcher-servlet
 summary: Blog
+typed:
+  - hosted on github.
+  - build with jekyll.
+  - write by markdown.
 tags: []
 <!--banner: https://images.unsplash.com/photo-1531297484001-80022131f5a1-->
 brand: Blog
@@ -15,49 +20,41 @@ version: 1.0
 formatter: "@formatter:on"
 ---
 
-<div id="cards" class="cd-section">
-  <div class="section-gray">
-    <!--     *********    BLOG CARDS     *********      -->
-    <div class="cards">
-      <div class="container">
-        <div class="card-columns">
+<section class="py-3">
+  <div class="container">
+    <div class="row g-3 mb-3">
+      <div class="col-sm-6 col-md-4">
+        <div class="card overflow-hidden" style="min-width: 12rem">
+          <div class="bg-holder bg-card" style="background-image:url(assets/img/illustrations/corner-1.png);"></div>
+          <!--/.bg-holder-->
+          <div class="card-body position-relative">
+            <h6>本站总访问量</h6>
+            <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning" id="busuanzi_value_site_pv">0</div>
 
-          <div class="card card-blog" v-for="post in posts">
-            <div class="card-header card-header-image" data-header-animation="true">
-              <a :href="post.url">
-                <img src="http://fpoimg.com/400x200" class="img lazyload"
-                     :data-src="post.banner + '?&fit=crop&w=800&h=400&path=' + post.url "
-                     style="filter: drop-shadow(10px 10px 10px rgba(0,0,0,.5));">
-                <div class="card-title" v-text="post.title"></div>
-              </a>
-            </div>
-            <div class="card-body ">
-              <h6 class="card-category text-success"><span v-text="post.collection"></span></h6>
-              <h4 class="card-title">
-                <a :href="post.url" v-text="post.title"></a>
-              </h4>
-              <p class="card-description" v-text="post.summary"></p>
-            </div>
-            <div class="card-footer">
-              <div class="author d-none">
-                <a href="#pablo">
-                  <img :src="post.author.avatar" alt="..." class="avatar img-raised">
-                  <span v-text="post.author.name"></span>
-                </a>
-              </div>
-              <div class="stats">
-                <span><em class="material-icons">date_range</em><span v-text="post.date"></span></span>
-              </div>
-              <div class="stats ml-auto">
-                <span class="text-danger" v-if="post.mark && post.mark.pin"><em class="material-icons">push_pin</em>置顶</span>
-                <span class="text-rose" v-if="post.mark && post.mark.hot"><em class="material-icons">whatshot</em>热搜</span>
-              </div>
-            </div>
           </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="card overflow-hidden" style="min-width: 12rem">
+          <div class="bg-holder bg-card" style="background-image:url(assets/img/illustrations/corner-2.png);"></div>
+          <!--/.bg-holder-->
+          <div class="card-body position-relative">
+            <h6>本站总访客</h6>
+            <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info" id="busuanzi_value_site_uv">0</div>
 
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card overflow-hidden" style="min-width: 12rem">
+          <div class="bg-holder bg-card" style="background-image:url(assets/img/illustrations/corner-3.png);"></div>
+          <!--/.bg-holder-->
+          <div class="card-body position-relative">
+            <h6>本文阅读量</h6>
+            <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif" id="busuanzi_value_page_pv">0</div>
+          </div>
         </div>
       </div>
     </div>
-    <!--     *********    END BLOG CARDS      *********      -->
   </div>
-</div>
+</section>
