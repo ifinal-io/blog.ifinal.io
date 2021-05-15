@@ -89,11 +89,11 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-sm">
-              <article class="markdown markdown-here-wrapper" id="markdown">
+            <div class="col-md-10">
+              <article class="markdown markdown-here-wrapper" id="write">
               </article>
             </div>
-            <div class="col-sm-auto">
+            <div class="col-md-2">
               <div class="sticky-sidebar sticky-top">
                 <div class=" toc" id="toc">
                 </div>
@@ -171,7 +171,7 @@
 
       console.log(html);
 
-      document.getElementById('markdown').innerHTML = html;
+      document.getElementById('write').innerHTML = html;
 
       $('#toc').toc({
         headers: '{{ site.toc.headers | default: "h1,h2,h3,h4,h5,h6"}}',
@@ -180,6 +180,8 @@
           item: '{{ site.toc.item_class | default: "" }}'
         }
       });
+
+      hljs.highlightAll();
 
       anchors.add();
 
