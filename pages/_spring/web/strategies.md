@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: Spring MVC 九大策略初识
 subtitle: strategies 
 summary: strategies 
 tags: [springmvc,ssm] 
 date: 2021-04-30 12:11:14 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # 九大策略

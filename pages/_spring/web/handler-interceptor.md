@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: HandlerInterceptor（处理器拦截器）
 subtitle: handler-interceptor 
 summary: handler-interceptor 
 tags: [spring,web] 
 date: 2021-03-24 22:06:21 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # HandlerInterceptor

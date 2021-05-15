@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: annotation-config-application-context 
 subtitle: annotation-config-application-context 
 summary: annotation-config-application-context 
 tags: [] 
 date: 2021-03-04 22:38:42 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # AnnotationConfigApplicationContext

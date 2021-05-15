@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: ConfigurationClass
 subtitle: configuration-class 
 summary: 含有特殊标记的`BeanDefiniton`。
 tags: [spring,ioc] 
 date: 2021-01-22 16:49:09 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # ConfigurationClass

@@ -1,5 +1,5 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: '@LocaleResolver'
 subtitle: locale-resolver 
 summary: locale-resolver 
@@ -7,7 +7,7 @@ banner: 'https://images.unsplash.com/photo-1584967918940-a7d51b064268'
 tags: [] 
 date: 2021-04-30 14:49:16 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # LocaleResolver

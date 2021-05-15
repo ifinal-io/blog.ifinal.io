@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: "@Component" 
 subtitle: component 
 summary: 标记指定的注释类为**"组件"**。 
 tags: [spring,annotation] 
 date: 2021-02-02 13:17:28 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # @Component

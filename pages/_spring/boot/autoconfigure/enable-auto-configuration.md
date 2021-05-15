@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: "@EnableAutoConfiguration"
 subtitle: enable-auto-configuration 
 summary: 自动装配的入口。
 tags: [spring,spring-boot] 
 date: 2021-03-01 13:38:58 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # EnableAutoConfiguration

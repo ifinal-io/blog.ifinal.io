@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: 'SpringApplication是如何创建应用上下文的'
 subtitle: spring-application-context 
 summary: Spring应用上下文创建流程
 tags: [spring,spring-boot] 
 date: 2021-03-26 09:55:06 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # SpringApplicationContext

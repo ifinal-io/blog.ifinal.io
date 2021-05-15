@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: ApplicationContext 
 subtitle: index 
 description: index 
 tags: [] 
 date: 2021-01-11 18:19:27 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # ApplicationContext

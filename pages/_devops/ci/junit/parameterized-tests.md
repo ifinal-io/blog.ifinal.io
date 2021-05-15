@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: '@ParameterizedTest'
 subtitle: parameterized-tests 
 summary: 使用不同的参数测试同一个方法。
 tags: [] 
 date: 2021-03-19 20:47:35 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # Parameterized Tests

@@ -90,9 +90,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-sm">
-
-              <article class="markdown">
-                {{ content }}
+              <article class="markdown markdown-here-wrapper" id="markdown">
               </article>
             </div>
             <div class="col-sm-auto">
@@ -125,35 +123,100 @@
 {% include falcon/script.html %}
 </body>
 <script>
-  docReady(function () {
-    var gitalk = new Gitalk({
-      clientID: 'd5980c0f53133a01c696',
-      clientSecret: 'e2bc6849c786e2d037ceb624ed3789237560d206',
-      repo: 'blog.ifinal.io',
-      owner: 'final-gitalk',
-      admin: ['ilikly'],
-      id: location.pathname,      // Ensure uniqueness and length less than 50
-      distractionFreeMode: false  // Facebook-like distraction free mode
-    })
 
-    gitalk.render('gitalk-container', function (data) {
-      console.log(data);
-    })
+  // alert("https://raw.githubusercontent.com/final-io/blog.ifinal.io/main/pages/_spring/web/dispatcher-servlet.md");
+  let proxy = 'https://cors-anywhere.azm.workers.dev/https://github.com/final-io/blog.ifinal.io/blob/main/pages/_spring/web/dispatcher-servlet.md';
+  $.ajax({
+    url: 'https://raw.githubusercontent.com/final-io/blog.ifinal.io/main/pages/_spring/web/dispatcher-servlet.md',
+    type: 'GET',
+    success: function (data) {
 
-  });
+      let ymalStart = data.indexOf("---");
+      let ymalEnd = data.indexOf("---", ymalStart + 3);
+      let index = data.indexOf('#')
+      console.log(`start=${ymalStart},end=${ymalEnd},index=${index}`);
 
-  docReady(function () {
-    mermaid.initialize({
-      theme: 'forest',
-      sequence: {
-        showSequenceNumbers: true
-      },
-      er: {
-        fontSize: 18
+      let ymal = data.substring(ymalStart + 3, ymalEnd);
+      let markdown = data.substring(ymalEnd + 3);
+
+      console.log(ymal);
+      console.log('------START-------');
+      console.log(markdown);
+      console.log('-------END-------');
+
+      // const yaml2 = require('yaml');
+
+      var SexyYamlType = new jsYaml.Type('!sexy', {
+        kind: 'sequence', // See node kinds in YAML spec: http://www.yaml.org/spec/1.2/spec.html#kind//
+        construct: function (data) {
+          return data.map(function (string) { return 'sexy ' + string; });
+        }
+      });
+
+      var SEXY_SCHEMA = jsYaml.DEFAULT_SCHEMA.extend([ SexyYamlType ]);
+
+      try {
+        let obj = jsYaml.load(ymal, { schema: SEXY_SCHEMA });
+        console.log(obj);
+      }catch (e) {
+          alert("loaded failure")
+        console.log(e);
       }
-    });
-    mermaid.init({}, ".language-mermaid, .language-sequence");
+
+
+      var converter = new showdown.Converter();
+      converter.setFlavor('github');
+
+      let html = converter.makeHtml(markdown);
+
+      console.log(html);
+
+      document.getElementById('markdown').innerHTML = html;
+
+      $('#toc').toc({
+        headers: '{{ site.toc.headers | default: "h1,h2,h3,h4,h5,h6"}}',
+        classes: {
+          list: '{{ site.toc.list_class | default: "" }}',
+          item: '{{ site.toc.item_class | default: "" }}'
+        }
+      });
+
+      anchors.add();
+
+    }
+
   });
+
+  docReady(function () {
+        // var gitalk = new Gitalk({
+        //   clientID: 'd5980c0f53133a01c696',
+        //   clientSecret: 'e2bc6849c786e2d037ceb624ed3789237560d206',
+        //   repo: 'blog.ifinal.io',
+        //   owner: 'final-gitalk',
+        //   admin: ['ilikly'],
+        //   id: location.pathname,      // Ensure uniqueness and length less than 50
+        //   distractionFreeMode: false  // Facebook-like distraction free mode
+        // })
+
+        // gitalk.render('gitalk-container', function (data) {
+        //   console.log(data);
+        // });
+      }
+  );
+
+  docReady(function () {
+    // mermaid.initialize({
+    //   theme: 'forest',
+    //   sequence: {
+    //     showSequenceNumbers: true
+    //   },
+    //   er: {
+    //     fontSize: 18
+    //   }
+    // });
+    // mermaid.init({}, ".language-mermaid, .language-sequence");
+  });
+
 </script>
 
 </html>

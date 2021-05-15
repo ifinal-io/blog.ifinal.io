@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: Banner
 subtitle: spring-banner 
 summary: Spring应用界面
 tags: [spring,spring-boot,banner] 
 date: 2021-02-24 12:59:18 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # SpringBanner

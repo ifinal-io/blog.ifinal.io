@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: Annotaiton 
 subtitle: index 
 summary: index 
 tags: [spring,ioc] 
 date: 2021-03-04 14:24:53 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # Annotation

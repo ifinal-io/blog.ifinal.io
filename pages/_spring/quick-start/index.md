@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: 快速开始 
 subtitle: index 
 summary: index 
 tags: [] 
 date: 2021-01-15 12:41:14 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # 快速开始

@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: ArgumentCaptor
 subtitle: argument-captor 
 summary: 参数捕获器
 tags: [junit,mockito] 
 date: 2021-03-19 23:20:04 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # ArgumentCaptor

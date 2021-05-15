@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: Assertions 
 subtitle: assertions 
 summary: 断言 
 tags: [] 
 date: 2021-03-22 12:44:36 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # Assertions

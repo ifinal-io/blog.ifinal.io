@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: 类索引
 subtitle: class-index 
 summary: 类索引
 tags: [] 
 date: 2021-01-15 15:00:59 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # 类索引

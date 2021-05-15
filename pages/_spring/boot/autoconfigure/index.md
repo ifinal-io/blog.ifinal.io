@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: 自动装配 
 subtitle: index 
 summary: 约定大于配置 
 tags: [spring,spring-boot,autoconfigure] 
 date: 2021-03-04 20:33:45 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # AutoConfigure

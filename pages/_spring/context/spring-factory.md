@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: SpringFactory
 subtitle: spring-factory 
 summary: Spring 框架内部使用的通用的工厂加载机制
 tags: [spring,ioc,spi] 
 date: 2021-02-24 11:02:00 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # SpringFactory

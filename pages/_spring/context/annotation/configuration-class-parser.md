@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: ConfigurationClassParser
 subtitle: configuration-class-parser 
 summary: 配置类解析器
 tags: [] 
 date: 2021-02-25 21:37:50 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # ConfigurationParser 

@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: Jacoco 
 subtitle: jacoco 
 summary: 测试覆盖率生成插件 
 tags: [ci,test,junit] 
 date: 2021-03-19 10:51:39 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # Jacoco

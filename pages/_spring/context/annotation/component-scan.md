@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: "Spring是如何进行组件扫描的"
 subtitle: component-scan 
 summary: 组件扫描
 tags: [spring,annotation] 
 date: 2021-01-21 20:50:48 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # @ComponentScan

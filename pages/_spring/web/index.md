@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: Spring MVC 
 subtitle: index 
 summary: index 
 tags: [springmvc] 
 date: 2021-03-24 13:28:00 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # Spring MVC

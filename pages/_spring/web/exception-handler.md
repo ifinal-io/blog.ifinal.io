@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: '@ExceptionHandler' 
 subtitle: exception-handler 
 summary: Spring MVC 异常处理体系之异常处理器 
 tags: [springmvc] 
 date: 2021-04-30 11:16:20 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # @ExceptionHandler

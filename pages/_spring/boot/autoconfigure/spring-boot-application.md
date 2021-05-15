@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: '@SpringBootApplication'
 subtitle: spring-boot-application 
 summary: spring-boot-application 
 tags: [] 
 date: 2021-03-25 10:58:55 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # SpringBootApplication

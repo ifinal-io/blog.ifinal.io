@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: bean-definition 
 subtitle: bean-definition 
 summary: bean-definition 
 tags: [] 
 date: 2021-01-19 20:38:24 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # bean-definition

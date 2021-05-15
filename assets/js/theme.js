@@ -3665,21 +3665,20 @@ var navbarDarkenOnScroll = function navbarDarkenOnScroll() {
 
     window.addEventListener(Events.SCROLL, function () {
       var scrollTop = html.scrollTop;
-      var alpha = scrollTop / 500 ;
+      var alpha = scrollTop / 500;
       alpha >= 1 && (alpha = 1);
       navbar.style.backgroundColor = "rgba(".concat(colorRgb[0], ", ").concat(
           colorRgb[1], ", ").concat(colorRgb[2], ", ").concat(alpha, ")");
       navbar.style.backgroundImage = alpha > 0 || utils.hasClass(navbarCollapse,
           'show') ? backgroundImage : 'none';
 
-      if(alpha >= 1){
+      if (alpha >= 1) {
         toggleThemeClass('dark')
         navbar.classList.remove('navbar-transparent')
-      }else {
+      } else {
         toggleThemeClass('light')
         navbar.classList.add('navbar-transparent')
       }
-
 
     }); // Toggle bg class on window resize
 
@@ -6341,8 +6340,10 @@ docReady(function () {
   var isFluid = JSON.parse(localStorage.getItem('isFluid'));
   if (isFluid) {
     var container = document.querySelector('[data-layout]');
-    container.classList.remove('container');
-    container.classList.add('container-fluid');
+    if (container) {
+      container.classList.remove('container');
+      container.classList.add('container-fluid');
+    }
   }
 
   var navbarStyle = localStorage.getItem("navbarStyle");
@@ -6350,6 +6351,5 @@ docReady(function () {
     document.querySelector('.navbar-vertical').classList.add(
         `navbar-${navbarStyle}`);
   }
-
 
 })

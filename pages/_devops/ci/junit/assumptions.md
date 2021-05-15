@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: Assumptions
 subtitle: assumptions 
 summary: 假设 
 tags: [ci,junit] 
 date: 2021-03-19 12:36:01 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # Assumptions

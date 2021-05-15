@@ -1,5 +1,5 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: Spring IOC 
 subtitle: index 
 description: index 
@@ -7,7 +7,7 @@ summary: Spring 容器
 tags: [spring,ioc] 
 date: 2021-01-11 22:29:29 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # index

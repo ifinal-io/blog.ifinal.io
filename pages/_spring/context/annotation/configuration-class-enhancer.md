@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: '配置类增强器'
 subtitle: configuration-class-enhancer 
 summary: configuration-class-enhancer 
 tags: [] 
 date: 2021-04-30 10:45:12 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # 配置类增强器

@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: "@ImportResource"
 subtitle: import-resource 
 summary: import-resource 
 tags: [spring,annotation] 
 date: 2021-01-24 00:44:40 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # ImportResource

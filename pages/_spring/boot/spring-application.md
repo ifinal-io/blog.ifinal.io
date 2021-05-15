@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: Spring Application 启动流程
 subtitle: spring-application
 summary: 一个可用于从Java `main`方法引导和启动`Spring`应用程序的类。
 tags: [spring,spring-boot] 
 date: 2021-01-14 18:47:28 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # Spring Application 启动流程

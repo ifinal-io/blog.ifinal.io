@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: WebMvcAutoConfiguration
 subtitle: web-mvc-auto-configuration 
 summary: web-mvc-auto-configuration 
 tags: [] 
 date: 2021-03-24 13:42:32 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # WebMvcAutoConfiguration

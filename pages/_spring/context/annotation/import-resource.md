@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: '@ImportResource'
 subtitle: import-resource 
 summary: 导入一个或多个定义了`<bean>`的资源。
 tags: [] 
 date: 2021-03-02 12:10:49 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # @ImportResource

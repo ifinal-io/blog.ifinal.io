@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: "@Bean" 
 subtitle: bean 
 summary: bean 
 tags: [spring,annotation] 
 date: 2021-01-24 12:12:22 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # Bean

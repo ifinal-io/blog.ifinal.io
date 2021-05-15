@@ -1,12 +1,12 @@
 ---
-formatter: "@formatter:off"
+formatterOff: "@formatter:off"
 title: autoconfigure 
 subtitle: autoconfigure 
 summary: autoconfigure 
 tags: [] 
 date: 2021-01-18 21:50:49 +800 
 version: 1.0
-formatter: "@formatter:on"
+formatterOn: "@formatter:on"
 ---
 
 # autoconfigure
