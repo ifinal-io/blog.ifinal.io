@@ -17,10 +17,10 @@ layout: null
     {% assign author = site.data.authors[page.author] %}
     <div class="card mb-3">
       <div class="card-header position-relative min-vh-25 mb-7 p-0">
-        <div class="bg-holder " style="background-image:url('{{ page.banner }}');"></div>
+        <div id="bgHolder" class="bg-holder " style="background-image:url('{{ page.banner }}');"></div>
         <!--/.bg-holder-->
         <div class="container">
-          <div class="row flex-center" style="min-height: 600px">
+          <div class="row flex-center" style="height: 700px">
             <div class="col-md-11  text-center text-xl-start">
               <a class="btn btn-outline-danger mb-4 fs--1 border-2 rounded-pill" href="#!" v-text="hash.collection"></a>
               <h1 class="text-white fw-light">

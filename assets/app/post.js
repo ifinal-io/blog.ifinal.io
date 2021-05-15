@@ -2,7 +2,8 @@ Vue.createApp({
   data() {
     return {
       hash: {},
-      post: {}
+      post: {},
+      reload: true
     }
   },
   mounted() {
@@ -26,7 +27,19 @@ Vue.createApp({
   methods: {
 
     onhashchange() {
-      location.hash = this.hash.raw;
+
+      let hash = location.hash;
+
+      if (hash && hash.startsWith("#/")) {
+        if (this.reload) {
+          this.reload = true;
+          location.reload();
+        }
+      } else {
+        location.hash = this.hash.raw;
+        this.reload = false;
+      }
+
     },
     getFileRaw() {
       let raw = `https://raw.githubusercontent.com/${this.hash.user}/Blog/main${this.hash.path}`;
@@ -40,6 +53,12 @@ Vue.createApp({
       let $this = this;
 
       let hash = location.hash;
+      console.log(hash);
+      if (!hash || !hash.substring(1).startsWith('/')) {
+        alert("未找到")
+        return false;
+      }
+
       let queryIndex = hash.indexOf('?');
 
       if (queryIndex > 0) {
@@ -48,9 +67,9 @@ Vue.createApp({
 
       console.log(hash);
 
-      let hashs = hash.substring(1).split('/');
+      let hashs = hash.substring(2).split('/');
 
-      let index = hash.indexOf('/');
+      let index = hash.indexOf('/', 2);
       let path = hash.substring(index);
 
       $this.hash = {
@@ -63,9 +82,11 @@ Vue.createApp({
       console.log($this.hash);
 
     },
-    getQueryString(name) {
-      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-      var r = window.location.search.substr(1).match(reg);
+    getQueryString(name, search) {
+      search = search || window.location.search.substr(1)
+          || window.location.hash.split("?")[1];
+      let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      let r = search.match(reg);
       if (r != null) {
         return unescape(r[2]);
       }
@@ -113,6 +134,13 @@ Vue.createApp({
           $this.post = post;
           // 设置标题
           document.title = post.title;
+
+          if (post.banner) {
+            // 设置 Banner
+            console.log(`banner=${post.banner}`)
+            document.getElementById(
+                'bgHolder').style.backgroundImage = `url('${post.banner}')`;
+          }
         }
 
         console.log(post);
