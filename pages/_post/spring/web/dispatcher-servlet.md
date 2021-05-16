@@ -1,8 +1,11 @@
 ---
 formatterOff: "@formatter:off"
-title: Spring MVC 源码分析 之 DispatcherServlet
-subtitle: dispatcher-servlet 
-summary: dispatcher-servlet 
+title: Spring MVC 请求分派器
+subtitle: dispatcher-servlet
+summary: Spring MVC 请求分派器
+typed:
+  - DispatcherServlet. 
+categories: [spring]
 tags: [springmvc,ssm] 
 mark:
   pin: true

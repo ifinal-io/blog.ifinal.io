@@ -1,5 +1,5 @@
 /* 全局属性 */
-#write {
+.markdown {
     /*max-width: 860px;*/
     font-size: 16px;
     color: black;
@@ -14,7 +14,7 @@
 }
 
 /*段落*/
-#write p {
+.markdown p {
     font-size: 16px;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -25,26 +25,27 @@
 
 
 /*标题*/
-#write h1,
-#write h2,
-#write h3,
-#write h4,
-#write h5,
-#write h6 {
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
     margin-top: 30px;
     margin-bottom: 15px;
     padding: 0px;
     font-weight: bold;
     color: black;
 }
-#write h1 {
+.markdown h1 {
     font-size: 1.5rem;
+    display: none;
 }
-#write h2 {
+.markdown h2 {
     font-size: 1.3rem;
     border-bottom: 2px solid rgb(239, 112, 96);
 }
-#write h2 span {
+.markdown h2 span {
     display: inline-block;
     font-weight: bold;
     background: rgb(239, 112, 96);
@@ -54,44 +55,48 @@
     border-top-left-radius: 3px;
     margin-right: 3px;
 }
-#write h2:after {
-    display: inline-block;
-    content: "";
-    vertical-align: bottom;
-    border-bottom: 36px solid #efebe9;
-    border-right: 20px solid transparent;
-}
-#write h3 {
+/*.markdown h2:after {*/
+/*    display: inline-block;*/
+/*    content: "";*/
+/*    vertical-align: bottom;*/
+/*    border-bottom: 36px solid #efebe9;*/
+/*    border-right: 20px solid transparent;*/
+/*}*/
+.markdown h3 {
     font-size: 1.2rem;
 }
-#write h4 {
+.markdown h4 {
     font-size: 1.1rem;
 }
-#write h5 {
+.markdown h5 {
     font-size: 1rem;
 }
-#write h6 {
+.markdown h6 {
     font-size: 1rem;
 }
 
+.toc {
+    border-left: 1px solid #e9e9e9;
+}
+
 /*列表*/
-#write ul,
-#write ol {
+.markdown ul,
+.markdown ol {
     margin-top: 8px;
     margin-bottom: 8px;
     padding-left: 25px;
     color: black;
 }
-#write ul {
+.markdown ul {
     list-style-type: disc;
 }
-#write ul ul {
+.markdown ul ul {
     list-style-type: square;
 }
-#write ol {
+.markdown ol {
     list-style-type: decimal;
 }
-#write li section {
+.markdown li section {
     margin-top: 5px;
     margin-bottom: 5px;
     line-height: 26px;
@@ -101,7 +106,7 @@
 }
 
 /*引用*/
-#write blockquote {
+.markdown blockquote {
     display: block;
     font-size: 0.9em;
     overflow: auto;
@@ -113,14 +118,14 @@
     margin-top: 20px;
     background: #fff9f9;
 }
-#write blockquote p {
+.markdown blockquote p {
     margin: 0px;
     color: black;
     line-height: 26px;
 }
 
 /*链接*/
-#write a {
+.markdown a {
     text-decoration: none;
     word-wrap: break-word;
     font-weight: bold;
@@ -130,8 +135,8 @@
 }
 
 /*行内代码*/
-#write p code,
-#write li code {
+.markdown p code,
+.markdown li code {
     font-size: 14px;
     word-wrap: break-word;
     padding: 2px 4px;
@@ -144,72 +149,72 @@
 }
 
 /*图片*/
-#write img {
+.markdown img {
     display: block;
     margin: 0 auto;
     max-width: 100%;
 }
 
-#write span img {
+.markdown span img {
     display: inline-block;
     border-right: 0px;
     border-left: 0px;
 }
 
 /*表格*/
-#write table {
+.markdown table {
     display: table;
     text-align: left;
 }
-#write tbody {
+.markdown tbody {
     border: 0;
 }
-#write table tr {
+.markdown table tr {
     border: 0;
     border-top: 1px solid #ccc;
     background-color: white;
 }
-#write table tr:nth-child(2n) {
+.markdown table tr:nth-child(2n) {
     background-color: #F8F8F8;
 }
-#write table tr th,
-#write table tr td {
+.markdown table tr th,
+.markdown table tr td {
     font-size: 16px;
     border: 1px solid #ccc;
     padding: 5px 10px;
     text-align: left;
 }
-#write table tr th {
+.markdown table tr th {
     font-weight: bold;
     background-color: #f0f0f0;
 }
 
 /* 行内代码 */
-#write span code, #write li code {
+.markdown span code, .markdown li code {
     color: rgb(239, 112, 96);
 }
 
 /* 脚注上标 */
-#write .md-footnote {
+.markdown .md-footnote {
     font-weight: bold;
     color: rgb(239, 112, 96);
 }
-#write .md-footnote > .md-text:before {
+.markdown .md-footnote > .md-text:before {
     content: '['
 }
-#write .md-footnote > .md-text:after {
+.markdown .md-footnote > .md-text:after {
     content: ']'
 }
 
 /* 脚注 */
-#write .md-def-name {
+.markdown .md-def-name {
     padding-right: 1.8ch;
 }
-#write .md-def-name:before {
+.markdown .md-def-name:before {
     content: '[';
     color: #000;
 }
-#write .md-def-name:after {
+.markdown .md-def-name:after {
     color: #000;
 }
 
