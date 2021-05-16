@@ -1,6 +1,7 @@
 Vue.createApp({
   data() {
     return {
+      markdown: {},
       hash: {},
       post: {},
       reload: true
@@ -9,22 +10,36 @@ Vue.createApp({
   mounted() {
     let $this = this;
 
-    window.onhashchange = $this.onhashchange;
+    $this.initMarkdown();
+    $this.processYmal($this.markdown.ymal);
+    $this.processContent($this.markdown.content);
 
-    $this.parseHash();
-
-    let raw = $this.getFileRaw();
-
-    $this.loadRaw(raw, function (ymal, content) {
-      $this.processYmal(ymal);
-      $this.processContent(content);
-      $this.highlight();
-      $this.toc();
-      $this.typed($this.post.typed);
-    });
+    $this.toc();
+    $this.highlight();
 
   },
   methods: {
+
+    initMarkdown() {
+      let text = document.getElementById('code').innerText;
+      this.markdown = this.parseMarkdown(text);
+    },
+
+    parseMarkdown(data) {
+      let ymalStart = data.indexOf("---");
+      let ymalEnd = data.indexOf("---", ymalStart + 3);
+      let index = data.indexOf('#')
+      console.log(`start=${ymalStart},end=${ymalEnd},index=${index}`);
+
+      let ymal = data.substring(ymalStart + 3, ymalEnd);
+      let content = data.substring(ymalEnd + 3);
+
+      return {
+        ymal: ymal,
+        content: content
+      }
+
+    },
 
     onhashchange() {
 
@@ -129,19 +144,7 @@ Vue.createApp({
 
       try {
         let post = jsYaml.load(ymal, {schema: SEXY_SCHEMA});
-
-        if (post.title) {
-          $this.post = post;
-          // 设置标题
-          document.title = post.title;
-
-          if (post.banner) {
-            // 设置 Banner
-            console.log(`banner=${post.banner}`)
-            document.getElementById(
-                'bgHolder').style.backgroundImage = `url('${post.banner}')`;
-          }
-        }
+        $this.post = post;
 
         console.log(post);
       } catch (e) {
@@ -149,37 +152,50 @@ Vue.createApp({
       }
     },
     processContent(content) {
-
       var converter = new showdown.Converter();
       converter.setFlavor('github');
-
       let html = converter.makeHtml(content);
-
       document.getElementById('write').innerHTML = html;
-
       anchors.add();
     },
     toc() {
       $('#toc').toc({
         headers: 'article h2,article h3, article h4, article h5, article h6',
-        classes: {}
+        classes: {
+          item: "nav-item fs--1"
+        }
       });
     },
     highlight() {
       hljs.highlightAll();
     },
-    typed(strings) {
-
-      let typed = document.getElementById('typed');
-      if (typed) {
-        new window.Typed(typed, {
-          strings: strings,
-          typeSpeed: 30,
-          loop: true,
-          backDelay: 1500
-        })
-      }
+    gitlak() {
+      var gitalk = new Gitalk({
+        clientID: 'd5980c0f53133a01c696',
+        clientSecret: 'e2bc6849c786e2d037ceb624ed3789237560d206',
+        repo: 'blog.ifinal.io',
+        owner: 'final-gitalk',
+        admin: ['ilikly'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+      //
+      gitalk.render('gitalk-container', function (data) {
+        console.log(data);
+      });
     },
+    mermaid() {
+      mermaid.initialize({
+        theme: 'forest',
+        sequence: {
+          showSequenceNumbers: true
+        },
+        er: {
+          fontSize: 18
+        }
+      });
+      mermaid.init({}, ".language-mermaid, .language-sequence");
+    }
   }
 })
 .mount('#app')
