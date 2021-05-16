@@ -6,7 +6,7 @@
 <!-- ===============================================-->
 <!--    Main Content-->
 <!-- ===============================================-->
-<main class="main" id="top">
+<main class="main" id="app">
 
   {% include navbar/navbar.html %}
 
@@ -14,22 +14,21 @@
     {% assign author = site.data.authors[page.author] %}
     <div class="card mb-3">
       <div class="card-header position-relative mb-7 p-0">
-        <div class="bg-holder " style="background-image:url('{{ page.banner }}');height: 600px;"></div>
+        <div id="bgHolder" class="bg-holder " style="background-image:url('{{ page.banner }}');height: 600px;"></div>
         <!--/.bg-holder-->
         <div class="container">
           <div class="row flex-center" style="height: 600px">
             <div class="col-md-11  text-center text-xl-start">
-              <a class="btn btn-outline-danger mb-4 fs--1 border-2 rounded-pill" href="#!">{{ page.collection }}</a>
+              <!-- 分类 -->
+              <a class="btn btn-outline-danger mb-4 fs--1 border-2 rounded-pill" href="#!"
+                 v-text="post.categories[0]"
+                 v-if="post.categories && post.categories.length > 0"></a>
 
+              <!--概要-->
               <h1 class="text-white fw-light">
-                <span class="d-block">{{ page.title }}</span>
-                <span class="typed-text fw-bold ms-1" style="margin-top: 2em"
-                      data-typed-text='{{ page.typed | jsonify }}'
-                      data-typed-speed="5"></span>
+                <span class="d-block">{{ page.summary }}</span>
+                <span id="typed" class="typed-text fw-bold ms-1" data-typed-text='{{ page.typed | jsonify }}'></span>
               </h1>
-              <h3 class="text-white fw-light"></h3>
-              <p class="lead text-white opacity-75"></p>
-              </a>
             </div>
           </div>
 
@@ -70,7 +69,9 @@
               </div>
             </div>
             <div class="col-md-auto mt-4 mt-md-0">
-              <a href="{{ author.github_follow }}" class="btn btn-falcon-primary btn-sm px-4 px-sm-5" type="button"
+              <!-- 作者Github首页 -->
+              <a href="https://github.com/{{ page.author }}" class="btn btn-falcon-primary btn-sm px-4 px-sm-5"
+                 type="button"
                  target="_blank">关注</a>
             </div>
           </div>
@@ -84,21 +85,41 @@
     <div class="container">
 
       <div class="card">
-        <div class="card-header bg-light">
-          <h5>{{ page.title }}</h5>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-10">
-              <article class="markdown markdown-here-wrapper" id="write">
-              </article>
+        <div class="card-header">
+          <div class="row flex-between-end">
+            <div class="col-auto col-lg align-self-center">
+              <h5>{{ page.title }}</h5>
             </div>
-            <div class="col-md-2">
-              <div class="sticky-sidebar sticky-top">
-                <div class=" toc" id="toc">
+            <div class="col-auto ms-auto">
+              <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                <button class="btn btn-sm active" data-bs-toggle="pill"
+                        data-bs-target="#previewPanel" type="button" role="tab" aria-selected="true">Preview
+                </button>
+                <button class="btn btn-sm" data-bs-toggle="pill"
+                        data-bs-target="#codePanel" type="button" role="tab" aria-selected="false">Code
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body bg-light">
+          <div class="tab-content">
+            <div class="tab-pane preview-tab-pane active" role="tabpanel" id="previewPanel">
+              <div class="row">
+                <div class="col-md-10">
+                  <article class="markdown" id="write">
+                  </article>
+                </div>
+                <div class="col-md-2">
+                  <div class="sticky-sidebar sticky-top">
+                    <div class=" toc" id="toc">
+                    </div>
+                  </div>
                 </div>
               </div>
-
+            </div>
+            <div class="tab-pane code-tab-pane" role="tabpanel" id="codePanel">
+              <pre><code id="code">{% include_relative {{ page.path | split: "/" | last }} %}</code></pre>
             </div>
           </div>
         </div>
@@ -106,6 +127,7 @@
           <div id="gitalk-container"></div>
         </div>
       </div>
+
 
       {% include footer.html %}
 
@@ -121,100 +143,13 @@
 <!--    JavaScripts-->
 <!-- ===============================================-->
 {% include falcon/script.html %}
+<script src="/assets/app/post.js"></script>
 </body>
 <script>
 
-  $.ajax({
-    url: 'https://raw.githubusercontent.com/final-io/blog.ifinal.io/main/pages/{{ page.path }}',
-    type: 'GET',
-    success: function (data) {
-
-      let ymalStart = data.indexOf("---");
-      let ymalEnd = data.indexOf("---", ymalStart + 3);
-      let index = data.indexOf('#')
-      console.log(`start=${ymalStart},end=${ymalEnd},index=${index}`);
-
-      let ymal = data.substring(ymalStart + 3, ymalEnd);
-      let markdown = data.substring(ymalEnd + 3);
-
-      console.log(ymal);
-      console.log('------START-------');
-      console.log(markdown);
-      console.log('-------END-------');
-
-      // const yaml2 = require('yaml');
-
-      var SexyYamlType = new jsYaml.Type('!sexy', {
-        kind: 'sequence', // See node kinds in YAML spec: http://www.yaml.org/spec/1.2/spec.html#kind//
-        construct: function (data) {
-          return data.map(function (string) { return 'sexy ' + string; });
-        }
-      });
-
-      var SEXY_SCHEMA = jsYaml.DEFAULT_SCHEMA.extend([ SexyYamlType ]);
-
-      try {
-        let obj = jsYaml.load(ymal, { schema: SEXY_SCHEMA });
-        console.log(obj);
-      }catch (e) {
-          alert("loaded failure")
-        console.log(e);
-      }
-
-
-      var converter = new showdown.Converter();
-      converter.setFlavor('github');
-
-      let html = converter.makeHtml(markdown);
-
-      console.log(html);
-
-      document.getElementById('write').innerHTML = html;
-
-      $('#toc').toc({
-        headers: '{{ site.toc.headers | default: "h1,h2,h3,h4,h5,h6"}}',
-        classes: {
-          list: '{{ site.toc.list_class | default: "" }}',
-          item: '{{ site.toc.item_class | default: "" }}'
-        }
-      });
-
-      hljs.highlightAll();
-
-      anchors.add();
-
-    }
-
-  });
 
   docReady(function () {
-        // var gitalk = new Gitalk({
-        //   clientID: 'd5980c0f53133a01c696',
-        //   clientSecret: 'e2bc6849c786e2d037ceb624ed3789237560d206',
-        //   repo: 'blog.ifinal.io',
-        //   owner: 'final-gitalk',
-        //   admin: ['ilikly'],
-        //   id: location.pathname,      // Ensure uniqueness and length less than 50
-        //   distractionFreeMode: false  // Facebook-like distraction free mode
-        // })
 
-        // gitalk.render('gitalk-container', function (data) {
-        //   console.log(data);
-        // });
-      }
-  );
-
-  docReady(function () {
-    // mermaid.initialize({
-    //   theme: 'forest',
-    //   sequence: {
-    //     showSequenceNumbers: true
-    //   },
-    //   er: {
-    //     fontSize: 18
-    //   }
-    // });
-    // mermaid.init({}, ".language-mermaid, .language-sequence");
   });
 
 </script>
