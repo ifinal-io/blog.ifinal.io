@@ -14,7 +14,7 @@ tags: []
 brand: Blog
 sidebar: false
 class: index-page
-posts: /api/posts.api.json
+app: home
 date: 2021-04-30 16:04:20 +800
 version: 1.0
 formatterOn: "@formatter:on"
@@ -74,7 +74,7 @@ formatterOn: "@formatter:on"
                 </div>
                 <div class="p-3">
                   <h5 class="fs-0"><a class="text-dark" :href="post.url" v-text="post.title"></a></h5>
-                  <p class="fs--1 mb-3"><a class="text-500" href="#!" v-text="post.collection"></a></p>
+                  <p class="fs--1 mb-3"><a class="text-500" href="#!" v-text="post.categories[0]"></a></p>
                   <p class="fs--1 mb-1">Date: <strong v-text="post.date"></strong></p>
                 </div>
               </div>
