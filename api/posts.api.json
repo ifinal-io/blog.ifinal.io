@@ -1,16 +1,14 @@
 ---
 layout: null
 ---
-{% assign posts = site.documents | where_exp: "item", "item.url contains '.html'"
-        | where: "type", "post"
-        | sort: "date" | reverse %}
+{% assign posts = site.post | where: "layout", "post" | sort: "date" | reverse %}
 [
 {% for post in posts %}
     {
     "name"    : "{{ post.title }}",
     "title"    : "{{ post.title | escape }}",
     "collection"    : "{{ post.collection }}",
-    "category" : "{{ post.category }}",
+    "categories" : {{ post.categories | jsonify }},
     "tags"     : {{ post.tags | jsonify }},
     "url"      : "{{ site.baseurl }}{{ post.url }}",
     "banner"      : "{{ post.banner }}",
