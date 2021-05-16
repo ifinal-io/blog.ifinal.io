@@ -1,8 +1,14 @@
 ---
 formatterOff: "@formatter:off"
-title: 概览 
+title: Spring makes Java 
 subtitle: overview 
-description: overview 
+description: overview
+typed: 
+    - simple.
+    - modern.
+    - productive.
+    - reactive.
+    - cloud-ready.
 tags: [spring] 
 date: 2021-01-11 17:18:06 +800 
 version: 1.0
@@ -39,28 +45,12 @@ Spring 通过提供强大的框架设计，极大地提高Java的开发效率，
 
 ## 目录
 
-{% assign posts = site.spring %}
 
 
 ### IOC
 
-{% assign contexts = posts | where_exp: "item", "item.tags contains 'spring' " %}
-
-<ul>
-{% for post in contexts %}
-    <li><a href="{{post.url}}">{{post.title}}</a> </li>
-{% endfor %}
-</ul>
 
 ### MVC
-
-{% assign mvcs = posts | where_exp: "item", "item.tags contains 'springmvc' " %}
-
-<ul>
-{% for post in mvcs %}
-    <li><a href="{{post.url}}">{{post.title}}</a> </li>
-{% endfor %}
-</ul>
 
 
 

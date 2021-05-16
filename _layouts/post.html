@@ -13,8 +13,8 @@
   <section class="py-0 overflow-hidden light" id="banner">
     {% assign author = site.data.authors[page.author] %}
     <div class="card mb-3">
-      <div class="card-header position-relative min-vh-25 mb-7 p-0">
-        <div class="bg-holder " style="background-image:url('{{ page.banner }}');"></div>
+      <div class="card-header position-relative mb-7 p-0">
+        <div class="bg-holder " style="background-image:url('{{ page.banner }}');height: 600px;"></div>
         <!--/.bg-holder-->
         <div class="container">
           <div class="row flex-center" style="height: 600px">
@@ -124,10 +124,8 @@
 </body>
 <script>
 
-  // alert("https://raw.githubusercontent.com/final-io/blog.ifinal.io/main/pages/_spring/web/dispatcher-servlet.md");
-  let proxy = 'https://cors-anywhere.azm.workers.dev/https://github.com/final-io/blog.ifinal.io/blob/main/pages/_spring/web/dispatcher-servlet.md';
   $.ajax({
-    url: 'https://raw.githubusercontent.com/final-io/blog.ifinal.io/main/pages/_spring/web/dispatcher-servlet.md',
+    url: 'https://raw.githubusercontent.com/final-io/blog.ifinal.io/main/pages/{{ page.path }}',
     type: 'GET',
     success: function (data) {
 
