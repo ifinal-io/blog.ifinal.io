@@ -7,15 +7,18 @@
 
 ## 目录结构
 
-```shell
+```text
 ├── _data # Jekyll 数据目录
 ├── _include # Jekyll 模板片段目录
+│   ├── footer.html # 页面Footer片段
 ├── _layouts # Jekyll 模板布局目录
+│   ├── post.html # 博客布局
+│   ├── page.html # 页面布局
 ├── api # 接口JSON目录
 ├── assets # 资源目录
 ├── pages # 页面目录
-│   ├── _archive
-│   ├── _articles
+│   ├── _archives # 博客文章归档目录
+│   ├── _articles # 博客文章撰写目录
 ├── _config.yml # Jekyll 配置文件
 ├── README.md # README
 ```
