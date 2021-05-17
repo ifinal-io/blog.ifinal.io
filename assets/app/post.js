@@ -14,7 +14,6 @@ Vue.createApp({
     $this.processYmal($this.markdown.ymal);
     $this.processContent($this.markdown.content);
 
-
     $this.toc();
     $this.highlight();
 
@@ -172,10 +171,10 @@ Vue.createApp({
       });
     },
     highlight() {
-      document.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightBlock(block);
-      });
-      // hljs.highlightAll();
+      // document.querySelectorAll('pre code').forEach((block) => {
+      //   hljs.highlightBlock(block);
+      // });
+      hljs.highlightAll();
     },
     gitlak() {
       var gitalk = new Gitalk({
