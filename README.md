@@ -2,12 +2,13 @@
 
 **用更少的文字，记录更多的知识。**
 
-[![GitHub](https://img.shields.io/github/license/likly/Blog)](http://www.apache.org/licenses/LICENSE-2.0.html)
-![GitHub Repo stars](https://img.shields.io/github/stars/likly/Blog)
+[![GitHub](https://img.shields.io/github/license/final-io/blog.ifinal.io)](http://www.apache.org/licenses/LICENSE-2.0.html)
+![GitHub Repo stars](https://img.shields.io/github/stars/final-io/blog.ifinal.io)
 
 ## 目录结构
 
 ```text
+.
 ├── _data # Jekyll 数据目录
 ├── _include # Jekyll 模板片段目录
 │   ├── footer.html # 页面Footer片段
