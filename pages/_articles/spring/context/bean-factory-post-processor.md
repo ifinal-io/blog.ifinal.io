@@ -6,6 +6,7 @@ description: bean-factory-post-processor
 summary: Spring Ioc Bean 工厂后置处理器
 typed: [BeanFactoryPostProcessor.,BeanDefinitionRegistryPostProcessor.]
 tags: [spring,spi] 
+banner: https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81
 date: 2021-05-14 13:22:15 +800 
 version: 1.0
 formatterOn: "@formatter:on"
