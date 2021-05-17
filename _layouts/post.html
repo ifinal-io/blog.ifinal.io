@@ -1,155 +1,143 @@
 <!DOCTYPE html>
-<html lang="zh" dir="ltr">
+<html lang="zh">
 
-{% include falcon/head.html %}
-<body data-bs-spy="scroll" data-bs-target="#toc" data-bs-offset="100">
-<!-- ===============================================-->
-<!--    Main Content-->
-<!-- ===============================================-->
-<main class="main" id="app">
+{% include head.html %}
 
-  {% include navbar/navbar.html %}
+<body class="profile-page sidebar-collapse" data-spy="scroll" data-target="#toc" data-offset="50">
+{% include navbar/navbar.html %}
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ page.banner }}');height: 600px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <a href="#" class="btn btn-round btn-lg btn-outline-success">
+          <span class="material-icons">label</span> Read Article
+        </a>
+        <h1 class="title">{{ page.summary }}</h1>
+        <h2><span class="typed-text font-weight-bold" data-typed-text='{{ page.typed | jsonify }}'></span></h2>
+        <br>
 
-  <!-- Banner -->
-  <section class="py-0 overflow-hidden light" id="banner">
-    {% assign author = site.data.authors[page.author] %}
-    <div class="card mb-3">
-      <div class="card-header position-relative mb-7 p-0">
-        <div id="bgHolder" class="bg-holder " style="background-image:url('{{ page.banner }}');height: 600px;"></div>
-        <!--/.bg-holder-->
-        <div class="container">
-          <div class="row flex-center" style="height: 600px">
-            <div class="col-md-11  text-center text-xl-start">
-              <!-- 分类 -->
-              <a class="btn btn-outline-danger mb-4 fs--1 border-2 rounded-pill" href="#!"
-                 v-text="post.categories[0]"
-                 v-if="post.categories && post.categories.length > 0"></a>
-              <!--概要-->
-              <h1 class="text-white fw-light">
-                <span class="d-block">{{ page.summary }}</span>
-                <span id="typed" class="typed-text fw-bold ms-1" data-typed-text='{{ page.typed | jsonify }}'></span>
-              </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main main-raised" id="app">
+
+<!--Blog Info-->
+  <section class="section section-blog-info profile-content pt-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 ml-auto mr-auto">
+          <div class="profile">
+            <div class="avatar">
+              <img src="{{ site.data.authors[page.author].avatar }}" alt="Circle Image" class="img-raised rounded-circle img-fluid border-5 border-danger">
+            </div>
+            <div class="name">
+              <h3 class="title">{{ site.data.authors[page.author].name }}</h3>
+              <h6>Developer</h6>
             </div>
           </div>
+          <div class="follow">
+            <a href="https://github.com/{{ page.author }}" class="btn btn-fab btn-primary btn-round"
+               rel="tooltip" title="" data-original-title="Follow this user" target="_blank">
+              <span class="material-icons">add</span>
+            </a>
+          </div>
+        </div>
+      </div>
 
+
+    </div>
+  </section>
+
+  <section class="section section-text">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-6 ml-auto mr-auto">
+          <div class="profile-tabs">
+            <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+              <!--
+                                                      color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                                              -->
+              <li class="nav-item">
+                <a class="nav-link active" href="#preview" role="tab" data-toggle="tab" aria-selected="false">
+                  <span class="material-icons">preview</span>
+                  Preview
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#source" role="tab" data-toggle="tab" aria-selected="false">
+                  <span class="material-icons">code</span>
+                  Code
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content tab-space">
+        <div class="tab-pane active" id="preview">
           <div class="row">
-            <div>
-              <div class="avatar avatar-5xl avatar-profile">
-                <img class="rounded-circle img-thumbnail shadow-sm"
-                     src="{{ author.avatar }}"
-                     height="200" width="200" alt="">
+            <div class="col-md-10">
+              <article class="markdown" id="markdown"></article>
+            </div>
+            <div class="col-md-2">
+              <div class="sticky-sidebar sticky-top" style="top: 100px;">
+                <div class="toc" id="toc">
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="card-footer">
-        <div class="container">
-          <div class="row justify-content-between align-items-center">
-            <div class="col">
-              <div class="d-flex">
-                <div class="calendar me-2">
-                  {% assign nowYear = "now" | date: "%y" %}
-                  {% assign createYear = page.date | date: "%y" %}
-                  {% if createYear == nowYear %}
-                  <span class="calendar-month">{{ page.date | date: "%m" }}</span>
-                  <span class="calendar-day">{{ page.date | date: "%d" }}</span>
-                  {% else %}
-                  <span class="calendar-month">{{ page.date | date: "%Y" }}</span>
-                  <span class="calendar-day">{{ page.date | date: "%m" }}</span>
-                  {% endif %}
-                </div>
-                <div class="flex-1 fs--1">
-                  <h5 class="fs-0">{{ page.title }}</h5>
-                  <p class="mb-0"><a href="{{ author.github_follow }}">{{ author.name }}</a></p>
-                  {% for tag in page.tags %}
-                  <span class="badge rounded-pill badge-soft-success">{{ tag }}</span>
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
-            <div class="col-md-auto mt-4 mt-md-0">
-              <!-- 作者Github首页 -->
-              <a href="https://github.com/{{ page.author }}" class="btn btn-falcon-primary btn-sm px-4 px-sm-5"
-                 type="button"
-                 target="_blank">关注</a>
-            </div>
-          </div>
+        <div class="tab-pane" id="source">
+          <textarea id="editor" class="d-none" hidden style="width: 100%" rows="100">{% include_relative {{ page.path | split: "/" | last }} %}</textarea>
+          <pre><code id="code"></code></pre>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Content -->
-  <section class="py-3 ">
-    <div class="container">
-      <div class="card">
-        <div class="card-header bg-light">
-          <div class="row flex-between-end">
-            <div class="col-auto col-lg align-self-center">
-              <h5>{{ page.title }}</h5>
-            </div>
-            <div class="col-auto ms-auto">
-              <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                <button class="btn btn-sm active" data-bs-toggle="pill"
-                        data-bs-target="#previewPanel" type="button" role="tab" aria-selected="true">Preview
-                </button>
-                <button class="btn btn-sm" data-bs-toggle="pill"
-                        data-bs-target="#codePanel" type="button" role="tab" aria-selected="false">Code
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="tab-content">
-            <!-- 预览 -->
-            <div class="tab-pane preview-tab-pane active" role="tabpanel" id="previewPanel">
-              <div class="row">
-                <div class="col-md-10">
-                  <article class="markdown" id="markdown">
-                  </article>
-                </div>
-                <div class="col-md-2">
-                  <div class="sticky-sidebar sticky-top">
-                    <div class=" toc" id="toc">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 原文 -->
-            <div class="tab-pane code-tab-pane" role="tabpanel" id="codePanel">
-              <textarea id="editor"
-                        class="w-100 min-vh-75 d-none">{% include_relative {{ page.path | split: "/" | last }} %}</textarea>
-              <pre><code id="code"></code></pre>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer ">
-          <div id="gitalk-container"></div>
-        </div>
-      </div>
+</div>
+<footer class="footer footer-default">
+  <div class="container">
+    <nav class="float-left">
+      <ul>
+        <li>
+          <a href="https://www.creative-tim.com">
+            Creative Tim
+          </a>
+        </li>
+        <li>
+          <a href="https://creative-tim.com/presentation">
+            About Us
+          </a>
+        </li>
+        <li>
+          <a href="http://blog.creative-tim.com">
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="https://www.creative-tim.com/license">
+            Licenses
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="copyright float-right">
+      &copy;
+      <script>
+        document.write(new Date().getFullYear())
+      </script>
+      , made with <i class="material-icons">favorite</i> by
+      <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
     </div>
-  </section>
-
-  <!-- Footer -->
-  <section class="py-0">
-    <div class="container">
-      {% include footer.html %}
-    </div>
-  </section>
-
-</main>
-<!-- ===============================================-->
-<!--    End of Main Content-->
-<!-- ===============================================-->
-
-
-<!-- ===============================================-->
-<!--    JavaScripts-->
-<!-- ===============================================-->
-{% include falcon/script.html %}
+  </div>
+</footer>
+{% include script.html %}
 <script src="/assets/app/post.js"></script>
 </body>
+
 </html>

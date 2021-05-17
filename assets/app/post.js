@@ -10,6 +10,18 @@ Vue.createApp({
   mounted() {
     let $this = this;
 
+    const typedTexts = document.querySelectorAll('.typed-text');
+    if (typedTexts.length && window.Typed) {
+      typedTexts.forEach((typedText) => {
+        return new window.Typed(typedText, {
+          strings: JSON.parse(typedText.getAttribute('data-typed-text')),
+          typeSpeed: 100,
+          loop: true,
+          backDelay: 1500,
+        });
+      });
+    }
+
     $this.initMarkdown();
     $this.processYmal($this.markdown.ymal);
     $this.processContent($this.markdown.content);
@@ -166,7 +178,8 @@ Vue.createApp({
       $('#toc').toc({
         headers: 'article h2,article h3, article h4, article h5, article h6',
         classes: {
-          item: "nav-item fs--1"
+          item: "nav-item fs--1",
+          list: "nav"
         }
       });
     },
