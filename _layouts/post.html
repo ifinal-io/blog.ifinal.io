@@ -10,6 +10,7 @@
 
   {% include navbar/navbar.html %}
 
+  <!-- Banner -->
   <section class="py-0 overflow-hidden light" id="banner">
     {% assign author = site.data.authors[page.author] %}
     <div class="card mb-3">
@@ -80,10 +81,9 @@
     </div>
   </section>
 
-
+  <!-- Content -->
   <section class="py-3 ">
     <div class="container">
-
       <div class="card">
         <div class="card-header">
           <div class="row flex-between-end">
@@ -104,10 +104,11 @@
         </div>
         <div class="card-body bg-light">
           <div class="tab-content">
+            <!-- 预览 -->
             <div class="tab-pane preview-tab-pane active" role="tabpanel" id="previewPanel">
               <div class="row">
                 <div class="col-md-10">
-                  <article class="markdown" id="write">
+                  <article class="markdown" id="markdown">
                   </article>
                 </div>
                 <div class="col-md-2">
@@ -118,8 +119,11 @@
                 </div>
               </div>
             </div>
+            <!-- 原文 -->
             <div class="tab-pane code-tab-pane" role="tabpanel" id="codePanel">
-              <pre><code id="code">{% include_relative {{ page.path | split: "/" | last }} %}</code></pre>
+              <textarea id="editor"
+                        class="w-100 min-vh-75 d-none">{% include_relative {{ page.path | split: "/" | last }} %}</textarea>
+              <pre><code id="code"></code></pre>
             </div>
           </div>
         </div>
@@ -127,12 +131,16 @@
           <div id="gitalk-container"></div>
         </div>
       </div>
-
-
-      {% include footer.html %}
-
     </div>
   </section>
+
+  <!-- Footer -->
+  <section class="py-0">
+    <div class="container">
+      {% include footer.html %}
+    </div>
+  </section>
+
 </main>
 <!-- ===============================================-->
 <!--    End of Main Content-->
@@ -145,13 +153,4 @@
 {% include falcon/script.html %}
 <script src="/assets/app/post.js"></script>
 </body>
-<script>
-
-
-  docReady(function () {
-
-  });
-
-</script>
-
 </html>

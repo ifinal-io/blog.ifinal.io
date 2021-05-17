@@ -3,6 +3,7 @@ formatterOff: "@formatter:off"
 title: Spring Ioc Bean 工厂后置处理器
 subtitle: BeanFactoryPostProcessor
 description: bean-factory-post-processor 
+summary: Spring Ioc Bean 工厂后置处理器
 typed: [BeanFactoryPostProcessor.,BeanDefinitionRegistryPostProcessor.]
 tags: [spring,spi] 
 date: 2021-05-14 13:22:15 +800 
@@ -387,6 +388,5 @@ Spring内置了大量`BeanFactoryPostProcessor`用于框架处理，如用于配
 
 
 
-
-
+## See 
 

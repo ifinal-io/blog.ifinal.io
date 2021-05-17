@@ -14,6 +14,7 @@ Vue.createApp({
     $this.processYmal($this.markdown.ymal);
     $this.processContent($this.markdown.content);
 
+
     $this.toc();
     $this.highlight();
 
@@ -21,7 +22,11 @@ Vue.createApp({
   methods: {
 
     initMarkdown() {
-      let text = document.getElementById('code').innerText;
+      let text = document.getElementById('editor').value;
+      // let text = document.getElementById('code').innerText;
+      console.log(text);
+      document.getElementById('code').append(text);
+
       this.markdown = this.parseMarkdown(text);
     },
 
@@ -155,7 +160,7 @@ Vue.createApp({
       var converter = new showdown.Converter();
       converter.setFlavor('github');
       let html = converter.makeHtml(content);
-      document.getElementById('write').innerHTML = html;
+      document.getElementById('markdown').innerHTML = html;
       anchors.add();
     },
     toc() {
@@ -167,7 +172,10 @@ Vue.createApp({
       });
     },
     highlight() {
-      hljs.highlightAll();
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+      // hljs.highlightAll();
     },
     gitlak() {
       var gitalk = new Gitalk({

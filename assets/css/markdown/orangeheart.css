@@ -165,6 +165,7 @@
 .markdown table {
     display: table;
     text-align: left;
+    width: 100%;
 }
 .markdown tbody {
     border: 0;
