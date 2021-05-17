@@ -1,9 +1,9 @@
 ---
 layout: null
 ---
-{% assign posts = site.post | where: "layout", "post" | sort: "date" | reverse %}
+{% assign articles = site.articles | where: "layout", "post" | sort: "date" | reverse %}
 [
-{% for post in posts %}
+{% for post in articles %}
     {
     "name"    : "{{ post.title }}",
     "title"    : "{{ post.title | escape }}",

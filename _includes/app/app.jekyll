@@ -24,7 +24,7 @@
 
       console.log(`menus=${JSON.stringify(this.page.menus)}`)
 
-      $.getJSON('/api/posts.api.json', function (data) {
+      $.getJSON('/api/articles.api.json', function (data) {
 
         self.posts = data;
 

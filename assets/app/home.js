@@ -9,7 +9,7 @@ Vue.createApp({
 
     let self = this;
 
-    $.getJSON('/api/posts.api.json', function (data) {
+    $.getJSON('/api/articles.api.json', function (data) {
 
       self.posts = data;
 
