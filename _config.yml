@@ -63,7 +63,7 @@ plugins:
   - jekyll-titles-from-headings
 collections_dir: pages
 collections:
-  docs:
+  articles:
     output: true
   spring:
     output: true

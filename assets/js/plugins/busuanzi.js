@@ -66,7 +66,7 @@ var bszCaller, bszTag;
             suffix: 'K',
           };
 
-          var countUp = new window.countUp.CountUp(c, a[b],options);
+          var countUp = new window.countUp.CountUp(c, a[b], options);
 
           if (!countUp.error) {
             countUp.start();
