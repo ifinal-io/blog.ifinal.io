@@ -5,7 +5,8 @@
 
 <body class="profile-page sidebar-collapse" data-spy="scroll" data-target="#toc" data-offset="50">
 {% include navbar/navbar.html %}
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ page.banner }}');height: 600px">
+<div class="page-header header-filter" data-parallax="true"
+     style="background-image: url('{{ page.banner }}');height: 600px">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
@@ -23,14 +24,15 @@
 
 <div class="main main-raised" id="app">
 
-<!--Blog Info-->
-  <section class="section section-blog-info profile-content pt-0">
+  <!--Blog Info-->
+  <section class="section section-blog-info profile-content m-0 p-0 ">
     <div class="container">
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto">
           <div class="profile">
             <div class="avatar">
-              <img src="{{ site.data.authors[page.author].avatar }}" alt="Circle Image" class="img-raised rounded-circle img-fluid border-5 border-danger">
+              <img src="{{ site.data.authors[page.author].avatar }}" alt="Circle Image"
+                   class="img-raised rounded-circle img-fluid border-5 border-danger">
             </div>
             <div class="name">
               <h3 class="title">{{ site.data.authors[page.author].name }}</h3>
@@ -50,15 +52,15 @@
     </div>
   </section>
 
-  <section class="section section-text">
+  <!--  Blog Content -->
+  <section class="section section-text m-0 p-0">
     <div class="container">
-
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto">
           <div class="profile-tabs">
             <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-              <!--
-                                                      color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+              <!-- color-classes: "nav-pills-primary", "nav-pills-info",
+              "nav-pills-success", "nav-pills-warning","nav-pills-danger"
                                               -->
               <li class="nav-item">
                 <a class="nav-link active" href="#preview" role="tab" data-toggle="tab" aria-selected="false">
