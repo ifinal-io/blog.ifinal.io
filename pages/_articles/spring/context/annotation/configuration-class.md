@@ -1,8 +1,15 @@
 ---
 formatterOff: "@formatter:off"
-title: ConfigurationClass
+title: Spring Ioc 那些含有特定功能的配置类
 subtitle: configuration-class 
-summary: 含有特殊标记的`BeanDefiniton`。
+summary: Spring Ioc 那些含有特定功能的配置类
+typed:
+  - '@Component.'
+  - '@Configuration.'
+  - '@ComponentScan.'
+  - '@Import.'
+  - '@ImportResource.'
+categories: [spring]
 tags: [spring,ioc] 
 date: 2021-01-22 16:49:09 +800 
 version: 1.0
