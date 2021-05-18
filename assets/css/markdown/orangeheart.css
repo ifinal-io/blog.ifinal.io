@@ -13,10 +13,31 @@
     font-family: Roboto,'PingFang SC';
 }
 
+.markdown > pre:before {
+    content: '';
+    display: block;
+     background: url(/assets/img/background/code-colse.svg);
+    height: 30px;
+    width: 100%;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-color: #282c34;
+    border-radius: 5px;
+    background-position: 10px 10px;
+}
+
 .markdown pre code {
+    padding: 1em 1em;
     max-height: 420px;
     overflow-x: auto;
     overflow-y: auto;
+}
+
+.markdown pre {
+    border-radius: 5px;
+    background-color: #282c34;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%);
+
 }
 
 /*段落*/
