@@ -1,15 +1,20 @@
 ---
 formatterOff: "@formatter:off"
-title: 你好，世界
+title: Hello
 subtitle: component-scan 
-summary: 程序员世界的大门。
-tags: [] 
+summary: Hello
+typed:
+  - World!
+  - Spring Boot.
+categories: [springboot]
+tags: [springboot] 
+banner: https://images.unsplash.com/photo-1504006833117-8886a355efbf
 date: 2021-01-13 22:31:05 +800 
 version: 1.0
 formatterOn: "@formatter:on"
 ---
 
-# 你好，世界
+# Hello
 
 ## 简介
 
@@ -79,7 +84,8 @@ public @interface SpringBootApplication {
 ```
 
 `@ComponentScan`实现了在 `Spring MVC` 时代的 Spring XML 配置文件 `<context:component-scan>` 节点的Java代码支持，再加上 `@AliasFor` 注解，暂且可以断定
-`@SpringBootApplication` 启到了相同的作用，实现了组件扫描的功能。那么剩下的`SpringApplication.run(FinalApplication.class);`应该就是启动 Spring 容器 并初始化 WEB 环境了。
+`@SpringBootApplication` 启到了相同的作用，实现了组件扫描的功能。那么剩下的`SpringApplication.run(FinalApplication.class);`应该就是启动 Spring 容器 并初始化
+WEB 环境了。
 
 > 事实上也确实如此。
 
