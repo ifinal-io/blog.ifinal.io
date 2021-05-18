@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-md-8">
         <a href="#" class="btn btn-round btn-lg btn-outline-success">
-          <span class="material-icons">label</span> Read Article
+          <span class="material-icons">book</span> {{ page.categories[0] | default: 'Spring' }}
         </a>
         <h1 class="title">{{ page.summary }}</h1>
         <h2><span class="typed-text font-weight-bold" data-typed-text='{{ page.typed | jsonify }}'></span></h2>
@@ -25,7 +25,7 @@
 <div class="main main-raised" id="app">
 
   <!--Blog Info-->
-  <section class="section section-blog-info profile-content m-0 p-0 ">
+  <section class="section section-blog-info profile-content m-0 p-0 d-none">
     <div class="container">
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto">
@@ -102,42 +102,9 @@
   </section>
 
 </div>
-<footer class="footer footer-default">
-  <div class="container">
-    <nav class="float-left">
-      <ul>
-        <li>
-          <a href="https://www.creative-tim.com">
-            Creative Tim
-          </a>
-        </li>
-        <li>
-          <a href="https://creative-tim.com/presentation">
-            About Us
-          </a>
-        </li>
-        <li>
-          <a href="http://blog.creative-tim.com">
-            Blog
-          </a>
-        </li>
-        <li>
-          <a href="https://www.creative-tim.com/license">
-            Licenses
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="copyright float-right">
-      &copy;
-      <script>
-        document.write(new Date().getFullYear())
-      </script>
-      , made with <i class="material-icons">favorite</i> by
-      <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-    </div>
-  </div>
-</footer>
+<div class="container">
+  {% include footer.html %}
+</div>
 {% include script.html %}
 <script src="/assets/app/post.js"></script>
 </body>

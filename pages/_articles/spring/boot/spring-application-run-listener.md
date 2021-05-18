@@ -2,11 +2,15 @@
 formatterOff: "@formatter:off"
 title: SpringApplicationRunListener
 subtitle: spring-application-run-listener 
-summary: 用于监听`SpringApplication`的`run`方法的监听器
-tags: [spring,application,listener] 
+summary: SpringApplication运行过程监听器
+typed: [SpringApplicationRunListener.]
+categories: [springboot]
+tags: [springboot]
+banner: https://images.unsplash.com/photo-1502224562085-639556652f33
 date: 2021-01-16 19:53:41 +800 
 version: 1.0
 formatterOn: "@formatter:on"
+
 ---
 
 # SpringApplicationRunListener
@@ -19,7 +23,8 @@ formatterOn: "@formatter:on"
 
 [Spring Application 启动流程](spring-application.md)一文中，在分析`run`方法源码时，得知`SpringApplication`会通过`SpringFactoriesLoader`
 加载声明在`/META-INF/spring.factories`配置文件中的`SpringApplicationRunListener`并实例化，然后传递给`SpringApplicationRunListeners`对象，在`run`
-方法的执行过程中，通过`SpringApplicationRunListeners`间隔地调用所有`SpringApplicationRunListener`的方法。详情请查阅`SpringApplicationRunListeners`相关源码。
+方法的执行过程中，通过`SpringApplicationRunListeners`间隔地调用所有`SpringApplicationRunListener`的方法。详情请查阅`SpringApplicationRunListeners`
+相关源码。
 
 * `SpringApplicationRunListener`由`SpringApplicaton`在`run`方法是通过`SpringFactoriesLoader`从`/META-INF/spring.factories`中加载。
 * `SpringApplicationRunListener`应该声明一个接收`SpringApplication`和`String[]`参数的公开的构造函数。
@@ -64,14 +69,14 @@ public interface SpringApplicationRunListener {
 ```java
 package org.springfreamework.boot.demo;
 
-public class MySpringApplicationRunListener implements SpringApplicationRunListener{
-    
+public class MySpringApplicationRunListener implements SpringApplicationRunListener {
+
     public MySpringApplicationRunListener(SpringApplication application, String[] args) {
-    	//...
+        //...
     }
-    
+
     //...
-    
+
 }
 ```
 
@@ -87,26 +92,24 @@ org.springframework.boot.SpringApplicationRunListener=\
 org.springfreamework.boot.demo.MySpringApplicationRunListener
 ```
 
-
-
 ## 时机（When）
 
-在`SpringApplication`的`run()`方法中，会通过`SpringFactoryLoader`加载声明在`META-INF/spring.factories`中的`SpringApplicationRunListener`实例，并创建一个`SpringApplicationRunListeners`的实例，该对象是`SpringApplicationRunListener`的集合表现形式，通过`SpringApplicationRunListeners`的方法间接调用`SpringApplicationRunListener`的方法。
-
-
+在`SpringApplication`的`run()`方法中，会通过`SpringFactoryLoader`加载声明在`META-INF/spring.factories`中的`SpringApplicationRunListener`
+实例，并创建一个`SpringApplicationRunListeners`的实例，该对象是`SpringApplicationRunListener`的集合表现形式，通过`SpringApplicationRunListeners`
+的方法间接调用`SpringApplicationRunListener`的方法。
 
 ## 原理（How）
 
 在`SpringApplicatin`的`run()`方法中，
 
 ```java
-listeners.starting(bootstrapContext, this.mainApplicationClass);
+listeners.starting(bootstrapContext,this.mainApplicationClass);
 ```
 
 然后在 `prepareEnvironment()`方法中
 
 ```java
-listeners.environmentPrepared(bootstrapContext, environment);
+listeners.environmentPrepared(bootstrapContext,environment);
 ```
 
 接着在`prepareContext()`方法中
@@ -114,7 +117,7 @@ listeners.environmentPrepared(bootstrapContext, environment);
 ```java
 listeners.contextPrepared(context);
 //...
-listeners.contextLoaded(context);
+    listeners.contextLoaded(context);
 ```
 
 再着在`run()`方法中
@@ -132,12 +135,8 @@ listeners.running(context);
 如果在上述流程中发生了异常，则在`handleRunFailure()`方法中
 
 ```java
-listeners.failed(context, exception);
+listeners.failed(context,exception);
 ```
-
-
-
-
 
 ## 内置（Built-In）
 

@@ -1,3 +1,5 @@
+
+
 Vue.createApp({
   data() {
     return {
@@ -12,8 +14,6 @@ Vue.createApp({
     $.getJSON('/api/articles.api.json', function (data) {
 
       self.posts = data;
-
-      console.log(JSON.stringify(data));
 
       setTimeout(function () {
         lazyload(document.querySelectorAll(".lazyload"));

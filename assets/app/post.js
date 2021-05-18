@@ -10,18 +10,6 @@ Vue.createApp({
   mounted() {
     let $this = this;
 
-    const typedTexts = document.querySelectorAll('.typed-text');
-    if (typedTexts.length && window.Typed) {
-      typedTexts.forEach((typedText) => {
-        return new window.Typed(typedText, {
-          strings: JSON.parse(typedText.getAttribute('data-typed-text')),
-          typeSpeed: 100,
-          loop: true,
-          backDelay: 1500,
-        });
-      });
-    }
-
     $this.initMarkdown();
     $this.processYmal($this.markdown.ymal);
     $this.processContent($this.markdown.content);
