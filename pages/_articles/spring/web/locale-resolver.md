@@ -1,10 +1,14 @@
 ---
 formatterOff: "@formatter:off"
-title: '@LocaleResolver'
+title: 'Spring MVC 九大核心策略之 LocaleResolver'
 subtitle: locale-resolver 
-summary: locale-resolver 
-banner: 'https://images.unsplash.com/photo-1584967918940-a7d51b064268'
-tags: [] 
+summary: Spring MVC 语言环境解析策略
+typed:
+  - LocaleResolver.
+  - LocaleContextResolver.
+banner: https://images.unsplash.com/photo-1584967918940-a7d51b064268
+categories: [springmvc]
+tags: [springmvc,ssm] 
 date: 2021-04-30 14:49:16 +800 
 version: 1.0
 formatterOn: "@formatter:on"
@@ -12,7 +16,7 @@ formatterOn: "@formatter:on"
 
 # LocaleResolver
 
-## What
+## 简介（What）
 
 `LocaleResolver`是SpringMVC定义的基于Web的语言环境策略接口，用于解析当前请求所接收的语言环境，为项目的国际化提供支持。
 
