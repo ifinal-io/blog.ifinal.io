@@ -1,8 +1,20 @@
 ---
 formatterOff: "@formatter:off"
-title: Spring MVC 九大策略初识
+title: Spring MVC DispatchServlet 九大策略
 subtitle: strategies 
-summary: strategies 
+summary: Spring MVC DispatchServlet 九大策略
+typed:
+  - MultiPartResolver.
+  - LocaleResolver.
+  - ThemeResolver.
+  - HandlerMapping.
+  - HandlerAdapter.
+  - HandlerExceptionResolver.
+  - RequestToViewNameTranslator.
+  - ViewResolver.
+  - FlashMapManager.
+banner: https://images.unsplash.com/photo-1508739773434-c26b3d09e071
+categories: [springmvc,ssm]
 tags: [springmvc,ssm] 
 date: 2021-04-30 12:11:14 +800 
 version: 1.0

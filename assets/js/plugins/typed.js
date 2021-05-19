@@ -6,7 +6,7 @@ $(function () {
       if (strings) {
         return new window.Typed(typedText, {
           strings: strings,
-          typeSpeed: 100,
+          typeSpeed: 30,
           loop: true,
           backDelay: 1500,
         });
