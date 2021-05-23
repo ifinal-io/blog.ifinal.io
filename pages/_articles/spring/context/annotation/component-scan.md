@@ -2,8 +2,11 @@
 formatterOff: "@formatter:off"
 title: "Spring是如何进行组件扫描的"
 subtitle: component-scan 
-summary: 组件扫描
-tags: [spring,annotation] 
+summary: Spring Ioc 配置类之组件扫描
+typed:
+  - '@ComponentScan.'
+categories: [spring]
+tags: [spring] 
 date: 2021-01-21 20:50:48 +800 
 version: 1.0
 formatterOn: "@formatter:on"

@@ -2,8 +2,11 @@
 formatterOff: "@formatter:off"
 title: ConfigurationClassPostProcessor
 subtitle: configuration-class-post-processor 
-summary: configuration-class-post-processor 
-tags: [] 
+summary: Spring Ioc 配置类处理器
+typed:
+  - ConfigurationClassPostProcessor.
+categpries: [spring] 
+tags: [spring] 
 date: 2021-02-04 21:14:34 +800 
 version: 1.0
 formatterOn: "@formatter:on"
@@ -45,4 +48,3 @@ flowchart TD
 
 1. 从`BeanDefinitionRegistry`找到符合`ConfigurationClass`定义的`BeanDefinition`并排序;
 2. 使用`ConfigurationClassParser`解析`ConfigurationClass`。
-   
