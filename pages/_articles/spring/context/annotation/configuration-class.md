@@ -9,6 +9,7 @@ typed:
   - '@ComponentScan.'
   - '@Import.'
   - '@ImportResource.'
+banner: https://images.unsplash.com/photo-1484100356142-db6ab6244067
 categories: [spring]
 tags: [spring,ioc] 
 date: 2021-01-22 16:49:09 +800 

@@ -24,6 +24,12 @@
 ├── README.md # README
 ```
 
+## 博文
+
+### Spring IOC
+
+* [Spring IOC 中含有特殊功能的配置类](pages/_articles/spring/context/annotation/configuration-class.md)
+
 ## 公众号
 
 ![ifinal](ifinal.jpg)
