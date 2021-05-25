@@ -187,7 +187,7 @@ registry.addInterceptor(interceptor)
     }
 ```
 
-如果有被可描述拦截规则的自定义注解，则配置基拦截规则：
+如果有被可描述拦截规则的自定义注解，则配置其拦截规则：
 
 ```java
     final Interceptor annotation = AnnotationUtils.getAnnotation(targetClass, Interceptor.class);
