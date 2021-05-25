@@ -70,7 +70,8 @@
     display: none;
 }
 
-.markdown h2 {
+.markdown h2,
+.markdown h3{
     font-size: 1.3rem;
     border-bottom: 2px solid rgb(239, 112, 96);
 }

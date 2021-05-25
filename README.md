@@ -26,9 +26,16 @@
 
 ## 博文
 
-### Spring IOC
+### Spring
+
+#### Spring IOC
 
 * [Spring IOC 中含有特殊功能的配置类](pages/_articles/spring/context/annotation/configuration-class.md)
+* [Spring IOC Bean工厂后置处理器](pages/_articles/spring/context/bean-factory-post-processor.md)
+
+#### Spring MVC
+
+* [Spring MVC 处理器拦截器](pages/_articles/spring/web/handler-interceptor.md)
 
 ## 公众号
 

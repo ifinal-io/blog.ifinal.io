@@ -5,8 +5,9 @@ subtitle: BeanFactoryPostProcessor
 description: bean-factory-post-processor 
 summary: Spring Ioc Bean 工厂后置处理器
 typed: [BeanFactoryPostProcessor.,BeanDefinitionRegistryPostProcessor.]
+categories: [springioc]
 tags: [spring,spi] 
-banner: https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81
+banner: https://images.unsplash.com/photo-1475669698648-2f144fcaaeb1
 date: 2021-05-14 13:22:15 +800 
 version: 1.0
 formatterOn: "@formatter:on"
@@ -17,6 +18,8 @@ formatterOn: "@formatter:on"
 ## 简介（What）
 
 **`BeanFactoryPostProcessor`是Spring提供的对`BeanFactory`的后置处理器扩展点，**是Spring的核心扩展点之一。
+
+通过该扩展点，开发者可以向Spring容器中添加新的`BeanDefinifion`，或者修改现有`BeanDefinition`的定义。
 
 Spring提供了`BeanFactoryPostProcessor`接口及基扩展接口`BeanDefinitionRegistryPostProcessor`，以便开发者能够分别对`ConfigurableListableBeanFactory`
 和`BeanDefinitionRegistry`进行扩展处理。其类关系如图所示：
@@ -36,11 +39,11 @@ classDiagram
 
 ## 特性（Features）
 
-### Registration
+### 注册（Registration）
 
 `BeanFactoryPostProcessor`可以由`ApplicationContext`容器**自动检测**并在`Bean`实例化之前应用；也可以通过编程接口`ConfigurableApplicationContext.addBeanFactoryPostProcessor(BeanFactoryPostProcessor postProcessor)`进行注册。
 
-### Ordering
+### 排序（Ordering）
 
 `BeanFactoryPostProcessor`按照以下顺序进行调用：
 
@@ -368,7 +371,7 @@ final class PostProcessorRegistrationDelegate {
 
 
 
-## Build-In
+## 内置（Built-In）
 
 Spring内置了大量`BeanFactoryPostProcessor`用于框架处理，如用于配置类处理的`ConfigurationClassPostProcessor`、用于解析`@EvenetListener`注解的`EventListenerMethodProcessor`等。
 
