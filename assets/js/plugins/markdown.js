@@ -1,7 +1,0 @@
-class Markdown {
-
-
-  render(element){
-
-  }
-}
