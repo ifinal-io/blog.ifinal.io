@@ -1,9 +1,16 @@
 ---
 formatterOff: "@formatter:off"
-title: SpringApplicationRunListener
+title: SpringApplication生命周期回调
 subtitle: spring-application-run-listener 
 summary: SpringApplication运行过程监听器
-typed: [SpringApplicationRunListener.]
+typed: 
+    - Starting.
+    - EnvironmentPrepared.
+    - ContextInitialized.
+    - Prepared.
+    - Started.
+    - Ready.
+    - Failed.
 categories: [springboot]
 tags: [springboot]
 banner: https://images.unsplash.com/photo-1502224562085-639556652f33
@@ -16,6 +23,17 @@ formatterOn: "@formatter:on"
 # SpringApplicationRunListener
 
 ## 简介（What）
+
+`SpringApplication`把启动流程拆分为了以下几个阶段，并提供了相应的回调：
+
+1. **Starting**: 启动中，当应用开启启动时调用。
+2. EnvironmentPrepared: 当应用环境准备好时调用，可对现有配置进行修改或添加配置。
+3. ContextInitialized：当容器初始化时被调用，如注入自定义Bean，一般在开发Spring扩展时使用。
+4. Prepared：
+5. Started
+6. Ready
+7. Failed
+
 
 **`SpringApplicationRunListener`是Spring提供的用于监听`SpringApplication`的`run`方法的监听器。**
 
