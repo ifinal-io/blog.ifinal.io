@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh">
-
+<html lang="en">
 {% include head.html %}
-
-<body class="profile-page sidebar-collapse" data-spy="scroll" data-target="#toc" data-offset="50">
+<body class="off-canvas-sidebar blog-posts " data-spy="scroll" data-target="#toc" data-offset="50">
+<!-- Navbar -->
 {% include navbar/navbar.html %}
-<div class="page-header header-filter" data-parallax="true"
-     style="background-image: url('{{ page.banner }}?w=1920&h=600&fit=crop');height: 600px">
+<!-- End Navbar -->
+<!-- End Navbar -->
+<div class="page-header header-filter header-small"  data-parallax="true"
+     style="background-image: url('{{ page.banner }}?w=1920&h=600&fit=crop');max-height: 600px !important; padding-top: 100px">
   <div class="container">
 
     <div class="row">
@@ -14,7 +15,7 @@
         <a href="#" class="btn btn-round btn-lg btn-outline-success">
           <span class="material-icons">book</span> {{ page.categories[0] | default: 'Spring' }}
         </a>
-        <h1 class="title">{{ page.summary }}</h1>
+        <h1 class="title text-white">{{ page.summary }}</h1>
         <h2><span class="typed-text font-weight-bold" data-typed-text='{{ page.typed | jsonify }}'></span></h2>
         <br>
 
@@ -82,11 +83,11 @@
           <div class="tab-content tab-space">
             <div class="tab-pane active" id="preview">
               <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-9">
                   <article class="markdown" id="markdown"></article>
                 </div>
-                <div class="col-md-2">
-                  <div class="sticky-sidebar sticky-top" style="top: 100px;">
+                <div class="col-md-3">
+                  <div class="sticky-sidebar sticky-top terms-sidebar" style="top: 100px;">
                     <div class="toc" id="toc">
                     </div>
                   </div>
@@ -108,6 +109,22 @@
 </div>
 {% include script.html %}
 <script src="/assets/app/post.js"></script>
+<script>
+  $(document).ready(function() {
+    var typedTexts = document.querySelectorAll('.typed-text');
+
+    if (typedTexts.length && window.Typed) {
+      typedTexts.forEach(function (typedText) {
+        return new window.Typed(typedText, {
+          strings: JSON.parse(typedText.getAttribute("data-typed-text")),
+          typeSpeed: 30,
+          loop: true,
+          backDelay: 1500
+        });
+      });
+    }
+  });
+</script>
 </body>
 
 </html>

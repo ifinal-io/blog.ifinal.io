@@ -23,7 +23,7 @@ Vue.createApp({
     initMarkdown() {
       let text = document.getElementById('editor').value;
       // let text = document.getElementById('code').innerText;
-      console.log(text);
+      // console.log(text);
       document.getElementById('code').append(text);
 
       this.markdown = this.parseMarkdown(text);
