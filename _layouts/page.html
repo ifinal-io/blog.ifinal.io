@@ -5,7 +5,8 @@
 
 <body class="sidebar-collapse" data-spy="scroll" data-target="#toc" data-offset="50">
 {% include navbar/navbar.html %}
-<div class="page-header header-filter header-x-small" data-parallax="true" style="background-image: url('{{ page.banner }}');">
+<div class="page-header header-filter header-x-small" data-parallax="true"
+     style="background-image: url('{{ page.banner }}');">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
@@ -17,7 +18,7 @@
   </div>
 </div>
 
-<div class="main " id="app">
+<div class="main main-raised" id="app">
 
   {{ content }}
 
@@ -61,7 +62,7 @@
 {% include script.html %}
 <script src="/assets/app/home.js"></script>
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     var typedTexts = document.querySelectorAll('.typed-text');
 
     if (typedTexts.length && window.Typed) {
