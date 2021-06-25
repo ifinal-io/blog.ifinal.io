@@ -24,13 +24,17 @@ formatterOn: "@formatter:on"
 
   <div class="container">
     <div class="col-md-9">
-      <div class="card" v-for="post in posts">
-        <img class="card-img-top" :src="post.banner + '?w=800&h=400&fit=crop&url='+post.url" :alt="post.title">
+      <div class="card mb-5" v-for="post in posts">
+        <div class="card-header card-header-image m-0 p-0">
+          <a :href="post.url">
+            <img class="img" :src="post.banner + '?w=800&h=400&fit=crop&url='+post.url" :alt="post.title">
+            <h4 class="card-title" v-text="post.title"></h4>
+          </a>
+        </div>
+
         <div class="card-body">
-          <h4 class="card-title" v-text="post.title">标题</h4>
           <h6 class="card-category text-info" v-text="post.categories[0]"></h6>
           <p class="card-description" v-text="post.summary"></p>
-
         </div>
         <div class="card-footer">
           <div class="author">
