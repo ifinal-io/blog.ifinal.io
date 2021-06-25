@@ -25,13 +25,12 @@ formatterOn: "@formatter:on"
   <div class="container">
     <div class="col-md-9">
       <div class="card mb-5" v-for="post in posts">
-        <div class="card-header card-header-image m-0 p-0">
-          <a :href="post.url">
-            <img class="img" :src="post.banner + '?w=800&h=400&fit=crop&url='+post.url" :alt="post.title">
-            <h4 class="card-title" v-text="post.title"></h4>
+        <div class="card-header position-relative card-header-image shadow-none m-0 p-0">
+          <a :src="post.url">
+            <img class="card-img-top" style="border-bottom-left-radius: 0;border-bottom-right-radius: 0" :src="post.banner + '?w=800&h=400&fit=crop&url='+post.url" :alt="post.title">
+            <h4 class="card-title text-white" v-text="post.title">Card title</h4>
           </a>
         </div>
-
         <div class="card-body">
           <h6 class="card-category text-info" v-text="post.categories[0]"></h6>
           <p class="card-description" v-text="post.summary"></p>
