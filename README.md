@@ -28,6 +28,10 @@
 
 ### Spring
 
+#### Spring Boot
+
+* [Spring 环境后置处理器](https://mp.weixin.qq.com/s/-wjr5CmMdkJV4NUVDwPzlQ)
+
 #### Spring IOC
 
 * [Spring IOC 中含有特殊功能的配置类](pages/_articles/spring/context/annotation/configuration-class.md)
