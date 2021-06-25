@@ -3,9 +3,9 @@
 
 {% include head.html %}
 
-<body class="profile-page sidebar-collapse" data-spy="scroll" data-target="#toc" data-offset="50">
+<body class="sidebar-collapse" data-spy="scroll" data-target="#toc" data-offset="50">
 {% include navbar/navbar.html %}
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ page.banner }}');height: 600px">
+<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{ page.banner }}');">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<div class="main main-raised" id="app">
+<div class="main " id="app">
 
   {{ content }}
 
