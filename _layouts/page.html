@@ -64,6 +64,22 @@
 </footer>
 {% include script.html %}
 <script src="/assets/app/home.js"></script>
+<script>
+  $(document).ready(function() {
+    var typedTexts = document.querySelectorAll('.typed-text');
+
+    if (typedTexts.length && window.Typed) {
+      typedTexts.forEach(function (typedText) {
+        return new window.Typed(typedText, {
+          strings: JSON.parse(typedText.getAttribute("data-typed-text")),
+          typeSpeed: 30,
+          loop: true,
+          backDelay: 1500
+        });
+      });
+    }
+  });
+</script>
 </body>
 
 </html>
