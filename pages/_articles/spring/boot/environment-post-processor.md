@@ -5,7 +5,8 @@ subtitle: environment-post-processor
 summary: Spring环境后置处理器
 typed: [EnvironmentPostProcessor.]
 categories: [springboot] 
-tags: [springboot] 
+tags: [springboot]
+banner: https://images.unsplash.com/photo-1550029402-8ea9bfe19f04
 date: 2021-06-25 10:48:10 +800 
 version: 1.0
 formatterOn: "@formatter:on"

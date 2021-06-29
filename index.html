@@ -10,7 +10,7 @@ typed:
   - build with jekyll.
   - write by markdown.
 tags: []
-<!--banner: https://images.unsplash.com/photo-1531297484001-80022131f5a1-->
+<!--banner: https://images.unsplash.com/photo-1501791187590-9ef2612ba1eb-->
 brand: Blog
 sidebar: false
 class: index-page
@@ -26,7 +26,7 @@ formatterOn: "@formatter:on"
     <div class="col-md-9">
       <div class="card mb-5" v-for="post in posts">
         <div class="card-header position-relative card-header-image shadow-none m-0 p-0">
-          <a :src="post.url">
+          <a :href="post.url">
             <img class="card-img-top" style="border-bottom-left-radius: 0;border-bottom-right-radius: 0" :src="post.banner + '?w=800&h=400&fit=crop&url='+post.url" :alt="post.title">
             <h4 class="card-title text-white" v-text="post.title">Card title</h4>
           </a>
