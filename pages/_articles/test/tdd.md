@@ -204,6 +204,38 @@ class UserServiceImplTest {
 }
 ```
 
+### ParameterizedTest(参数化测试)
+
+除了使用`@Test`进行单一的用例测试,`JUnit`还提供了对参数化的测试的支持，使用`@ParameterizedTest`注解替代`@Test`，并在测试方法声明参数，然后使用`@ValueSource`指定参数列表即可：
+
+```java
+@Slf4j
+class ParameterizedTestExampleTest {
+
+    @ParameterizedTest
+    @ValueSource(strings = {"hello", "parameterized", "test"})
+    void parameterizedTest(String parameter) {
+        logger.info(parameter);
+    }
+
+}
+```
+
+> `@ValueSource`支持**基本类型**和`String`。
+
+### ArgumentCaptor(参数捕获)
+
+`ArgumentCaptor`可用于捕获目标方法内的过程参数，以验证目标方法是否按照预期流程执行和参数是否正确。
+
+```java
+    // 实例化一个参数捕获器
+    ArgumentCaptor<Person> argument = ArgumentCaptor.forClass(Person.class);
+    // 执行目标方法    
+    verify(mock).doSomething(argument.capture());
+    // 校验捕获的参数    
+    assertEquals("John", argument.getValue().getName());
+```
+
 ## Tools(工具)
 
 ### Jacoco
