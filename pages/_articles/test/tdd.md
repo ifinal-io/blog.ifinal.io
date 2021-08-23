@@ -30,6 +30,30 @@ TDD的原理是在开发功能代码之前，先编写单元测试用例代码�
 
 进行测试之前，首先要明确测试的目标，一般为**某一个特定类中的某个特定方法**。
 
+如用户登录，输入正确的用户名和密码时，返回用户信息，否则抛出`UserOrPasswordNotMatchedException`的异常：
+
+```java
+public interface UserService {
+
+    /**
+     * 用户登录
+     *
+     * @param name     用户名
+     * @param password 密码
+     * @return 用户信息
+     * @throws UserOrPasswordNotMatchedException 当用户名或密码不匹配时，抛出该异常。
+     */
+    @NonNull
+    User login(@NotBlank String name, @NotBlank String password);
+
+    class UserOrPasswordNotMatchedException extends RuntimeException {
+        public UserOrPasswordNotMatchedException() {
+            super("用户名或密码不正确");
+        }
+    }
+}
+```
+
 ### Assertions(断言)
 
 `Assertions`(断言)用于判定目标的某一项指标是否满足测试要求，如：
@@ -37,6 +61,81 @@ TDD的原理是在开发功能代码之前，先编写单元测试用例代码�
 * 目标方法的返回值是否与期望一致；
 * 目标方法是否被调用；
 * ……
+
+针对用户登录的场景，可以写出如下断言：
+
+```java
+@ExtendWith(MockitoExtension.class)
+class UserServiceImplTest {
+    @InjectMocks
+    private UserServiceImpl userService;
+
+    @Test
+    void should_login_success_when_found_user() {
+
+        final User user = userService.login("user", "password");
+
+        assertNotNull(user);
+        assertEquals("user", user.getName());
+
+    }
+
+
+    @Test
+    void should_throw_exception_when_not_found_user() {
+
+        final UserOrPasswordNotMatchedException exception = assertThrows(UserOrPasswordNotMatchedException.class, () -> userService.login("user", "password"));
+        assertEquals("用户名或密码不正确", exception.getMessage());
+
+    }
+}
+```
+
+由于`UserServiceImpl`为空实现，所以现在运行测试都不会通过：
+
+* should_login_success_when_found_user
+
+```shell
+org.opentest4j.AssertionFailedError: expected: not <null>
+```
+
+* should_throw_exception_when_not_found_user
+
+```shell
+org.opentest4j.AssertionFailedError: Expected org.ifinalframework.data.mybatis.dao.mapper.UserService.UserOrPasswordNotMatchedException to be thrown, but nothing was thrown.
+```
+
+这个时候，来填写`UserServiceImpl`的实现，其依赖于`UserMapper`：
+
+```java
+class UserServiceImpl implements UserService {
+
+    @Resource
+    private UserMapper userMapper;
+
+    @NonNull
+    @Override
+    public User login(@NotBlank String name, @NotBlank String password) {
+
+        final User user = userMapper.selectOne(new UserQuery(name, password));
+
+        if (Objects.isNull(user)) {
+            throw new UserOrPasswordNotMatchedException();
+        }
+
+        return user;
+
+    }
+}
+```
+
+此时，再次运行测试，`should_throw_exception_when_not_found_user`的提示会变成为：
+
+```shell
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown ==> expected: <org.ifinalframework.data.mybatis.dao.mapper.UserService.UserOrPasswordNotMatchedException> but was: <java.lang.NullPointerException>
+```
+
+这是因为实现类的依赖对象`UserMapper`并有注入。
 
 ### Mock(打桩)
 
@@ -49,16 +148,60 @@ TDD的原理是在开发功能代码之前，先编写单元测试用例代码�
 * 构造异常；
 * ……
 
-#### 返回值
+在用户登录的例子中，其实现依赖于`UserMapper`，而这个依赖可能还没有实现或是第三方的接口不方便于调试，这个时候，可以使用`Mock`来对这个对象进行打桩，以构造的方式模拟业务流程。
 
 ```java
-when(test.method()).thenReturn(result);
+    @Mock
+    private UserMapper userMapper;
 ```
 
-#### 异常
+再一次执行测试，发现`should_throw_exception_when_not_found_user`竟然神奇的通过了。这是因为`Mock`对象，对于返回引用类型的方法，默认返回`null`。
+
+对于找不到用户信息的场景，暂且告一段落，如果来模拟能找到用户信息的场景呢？在测试方法中添加如下代码：
 
 ```java
-when(target.method()).thenThrow(exception);
+    when(userMapper.selectOne(any(IQuery.class))).thenReturn(new User("user", "password"));
+```
+
+上述代码的意思是**当`userMaper.selectOne(IQuery)`方法被调用时，返回一个新的`User`实例。
+
+这样就实现了使用`Mock`对象替代三方接口依赖了。
+
+再次运行测试，发现两个测试都通过了。
+
+完整测试代码如下：
+
+```java
+
+@ExtendWith(MockitoExtension.class)
+class UserServiceImplTest {
+    @InjectMocks
+    private UserServiceImpl userService;
+
+    @Mock
+    private UserMapper userMapper;
+
+    @Test
+    void should_login_success_when_found_user() {
+
+        when(userMapper.selectOne(any(IQuery.class))).thenReturn(new User("user", "password"));
+
+        final User user = userService.login("user", "password");
+
+        assertNotNull(user);
+        assertEquals("user", user.getName());
+
+    }
+
+
+    @Test
+    void should_throw_exception_when_not_found_user() {
+
+        final UserOrPasswordNotMatchedException exception = assertThrows(UserOrPasswordNotMatchedException.class, () -> userService.login("user", "password"));
+        assertEquals("用户名或密码不正确", exception.getMessage());
+
+    }
+}
 ```
 
 ## Tools(工具)
@@ -67,9 +210,70 @@ when(target.method()).thenThrow(exception);
 
 `Jacoco`是一个测试覆盖率报告生成插件，集成该插件可以在项目构建时自动执行测试并生成测试报告，同时可设置测试指标，如果指标未达成，可强制结束构建直到测试指标达标。
 
-测试指标包含以下几种：
+* 第一步，在`pom.xml`的`build->plugins`节点下添加以下插件配置：
 
-* 测试覆盖率（类、方法）
+```xml
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <configuration>
+        <excludes>
+            <exclude>**/*Entity.java</exclude>
+            <exclude>**/*Entity.class</exclude>
+        </excludes>
+    </configuration>
+    <executions>
+        <execution>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+* 第二步，执行`test`:
+
+```shell
+mvn clean test
+```
+
+* 第三步，查看报告文件
+
+在浏览器中打开生成的测试报告，路径为：
+
+```shell
+/target/site/jacoco/index.html
+```
+
+### Git HooK
+
+`Git Hook`是一种勾子函数，可在执行`git`相关命令时，触发相关脚本的执行，如在`git commit`之前执行测试，以避免将有缺陷的代码提交到仓库中。
+
+在项目根目录下添加`.githook/pre-commit`文件，内容如下：
+
+```shell
+#!/bin/sh
+#execute shell before commit,check the code
+
+mvn test
+#得到检测结果，没有问题 执行结果为0；有问题 执行结果为非0
+check_result=$?
+if [ $check_result -eq 0 ]
+then 
+    echo "项目执行Test检测成功!!!"
+else    
+    echo "提交失败，源于项目存在代码测试问题（mvn test）"
+    exit 1
+fi
+```
 
 ## 原则
 
