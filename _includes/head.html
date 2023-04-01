@@ -1,37 +1,33 @@
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ===============================================-->
-  <!--    Document Title-->
-  <!-- ===============================================-->
-  <title>{{ page.title }}</title>
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>{{ page.title }} | Final </title>
 
-  <!-- ===============================================-->
-  <!--    Favicons-->
-  <!-- ===============================================-->
-  <link rel="apple-touch-icon" sizes="180x180" href="https://static.ifinal.io/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://static.ifinal.io/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://static.ifinal.io/favicons/favicon-16x16.png">
-  <link rel="shortcut icon" type="image/x-icon" href="https://static.ifinal.io/favicons/favicon.ico">
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    {% include favicons.html %}
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://static.ifinal.io/js/config.js"></script>
+    <script src="https://prium.github.io/falcon/v3.8.0/vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
 
-  <!-- ===============================================-->
-  <!--    Stylesheets-->
-  <!-- ===============================================-->
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://static.ifinal.io/fonts/material-icons.css"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    {% include style-sheets.html %}
+    <!-- Markdown 主题  -->
+    <link href="https://static.ifinal.io/css/markdown/orangeheart.css" rel="stylesheet"/>
 
-  <!--  Material Css -->
-<!--  <link href="https://static.ifinal.io/css/material-dashboard.css" rel="stylesheet"/>-->
-  <link href="https://static.ifinal.io/css/material-kit.css" rel="stylesheet"/>
-  <link href="/assets/css/user.css" rel="stylesheet"/>
-  <!-- Markdown 主题  -->
-  <link href="https://static.ifinal.io/css/markdown/orangeheart.css" rel="stylesheet"/>
-
-  <!--  代码高亮  -->
-  <link rel="stylesheet" href="https://static.ifinal.io/css/highlight/atom-one-dark.css">
-  <script src="//unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+    <!--  代码高亮  -->
+    <link rel="stylesheet" href="https://static.ifinal.io/css/highlight/atom-one-dark.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.0.1/build/highlight.min.js"></script>
+    <!--GitTalk-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 
 </head>

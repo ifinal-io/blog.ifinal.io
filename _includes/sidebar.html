@@ -1,0 +1,85 @@
+<nav class="navbar navbar-light navbar-vertical navbar-expand-xl" id="sidebar">
+    <script>
+        var navbarStyle = localStorage.getItem("navbarStyle");
+        if (navbarStyle && navbarStyle !== 'transparent') {
+            document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
+        }
+    </script>
+    <div class="d-flex align-items-center">
+        <div class="toggle-icon-wrapper">
+            <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Toggle Navigation" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+        </div><a class="navbar-brand" href="/index.html">
+        <div class="d-flex align-items-center py-3">
+            <img class="me-2" src="https://static.ifinal.io/favicons/favicon.png" alt="" width="40">
+            <span class="font-sans-serif">final</span>
+        </div>
+    </a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+        <div class="navbar-vertical-content scrollbar">
+            <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
+                <li class="nav-item" v-for="(menu1,i1) in sidebar.menus">
+                    <div class="row navbar-vertical-label-wrapper mt-3 mb-2" v-if="menu1.group">
+                        <div class="col-auto navbar-vertical-label" v-html="menu1.group">App</div>
+                        <div class="col ps-0">
+                            <hr class="mb-0 navbar-vertical-divider">
+                        </div>
+                    </div>
+                    <a class="nav-link "
+                       :class="page.menus[0] == menu1.id && !menu1.menus ? 'active' : '', menu1.menus ? 'dropdown-indicator' : ''"
+                       :href=" menu1.menus ? '#' + menu1.id : menu1.url ? menu1.url : '/' + page.collection + '/'  + menu1.id " role="button"
+                       :data-bs-toggle="menu1.menus ? 'collapse' : ''" :aria-expanded="page.menus[0] == menu1.id" aria-controls="dashboard">
+                        <div class="d-flex align-items-center">
+                            <span class="nav-link-icon material-icons text-secondary" v-html="menu1.icon">notifications</span>
+                            <span class="nav-link-text ps-1" v-html="menu1.name">Dashboard</span>
+                        </div>
+                    </a>
+                    <ul class="nav collapse"
+                        :class="page.menus[0] == menu1.id ? 'show' : ''"
+                        :id="menu1.id" v-if="menu1.menus" >
+                        <li class="nav-item" v-for="(menu2,i2) in menu1.menus">
+                            <a class="nav-link"
+                               :class="page.menus[0] == menu1.id && page.menus[1] == menu2.id && !menu2.menus ? 'active' : '', menu2.menus ? 'dropdown-indicator' : ''"
+                               :href="menu2.menus ? '#' + menu1.id +'--' + menu2.id : menu2.url ? menu2.url : '/' + page.collection + '/'  + menu1.id + '/' + menu2.id"
+                               :data-bs-toggle="menu2.menus ? 'collapse' : ''"
+                               :aria-expanded="page.menus[0] == menu1.id && page.menus[1] == menu2.id">
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-text ps-1" v-html="menu2.name">Default</span>
+                                </div>
+                            </a>
+                            <ul class="nav collapse"
+                                :class="page.menus[0] == menu1.id && page.menus[1] == menu2.id ? 'show' : ''"
+                                :id="menu1.id +'--' + menu2.id" v-if="menu2.menus" >
+                                <li class="nav-item" v-for="(menu3,i3) in menu2.menus">
+                                    <a class="nav-link"
+                                       :class="page.menus[2] == menu3.id && !menu3.menus  ? 'active' : '', menu3.menus ? 'dropdown-indicator' : ''"
+                                       :href="menu3.menus ? '#' + menu1.id +'--' + menu2.id + '--' + menu3.id: menu3.url ? menu3.url : '/' + page.collection + '/'  + menu1.id + '/' + menu2.id + '/' + menu3.id "
+                                       :data-bs-toggle="menu3.menus ? 'collapse' : ''"
+                                       :aria-expanded="page.menus[0] == menu1.id && page.menus[1] == menu2.id && page.menus[2] == menu3.id" aria-controls="level-four">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text ps-1" v-html="menu3.name">Item 7</span>
+                                        </div>
+                                    </a>
+                                    <ul class="nav collapse"
+                                        :class="page.menus[0] == menu1.id && page.menus[1] == menu2.id && page.menus[2] == menu3.id ? 'show' : ''"
+                                        :id="menu1.id +'--' + menu2.id + '--' + menu3.id" v-if="menu3.menus" >
+                                        <li class="nav-item" v-for="(menu4,i4) in menu3.menus">
+                                            <a class="nav-link"
+                                               :class="page.menus[0] == menu1.id && page.menus[1] == menu2.id && page.menus[2] == menu3.id && page.menus[3] == menu4.id && !menu4.menus  ? 'active' : '', menu4.menus ? 'dropdown-indicator' : ''"
+                                               :href="menu3.url ? menu3.url : '/' + page.collection + '/'  + menu1.id + '/' + menu2.id + '/' + menu3.id + '/' + menu4.id "
+                                                :aria-expanded="page.menus[0] == menu1.id && page.menus[1] == menu2.id && page.menus[2] == menu3.id && page.menus[3] == menu4.id" >
+                                                <div class="d-flex align-items-center">
+                                                    <span class="nav-link-text ps-1" v-html="menu4.name">Item 9</span>
+                                                </div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,4 +1,3 @@
-{% assign paths = page.path | replace: '_', '' | replace: '.md' : '' | replace: '.html' : '' | split: '/' %}
 <script>
   Vue.createApp({
     data() {
@@ -22,11 +21,9 @@
       }
     },
     mounted() {
-      let $this = this;
-      $this.page.menus = $this.page.paths.slice(1);
     },
     methods: {
     }
   })
-  .mount('#sidebar')
+  .mount('#navbar')
 </script>
