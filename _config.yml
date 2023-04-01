@@ -35,16 +35,8 @@ kramdown:
 theme: minima
 encoding: UTF-8
 # 分页
-#pagination:
-#  enabled: true
-#  per_page: 5
-#  offset: 2
-#  permalink: '/page/:num/'
-#  title: ':title - page :num of :max'
-#  limit: 0
-#  sort_field: 'date'
-#  sort_reverse: true
-#  collection: 'all'
+paginate: 1
+paginate_path: /blogs/page:num
 sass:
   sass_dir: _sass
   style: compressed
@@ -58,7 +50,7 @@ plugins:
   - jekyll-default-layout
   - jekyll-gist
   - jekyll-optional-front-matter
-#  - jekyll-paginate
+  - jekyll-paginate
 #  - jekyll-paginate-v2
   - jekyll-titles-from-headings
 collections_dir: pages

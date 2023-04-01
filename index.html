@@ -21,33 +21,33 @@ formatterOn: "@formatter:on"
 ---
 
 <section class="section">
+    <div class="container">
+        <div class="col-md-12">
+            {% for post in paginator.posts %}
+            <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+            <p class="author">
+                <span class="date">{{ post.date }}</span>
+            </p>
+            {% endfor %}
+            <div class="pagination">
+                {% if paginator.previous_page %}
+                <a href="{{ paginator.previous_page_path }}" class="previous">
+                    Previous
+                </a>
+                {% else %}
+                <span class="previous">Previous</span>
+                {% endif %}
+                <span class="page_number ">
+    Page: {{ paginator.page }} of {{ paginator.total_pages }}
+  </span>
+                {% if paginator.next_page %}
+                <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+                {% else %}
+                <span class="next ">Next</span>
+                {% endif %}
+            </div>
 
-  <div class="container">
-    <div class="col-md-9">
-      <div class="card mb-5" v-for="post in posts">
-        <div class="card-header position-relative card-header-image shadow-none m-0 p-0">
-          <a :href="post.url">
-            <img class="card-img-top" style="border-bottom-left-radius: 0;border-bottom-right-radius: 0" :src="post.banner + '?w=800&h=400&fit=crop&url='+post.url" :alt="post.title">
-            <h4 class="card-title text-white" v-text="post.title">Card title</h4>
-          </a>
         </div>
-        <div class="card-body">
-          <h6 class="card-category text-info" v-text="post.categories[0]"></h6>
-          <p class="card-description" v-text="post.summary"></p>
-        </div>
-        <div class="card-footer">
-          <div class="author">
-            <a href="#pablo">
-              <img :src="post.author.avatar" alt="..." class="avatar img-raised">
-              <span v-text="post.author.name">Tania Andrew</span>
-            </a>
-          </div>
-          <div class="stats ml-auto">
-            <i class="material-icons">event</i><span v-text="post.date"></span>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
 </section>
