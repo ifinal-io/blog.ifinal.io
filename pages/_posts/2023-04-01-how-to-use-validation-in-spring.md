@@ -1,322 +1,379 @@
 ---
 formatterOff: "@formatter:off"
-subtitle: tdd 
-summary: 测试驱动开发
-typed: [Test-Driven Development]
-categories: [test] 
-tags: [test] 
+title: 如何在Spring中使用校验
+subtitle: Spring Validation 
+summary: SpringValidation
+typed: ['@Validated','@Valid']
+categories: [spring] 
+tags: [spring] 
 version: 1.0
 formatterOn: "@formatter:on"
 ---
 
-# 测试驱动开发
+# Validation
 
-## What——什么是TDD
+在Spring中，可以通过在方法或参数上添加`@Validated`和`@Valid`注解及配合众多`@Constraint`来实现对参数的校验。
 
-TDD 是**测试驱动开发**（`Test-Driven Development`）的简称，是敏捷开发中的一项核心实践和技术，也是一种设计方法论。
-TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试代码确定需要编写什么产品代码。
+先说结论：
 
-## Why——为什么要TDD
+* 如果参数需要值校验，则需要在方法上声明`@Validated`
+  注解同时在参数上声明需要校验的规则。如`@NotNull String name`、`@NotEmpty List<String> list`。
+* 如果参数需要嵌套校验，则需要在对应的参数上声明`@Valid`注解。
+* 如果需要分组校验，则需要（在方法或参数上）声明`@Validated`或在JavaBean中声明`@GroupSequenceProvider`。
 
-* 提升代码质量和功能健壮性
-* 降级测试成本
-* 预防上线风险
+> 从Spring Boot 2.3.0开始，需要显示添加以下依赖：
+> ```xml
+> <dependency>
+>     <groupId>org.springframework.boot</groupId>
+>     <artifactId>spring-boot-starter-validation</artifactId>
+> </dependency>
+> ```
 
-## How——如果进行TDD
+## 校验时机
 
-### Test(目标)
+### 参数校验
 
-进行测试之前，首先要明确测试的目标，一般为**某一个特定类中的某个特定方法**。
+**参数校验**指的是对每一个参数进行一对一的校验，参数之间互不影响。
 
-如用户登录，输入正确的用户名和密码时，返回用户信息，否则抛出`UserOrPasswordNotMatchedException`的异常：
+在Spring中，一个参数（Controller方法中的参数）能否被校验，取决于该参数是否有满足校验的注解：
+
+* 注解的名称是否等于`javax.validation.Valid`；
+* 注解上是否有`@Validated`元注解
+* 注解名称是否以`Valid`开头
+
+上述条件的解析源码如下：
 
 ```java
-public interface UserService {
+public abstract class ValidationAnnotationUtils {
 
-    /**
-     * 用户登录
-     *
-     * @param name     用户名
-     * @param password 密码
-     * @return 用户信息
-     * @throws UserOrPasswordNotMatchedException 当用户名或密码不匹配时，抛出该异常。
-     */
-    @NonNull
-    User login(@NotBlank String name, @NotBlank String password);
+    private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
 
-    class UserOrPasswordNotMatchedException extends RuntimeException {
-        public UserOrPasswordNotMatchedException() {
-            super("用户名或密码不正确");
+    @Nullable
+    public static Object[] determineValidationHints(Annotation ann) {
+        Class<? extends Annotation> annotationType = ann.annotationType();
+        String annotationName = annotationType.getName();
+        // 1、 注解是否为 javax.validation.Valid
+        if ("javax.validation.Valid".equals(annotationName)) {
+            return EMPTY_OBJECT_ARRAY;
         }
+        Validated validatedAnn = AnnotationUtils.getAnnotation(ann, Validated.class);
+        if (validatedAnn != null) {
+            // 2、如果注解被 @Validated 标记
+            Object hints = validatedAnn.value();
+            return convertValidationHints(hints);
+        }
+        if (annotationType.getSimpleName().startsWith("Valid")) {
+            // 3、 如果注解名称以 Valid 开头
+            Object hints = AnnotationUtils.getValue(ann);
+            return convertValidationHints(hints);
+        }
+        return null;
     }
+
+    private static Object[] convertValidationHints(@Nullable Object hints) {
+        if (hints == null) {
+            return EMPTY_OBJECT_ARRAY;
+        }
+        return (hints instanceof Object[] ? (Object[]) hints : new Object[]{hints});
+    }
+
 }
 ```
 
-### Assertions(断言)
+上述方法被调用的地方：
 
-`Assertions`(断言)用于判定目标的某一项指标是否满足测试要求，如：
+* `org.springframework.web.method.annotation.ModelAttributeMethodProcessor#validateIfApplicable`
+* `org.springframework.web.method.annotation.ModelAttributeMethodProcessor#validateValueIfApplicable`
+* `org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver#validateIfApplicable`
+* `org.springframework.web.reactive.result.method.annotation.AbstractMessageReaderArgumentResolver#extractValidationHints`
+* `org.springframework.web.reactive.result.method.annotation.ModelAttributeMethodArgumentResolver#validateIfApplicable`
 
-* 目标方法的返回值是否与期望一致；
-* 目标方法是否被调用；
-* ……
+### 方法校验
 
-针对用户登录的场景，可以写出如下断言：
+**方法校验**也叫**切面校验**，Spring中通过AOP方式在方法被调用之前对参数进行（整体）校验。
 
-```java
-@ExtendWith(MockitoExtension.class)
-class UserServiceImplTest {
-    @InjectMocks
-    private UserServiceImpl userService;
+一个（Spring Bean对象的）方法是否能被校验，取决于这个类有没有声明`@Validated`注解。
 
-    @Test
-    void should_login_success_when_found_user() {
-
-        final User user = userService.login("user", "password");
-
-        assertNotNull(user);
-        assertEquals("user", user.getName());
-
-    }
-
-
-    @Test
-    void should_throw_exception_when_not_found_user() {
-
-        final UserOrPasswordNotMatchedException exception = assertThrows(UserOrPasswordNotMatchedException.class, () -> userService.login("user", "password"));
-        assertEquals("用户名或密码不正确", exception.getMessage());
-
-    }
-}
-```
-
-由于`UserServiceImpl`为空实现，所以现在运行测试都不会通过：
-
-* should_login_success_when_found_user
-
-```shell
-org.opentest4j.AssertionFailedError: expected: not <null>
-```
-
-* should_throw_exception_when_not_found_user
-
-```shell
-org.opentest4j.AssertionFailedError: Expected org.ifinalframework.data.mybatis.dao.mapper.UserService.UserOrPasswordNotMatchedException to be thrown, but nothing was thrown.
-```
-
-这个时候，来填写`UserServiceImpl`的实现，其依赖于`UserMapper`：
+该切面由`MethodValidationPostProcessor`及其子类`FilteredMethodValidationPostProcessor`实现：
 
 ```java
-class UserServiceImpl implements UserService {
+package org.springframework.validation.beanvalidation;
 
-    @Resource
-    private UserMapper userMapper;
+@SuppressWarnings("serial")
+public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvisingPostProcessor
+        implements InitializingBean {
 
-    @NonNull
+    private Class<? extends Annotation> validatedAnnotationType = Validated.class;
+
     @Override
-    public User login(@NotBlank String name, @NotBlank String password) {
+    public void afterPropertiesSet() {
+        // 配置切面为被 Validated 标记
+        Pointcut pointcut = new AnnotationMatchingPointcut(this.validatedAnnotationType, true);
+        this.advisor = new DefaultPointcutAdvisor(pointcut, createMethodValidationAdvice(this.validator));
+    }
 
-        final User user = userMapper.selectOne(new UserQuery(name, password));
+    protected Advice createMethodValidationAdvice(@Nullable Validator validator) {
+        return (validator != null ? new MethodValidationInterceptor(validator) : new MethodValidationInterceptor());
+    }
 
-        if (Objects.isNull(user)) {
-            throw new UserOrPasswordNotMatchedException();
+}
+```
+
+* **方法**上有`@Validated`注解
+* **类**上有`@Validated`注解
+
+## 分组校验
+
+* **静态分组**：使用Spring提供的`@Validated`注解或实现Hibernate提供的提供的`@GroupSequence`注解。
+* **动态分组**：实现Hibernate提供的`@GroupSequenceProvider`注解。
+
+### @Validated
+
+通常来说，通过指定`@Validated`注解的`value()`
+，就可以实现分组校验，但这种方式只适用于静态分组，对于动态分组，则需要使用`@GroupSequenceProvider`。
+
+#### 参数分组
+
+* 如果注解是`javax.validation.Valid`，分组为空。
+* 如果注解是`@Validated`，分组为`value()`指定的值。
+* 如果注解名称以`Valid`开头，分组为`value()`指定的值。
+
+```java
+
+@RestController
+@RequestMapping("/validated-group")
+public class ValidatedGroupController {
+
+    @GetMapping("/a")
+    public Group a(@Validated(GroupA.class) Group group) {
+        return group;
+    }
+
+    @GetMapping("/b")
+    public Group b(@Validated(GroupB.class) Group group) {
+        return group;
+    }
+
+
+    public static class Group {
+        @NotNull(groups = {GroupA.class})
+        private String a;
+        @NotNull(groups = {GroupB.class})
+        private String b;
+    }
+
+    public interface GroupA {
+    }
+
+    public interface GroupB {
+    }
+}
+```
+
+参数分组的解析源码如下：
+
+```java
+public abstract class ValidationAnnotationUtils {
+
+    private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
+
+    @Nullable
+    public static Object[] determineValidationHints(Annotation ann) {
+        Class<? extends Annotation> annotationType = ann.annotationType();
+        String annotationName = annotationType.getName();
+        // 1、 注解是否为 javax.validation.Valid
+        if ("javax.validation.Valid".equals(annotationName)) {
+            return EMPTY_OBJECT_ARRAY;
         }
-
-        return user;
-
-    }
-}
-```
-
-此时，再次运行测试，`should_throw_exception_when_not_found_user`的提示会变成为：
-
-```shell
-org.opentest4j.AssertionFailedError: Unexpected exception type thrown ==> expected: <org.ifinalframework.data.mybatis.dao.mapper.UserService.UserOrPasswordNotMatchedException> but was: <java.lang.NullPointerException>
-```
-
-这是因为实现类的依赖对象`UserMapper`并有注入。
-
-### Mock(打桩)
-
-`Mock`（打桩）用于构造测试数据以模拟真实的业务流程，减少在开发阶段对第三方接口（内部或外部）的依赖，使开发者将业务的关注点聚焦于当前测试目标的功能，而非依赖的第三方。
-
-开发者可以使用打桩的方式，模拟各种业务场景，从而提高测试目标的健壮性。
-
-如：
-* 构造方法返回值；
-* 构造异常；
-* ……
-
-在用户登录的例子中，其实现依赖于`UserMapper`，而这个依赖可能还没有实现或是第三方的接口不方便于调试，这个时候，可以使用`Mock`来对这个对象进行打桩，以构造的方式模拟业务流程。
-
-```java
-    @Mock
-    private UserMapper userMapper;
-```
-
-再一次执行测试，发现`should_throw_exception_when_not_found_user`竟然神奇的通过了。这是因为`Mock`对象，对于返回引用类型的方法，默认返回`null`。
-
-对于找不到用户信息的场景，暂且告一段落，如果来模拟能找到用户信息的场景呢？在测试方法中添加如下代码：
-
-```java
-    when(userMapper.selectOne(any(IQuery.class))).thenReturn(new User("user", "password"));
-```
-
-上述代码的意思是**当`userMaper.selectOne(IQuery)`方法被调用时，返回一个新的`User`实例。
-
-这样就实现了使用`Mock`对象替代三方接口依赖了。
-
-再次运行测试，发现两个测试都通过了。
-
-完整测试代码如下：
-
-```java
-
-@ExtendWith(MockitoExtension.class)
-class UserServiceImplTest {
-    @InjectMocks
-    private UserServiceImpl userService;
-
-    @Mock
-    private UserMapper userMapper;
-
-    @Test
-    void should_login_success_when_found_user() {
-
-        when(userMapper.selectOne(any(IQuery.class))).thenReturn(new User("user", "password"));
-
-        final User user = userService.login("user", "password");
-
-        assertNotNull(user);
-        assertEquals("user", user.getName());
-
+        Validated validatedAnn = AnnotationUtils.getAnnotation(ann, Validated.class);
+        if (validatedAnn != null) {
+            // 2、如果注解被 @Validated 标记
+            Object hints = validatedAnn.value();
+            return convertValidationHints(hints);
+        }
+        if (annotationType.getSimpleName().startsWith("Valid")) {
+            // 3、 如果注解名称以 Valid 开头
+            Object hints = AnnotationUtils.getValue(ann);
+            return convertValidationHints(hints);
+        }
+        return null;
     }
 
-
-    @Test
-    void should_throw_exception_when_not_found_user() {
-
-        final UserOrPasswordNotMatchedException exception = assertThrows(UserOrPasswordNotMatchedException.class, () -> userService.login("user", "password"));
-        assertEquals("用户名或密码不正确", exception.getMessage());
-
-    }
-}
-```
-
-### ParameterizedTest(参数化测试)
-
-除了使用`@Test`进行单一的用例测试,`JUnit`还提供了对参数化的测试的支持，使用`@ParameterizedTest`注解替代`@Test`，并在测试方法声明参数，然后使用`@ValueSource`指定参数列表即可：
-
-```java
-@Slf4j
-class ParameterizedTestExampleTest {
-
-    @ParameterizedTest
-    @ValueSource(strings = {"hello", "parameterized", "test"})
-    void parameterizedTest(String parameter) {
-        logger.info(parameter);
+    private static Object[] convertValidationHints(@Nullable Object hints) {
+        if (hints == null) {
+            return EMPTY_OBJECT_ARRAY;
+        }
+        return (hints instanceof Object[] ? (Object[]) hints : new Object[]{hints});
     }
 
 }
 ```
 
-> `@ValueSource`支持**基本类型**和`String`。
+#### 方法分组
 
-### ArgumentCaptor(参数捕获)
-
-`ArgumentCaptor`可用于捕获目标方法内的过程参数，以验证目标方法是否按照预期流程执行和参数是否正确。
+优先取声明在方法上`@Validated`注解指定的分组，其次取声明在类上的`@Validated`注解指定的分组。
 
 ```java
-    // 实例化一个参数捕获器
-    ArgumentCaptor<Person> argument = ArgumentCaptor.forClass(Person.class);
-    // 执行目标方法    
-    verify(mock).doSomething(argument.capture());
-    // 校验捕获的参数    
-    assertEquals("John", argument.getValue().getName());
+
+@Validated
+@RestController
+@RequestMapping("/validated-group")
+public class ValidatedGroupController {
+
+    @Validated(GroupA.class)
+    @GetMapping("/a")
+    public Group a(@Valid Group group) {
+        return group;
+    }
+
+    @Validated(GroupB.class)
+    @GetMapping("/b")
+    public Group b(@Valid Group group) {
+        return group;
+    }
+
+
+    public static class Group {
+        @NotNull(groups = {GroupA.class})
+        private String a;
+        @NotNull(groups = {GroupB.class})
+        private String b;
+    }
+
+    public interface GroupA {
+    }
+
+    public interface GroupB {
+    }
+}
 ```
 
-## Tools(工具)
+方法分组的解析源码如下：
 
-### Jacoco
+```java
+public class MethodValidationInterceptor implements MethodInterceptor {
+    ...
 
-`Jacoco`是一个测试覆盖率报告生成插件，集成该插件可以在项目构建时自动执行测试并生成测试报告，同时可设置测试指标，如果指标未达成，可强制结束构建直到测试指标达标。
-
-* 第一步，在`pom.xml`的`build->plugins`节点下添加以下插件配置：
-
-```xml
-<plugin>
-    <groupId>org.jacoco</groupId>
-    <artifactId>jacoco-maven-plugin</artifactId>
-    <configuration>
-        <excludes>
-            <exclude>**/*Entity.java</exclude>
-            <exclude>**/*Entity.class</exclude>
-        </excludes>
-    </configuration>
-    <executions>
-        <execution>
-            <goals>
-                <goal>prepare-agent</goal>
-            </goals>
-        </execution>
-        <execution>
-            <id>report</id>
-            <phase>test</phase>
-            <goals>
-                <goal>report</goal>
-            </goals>
-        </execution>
-    </executions>
-</plugin>
+    protected Class<?>[] determineValidationGroups(MethodInvocation invocation) {
+        // 1. 查找方法上声明的 @Validated 注解
+        Validated validatedAnn = AnnotationUtils.findAnnotation(invocation.getMethod(), Validated.class);
+        if (validatedAnn == null) {
+            Object target = invocation.getThis();
+            Assert.state(target != null, "Target must not be null");
+            // 2. 查找类上声明的 @Validated 注解
+            validatedAnn = AnnotationUtils.findAnnotation(target.getClass(), Validated.class);
+        }
+        // 返回注解中声明的分组或返回空数组。
+        return (validatedAnn != null ? validatedAnn.value() : new Class<?>[0]);
+    }
+    ...
+}
 ```
 
-* 第二步，执行`test`:
+### @GroupSequence
 
-```shell
-mvn clean test
+除了Spring提供的`@Validated`注解之外，还可以使用Hibernate提供的`@GroupSequence`来指定分组序列。
+
+```java
+
+@RestController
+@RequestMapping("/group-sequence")
+public class ValidatedGroupController {
+
+    @GetMapping
+    public Group sequence(@Valid Group group) {
+        return group;
+    }
+
+    @GroupSequence({GroupA.class, GroupB.class})
+    public static class Group {
+        @NotNull(groups = {GroupA.class})
+        private String a;
+        @NotNull(groups = {GroupB.class})
+        private String b;
+    }
+
+    public interface GroupA {
+    }
+
+    public interface GroupB {
+    }
+}
 ```
 
-* 第三步，查看报告文件
+### @GroupSequenceProvider
 
-在浏览器中打开生成的测试报告，路径为：
+通过`@GroupSequence`虽然可以来指定分组序列，但这种指定方式是**静态的**、**单一的**、**不可修改的**，当需要根据参数中的某个属性来动态指定分组序列时，
+可以使用`@GroupSequenceProvider`注解，并指定一个实现了`DefaultGroupSequenceProvider`接口的分组序列提供者。
 
-```shell
-/target/site/jacoco/index.html
+```java
+@RestController
+@RequestMapping("/group-sequence-provider")
+public class ValidatedGroupController {
+
+    @GetMapping
+    public Group sequence(@Valid Group group) {
+        return group;
+    }
+
+    @GroupSequenceProvider(MyDefaultGroupSequenceProvider.class)
+    public static class Group {
+        @NotNull
+        private String group;
+        @NotNull(groups = {GroupA.class})
+        private String a;
+        @NotNull(groups = {GroupB.class})
+        private String b;
+    }
+
+    public interface GroupA {
+    }
+
+    public interface GroupB {
+    }
+
+    public static class MyDefaultGroupSequenceProvider implements DefaultGroupSequenceProvider<Group> {
+        public List<Class<?>> getValidationGroups(Group object) {
+            List<Class<?>> list = new ArrayList();
+            list.add(Group.class);
+            if (Objects.nonNull(object)) {
+                if ("A".equals(object.group)) {
+                    list.add(GroupA.class);
+                } else if ("B".equals(object.group)) {
+                    list.add(GroupB.class);
+                }
+            }
+
+            return list;
+        }
+    }
+}
 ```
 
-### Git HooK
+> DefaultGroupSequenceProvider 的实现要注意以下几点：
+> * 入参`object`可能为`null`；
+> * 不能返回`null`；
+> * 必须返回被校验类本身，如`Group.class`；
+> * 不能返回`Default.class`；
 
-`Git Hook`是一种勾子函数，可在执行`git`相关命令时，触发相关脚本的执行，如在`git commit`之前执行测试，以避免将有缺陷的代码提交到仓库中。
+## 思考
 
-在项目根目录下添加`.githook/pre-commit`文件，内容如下：
+### 如何共用`DefaultGroupSequenceProvider`？
 
-```shell
-#!/bin/sh
-#execute shell before commit,check the code
+当多个被校验类使用同一个`DefaultGroupSequenceProvider`时，如果来获取被校验类本身呢？
 
-mvn test
-#得到检测结果，没有问题 执行结果为0；有问题 执行结果为非0
-check_result=$?
-if [ $check_result -eq 0 ]
-then 
-    echo "项目执行Test检测成功!!!"
-else    
-    echo "提交失败，源于项目存在代码测试问题（mvn test）"
-    exit 1
-fi
-```
+首先，由于入参`object`可能为`null`，所以不能通过`object.getClass()`来获取被校验类本身。
+其次，在`object == null`时，虽然可以返回所有的被校验类，从而来达到返回了被校验类本身的目的，但是这样会返回无用的分组，且每增加一个被校验类时，都需要来修改该方法。
 
-## 原则
+1. 对被校验类抽取一个抽象类，该抽象类实现`DefaultGroupSequenceProvider`接口;
+2. 被校验类都继承自该抽象类， 并在`@GroupSequenceProvider`注解中指向自身（间接实现了`DefaultGroupSequenceProvider`接口）;
+3. 在抽象类方法实现中通过`this.getClass()`来获取到当前类。
 
-* **独立测试**：不同代码的测试应该相互独立，一个类对应一个测试类（对于C代码或C++全局函数，则一个文件对应一个测试文件），一个函数对应一个测试函数。用例也应各自独立，每个用例不能使用其他用例的结果数据，结果也不能依赖于用例执行顺序。 一个角色：开发过程包含多种工作，如：编写测试代码、编写产品代码、代码重构等。做不同的工作时，应专注于当前的角色，不要过多考虑其他方面的细节。
+### 如何实现一个全局的分组校验？
 
-* **测试列表**：代码的功能点可能很多，并且需求可能是陆续出现的，任何阶段想添加功能时，应把相关功能点加到测试列表中，然后才能继续手头工作，避免疏漏。
+可以参考Spring 的方法校验，基于AOP实现一个切面，切面中通过获取当前用户的角色或国家地区，来指定属于当前用户的特定分组规则。
 
-* **测试驱动**：即利用测试来驱动开发，是TDD的核心。要实现某个功能，要编写某个类或某个函数，应首先编写测试代码，明确这个类、这个函数如何使用，如何测试，然后在对其进行设计、编码。
+1. 自定义一个`MethodValidationInterceptor`并重写`determineValidationGroups`方法来实现指定全局的分组规则。
+2. 自定义`FilteredMethodValidationPostProcessor`，并重写`createMethodValidationAdvice`方法，刚刚定义的`MethodValidationInterceptor`。
+3. 将自定义的`FilteredMethodValidationPostProcessor`注入到Spring容器中。
 
-* **先写断言**：编写测试代码时，应该首先编写判断代码功能的断言语句，然后编写必要的辅助语句。
-
-* **可测试性**：产品代码设计、开发时的应尽可能提高可测试性。每个代码单元的功能应该比较单纯，“各家自扫门前雪”，每个类、每个函数应该只做它该做的事，不要弄成大杂烩。尤其是增加新功能时，不要为了图一时之便，随便在原有代码中添加功能，对于C++编程，应多考虑使用子类、继承、重载等OO方法。
-
-* **及时重构**：对结构不合理，重复等“味道”不好的代码，在测试通过后，应及时进行重构。
-
-* **小步前进**：软件开发是复杂性非常高的工作，小步前进是降低复杂性的好办法。

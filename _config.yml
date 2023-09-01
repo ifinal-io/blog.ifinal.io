@@ -1,4 +1,5 @@
 title: Blog
+repository: final-io/ifinal.io
 logo: /assets/images/logos/github.svg
 # name: Final Blog
 email: 569553292@qq.com
@@ -35,8 +36,18 @@ kramdown:
 theme: minima
 encoding: UTF-8
 # 分页
-paginate: 1
-paginate_path: /blogs/page:num
+#paginate: 10
+#paginate_path: /blogs/page:num
+pagination:
+  enabled: true
+  collection: 'posts'
+  per_page: 10
+  sort_field: 'date'
+  sort_reverse: true
+  permalink: '/:num/index.html'
+  extension: html
+permalink: /:collection/:categories/:year/:month/:day/:title:output_ext
+
 sass:
   sass_dir: _sass
   style: compressed
@@ -50,14 +61,16 @@ plugins:
   - jekyll-default-layout
   - jekyll-gist
   - jekyll-optional-front-matter
-  - jekyll-paginate
-#  - jekyll-paginate-v2
+#  - jekyll-paginate
+  - jekyll-paginate-v2
   - jekyll-titles-from-headings
 collections_dir: pages
 collections:
   articles:
     output: true
   spring:
+    output: true
+  final:
     output: true
   devops:
     output: true
@@ -70,19 +83,13 @@ collections:
     output: true
   post:
     output: true
+    permalink: /:collection/:categories/:year/:month/:day/:title:output_ext
 defaults:
   - scope:
       path: ""
     values:
-      layout: post
-      output: true
-      sidebar: true
-      author: ilikly
-      type: post
-      mark:
-        pin: false
-        hot: false
-      banner: https://source.unsplash.com/random/800x400
+      author: iimik
+      banner: https://source.unsplash.com/random/1880x600
   - scope:
       path: help
     values:
@@ -93,6 +100,23 @@ defaults:
     values:
       type: page
       sidebar: false
+  - scope:
+      path: posts
+    values:
+      layout: post
+      permalink: /:collection/:categories/:year/:month/:day/:title:output_ext
+  - scope:
+      path: ""
+      type: "spring"
+    values:
+      layout: docs
+      navbar: navbar-top
+  - scope:
+      path: ""
+      type: "final"
+    values:
+      layout: docs
+      navbar: navbar-top
 # 插件配置
 gist:
   noscript: false

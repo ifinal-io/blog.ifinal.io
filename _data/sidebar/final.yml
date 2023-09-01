@@ -1,0 +1,80 @@
+﻿logo: /assets/img/logos/github.svg
+name: Final Projects
+menus:
+  - id: overview
+    icon: dashboard
+    name: '概览'
+  - id: quick-start
+    icon: touch_app
+    name: '快速入门'
+    menus:
+      - id: final-web
+        name: 'Final-Web'
+      - id: orm
+        name: '对象缓存映射'
+      - id: cache
+        name: '缓存'
+  - id: features
+    icon: tips_and_updates
+    name: '特性'
+    menus:
+      - id: api
+        name: 'API'
+      - id: data
+        name: '数据'
+      - id: pageable
+        name: 'Pageable'
+      - id: query
+        name: 'Query'
+      - id: cache
+        name: 'Cache'
+      - id: i18n
+        name: 'I18N'
+      - id: validation
+        name: 'Validation'
+  - id: user-manual
+    icon: book
+    name: '用户手册'
+    menus:
+      - id: enums
+        name: '枚举'
+      - id: arguments
+        name: '参数'
+  - id: dev-manual
+    icon: menu_book
+    name: '开发者手册'
+    menus:
+      - id: orm
+        name: 'ORM映射'
+      - id: domain-api
+        name: '领域接口'
+  - id: modules
+    icon: extension
+    name: '模块'
+    menus:
+      - id: final-framework
+        name: Final Framework
+        menus:
+          - id: final-web
+            name: 'Final Web'
+      - id: final-data
+        name: 'Final Data'
+        menus:
+          - id: orm
+            name: 'ORM'
+          - id: query
+            name: 'Query'
+          - id: api
+            name: 'API'
+      - id: final-mybatis
+        name: Final Mybatis
+        menus:
+          - id: mapper
+            name: 'Mapper'
+          - id: extensions
+            name: '插件'
+            menus:
+              - id: pageable-interceptor
+                name: '分页插件'
+              - id: parameter-inject-interceptor
+                name: '参数注入插件'

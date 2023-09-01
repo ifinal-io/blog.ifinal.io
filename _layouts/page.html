@@ -4,43 +4,36 @@
 {% include head.html %}
 
 <body class="sidebar-collapse" data-spy="scroll" data-target="#toc" data-offset="50">
+
 {% include navbar/navbar.html %}
-<div class="page-header header-filter header-x-small" data-parallax="true"
-     style="background-image: url('{{ page.banner }}');">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <h1 class="title">{{ page.summary }}</h1>
-        <h2><span class="typed-text font-weight-bold" data-typed-text='{{ page.typed | jsonify }}'></span></h2>
-        <br>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="main main-raised" id="app">
+<main>
+    <section class="py-0 overflow-hidden" id="banner" data-bs-theme="light" style="height: 38vh">
+        <div class="bg-holder overlay"
+             style="background-image:url({{ page.banner }});background-position: center bottom;">
+        </div>
+        <div class="container">
+            <div class="row flex-center pt-8 pt-lg-10 pb-lg-9 pb-xl-0">
+                <div class="col-md-11 col-lg-8 col-xl-4 pb-7 pb-xl-9 text-center text-xl-start"><a
+                        class="btn btn-outline-danger mb-4 fs--1 border-2 rounded-pill" href="#!">
+                <span class="me-2"
+                      role="img"
+                      aria-label="Gift">🎁</span>Final</a>
+                    <h1 class="title text-white">{{ page.summary }}</h1>
+                    <h2><span class="typed-text font-weight-bold text-white"
+                              data-typed-text='{{ page.typed | jsonify }}'></span></h2>
+                </div>
+                <div class="col-xl-7 offset-xl-1 align-self-end mt-4 mt-xl-0">
 
-  {{ content }}
+                </div>
+            </div>
+        </div>
+    </section>
 
-</div>
+    {{ content }}
+</main>
 
-{% include script.html %}
-<script>
-  $(document).ready(function () {
-    var typedTexts = document.querySelectorAll('.typed-text');
-
-    if (typedTexts.length && window.Typed) {
-      typedTexts.forEach(function (typedText) {
-        return new window.Typed(typedText, {
-          strings: JSON.parse(typedText.getAttribute("data-typed-text")),
-          typeSpeed: 30,
-          loop: true,
-          backDelay: 1500
-        });
-      });
-    }
-  });
-</script>
+{% include scripts.html %}
 </body>
 
 </html>

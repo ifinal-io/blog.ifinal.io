@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+{% assign fileType = page.path | split: '.' | last %}
+{% include head.html %}
+<body class="off-canvas-sidebar blog-posts " data-spy="scroll" data-target="#toc" data-offset="50">
+<div class="wrapper">
+
+    {% include sidebar/sidebar.html %}
+    <div class="main-panel">
+
+        <!-- Navbar -->
+        {% include navbar/navbar.html %}
+        <!-- End Navbar -->
+
+        <div class="content">
+
+            <div class="tab-content">
+                <div class="tab-pane {% if fileType == 'html'%} active {% endif %}" id="preview">
+                    {{ content }}
+                </div>
+                <div class="tab-pane {% if fileType == 'md'%} active {% endif %}" id="article">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <article class="markdown" id="markdown"></article>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sticky-sidebar sticky-top terms-sidebar" style="top: 100px;">
+                                <div class="toc" id="toc">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane markdown" id="source">
+                    <textarea id="editor" class="d-none" hidden style="width: 100%" rows="100">
+                        {% if fileType == 'md' %}
+                        {% include_relative {{ page.path | split: "/" | last  }} %}
+                        {% endif %}
+
+                        {% if page.docs == true %}
+                        {% include_relative {{ page.path | replace: '.html' : '-docs.md' | split: "/" | last  }} %}
+                        {% endif %}
+                    </textarea>
+                    <pre><code id="code"></code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            {% include footer.html %}
+        </div>
+    </div>
+</div>
+
+{% include scripts.html %}
+{% include jekyll/sidebar.jekyll %}
+
+<script src="/assets/app/markdown.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var typedTexts = document.querySelectorAll('.typed-text');
+
+        if (typedTexts.length && window.Typed) {
+            typedTexts.forEach(function (typedText) {
+                return new window.Typed(typedText, {
+                    strings: JSON.parse(typedText.getAttribute("data-typed-text")),
+                    typeSpeed: 30,
+                    loop: true,
+                    backDelay: 1500
+                });
+            });
+        }
+    });
+</script>
+</body>
+
+</html>
