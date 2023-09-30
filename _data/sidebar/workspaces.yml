@@ -1,0 +1,6 @@
+﻿logo: /assets/img/logos/github.svg
+name: Final Projects
+menus:
+  - id: overview
+    icon: dashboard
+    name: '概览'
